@@ -1,0 +1,78 @@
+{% comment %}
+   Renders a responsive image
+   Accepts:
+   - image: {Object} Image Liquid object
+   - mobile_image: {Object} Image Liquid object
+  - image_size: {Number} Image width value
+   - image_size_mobile: {Number} Mobile Image width value
+  - max_width: {Number} Under what resolution to show the Mobile Image
+  - resize_by: {String} Resize by width or height
+   - no_lazy: {Boolean} Stops the lazy loading - Default: False
+   - custom_class: {String} Custom class to be added to the image
+   - custom_alt: {String} Custom alt text (Optional)
+   Usage:
+   {% render 'responsive-image',
+     image: section.settings.image,
+     mobile_image: section.settings.image_mobile,
+     image_size: 1920,
+     image_size_mobile: 900,
+     max_width: 989
+   %}
+{% endcomment %}
+{% if image != blank %}
+  <picture>
+    {% assign no_lazy_image = false %}
+
+    {% if no_lazy == true %}
+      {% assign no_lazy_image = true %}
+    {% endif %}
+
+    {% if resize_by != 'height' %}
+      {% assign resize_by = 'width' %}
+    {% endif %}
+
+    {% assign snippet_mobile_image = image %}
+
+    {% if mobile_image != blank %}
+      {% assign snippet_mobile_image = mobile_image %}
+    {% endif %}
+
+    {% assign snippet_max_width = 989 | plus: 1 %}
+
+    {% if max_width != blank %}
+      {% assign snippet_max_width = max_width | plus: 1 %}
+    {% endif %}
+
+    {% assign snippet_img_size = 1000 %}
+    {% assign snippet_img_size_mobile = 500 %}
+
+    {% if image_size != blank %}
+      {% assign snippet_img_size = image_size %}
+    {% endif %}
+
+    {% if image_size_mobile != blank %}
+      {% assign snippet_img_size_mobile = image_size_mobile %}
+    {% endif %}
+
+    {% if resize_by == 'width' %}
+      {% assign snippet_img_size = snippet_img_size | append: 'x' %}
+      {% assign snippet_img_size_mobile = snippet_img_size_mobile | append: 'x' %}
+    {% endif %}
+    {% assign img_alt = custom_alt | default: image.alt %}
+    <source
+      media="(min-width: {{snippet_max_width}}px)"
+      srcset="{% if resize_by == 'width'%}{{ image | img_url: snippet_img_size }}{% else %}{{ image | image_url: height: snippet_img_size }}{% endif %}"
+    >
+    <img
+      src="{% if resize_by == 'width'%}{{ snippet_mobile_image | img_url: snippet_img_size_mobile }}{% else %}{{ snippet_mobile_image | image_url: height: snippet_img_size_mobile }}{% endif %}"
+      {% if no_lazy_image == false %}
+        loading="lazy"
+      {% endif %}
+      style="--desktop-focal-point: {{image.presentation.focal_point.x}}% {{image.presentation.focal_point.y}}%; --mobile-focal-point: {{mobile_image.presentation.focal_point.x}}% {{mobile_image.presentation.focal_point.y}}%;"
+      class="{{ custom_class }} responsive-image-snippet-image"
+      alt="{{ img_alt | escape }}"
+      width="{{ snippet_img_size_mobile | replace: 'x', ''}}"
+      height="{{ snippet_img_size_mobile | replace: 'x', '' }}"
+    >
+  </picture>
+{% endif %}

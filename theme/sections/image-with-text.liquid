@@ -1,0 +1,129 @@
+{{ 'section-image-with-text.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.background }};
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<div class="image-with-text-section-container">
+  <div class="image-with-text-section-text-content">
+    {% if section.settings.title != blank %}
+      <div class="image-with-text-section-title">
+        {{ section.settings.title }}
+      </div>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <div class="image-with-text-section-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+  {% if section.settings.image != blank %}
+  <div class="image-with-text-section-image">
+    {% render 'responsive-image',
+      image: section.settings.image,
+      mobile_image: section.settings.image,
+      image_size: 700,
+      image_size_mobile: 400,
+      max_width: 989
+    %}
+  </div>
+{% endif %}
+</div>
+
+{% schema %}
+	{
+		"name": "Image with text",
+		"settings": [
+      {
+				"type": "header",
+				"content": "Content"
+			},
+      {
+				"type": "text",
+				"id": "title",
+				"label": "Title"
+			},
+      {
+				"type": "text",
+				"id": "description",
+				"label": "Description"
+			},
+      {
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+      {
+				"type": "header",
+				"content": "Colors"
+			},
+      {
+        "type": "color_background",
+				"id": "background",
+				"label": "Background color"
+			},
+      {
+				"type": "header",
+				"content": "Section spacings"
+			},
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Margin top - desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Margin bottom - desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top - desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom - desktop",
+        "default": 0
+      }
+		],
+		"presets": [
+				{
+					"name": "Image with text"
+				}
+		]
+	}
+{% endschema %}

@@ -1,0 +1,46 @@
+{
+  "name": "pamaura-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3005",
+    "build": "next build",
+    "start": "next start -p 3005",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "import": "tsx scripts/import-shopify.ts",
+    "import:all": "tsx scripts/import-shopify.ts --replace && tsx scripts/import-align.ts && tsx scripts/import-reviews.ts && tsx scripts/import-theme-translations.ts",
+    "admin:user": "tsx scripts/admin-user.ts",
+    "render": "tsx scripts/render-paths.ts",
+    "import:align": "tsx scripts/import-align.ts",
+    "import:reviews": "tsx scripts/import-reviews.ts",
+    "import:theme-texts": "tsx scripts/import-theme-translations.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "liquidjs": "^10.21.1",
+    "lucide-react": "^1.59.0",
+    "next": "16.4.2",
+    "node-html-parser": "^7.0.1",
+    "nodemailer": "^10.1.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/diff": "^7.0.2",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "diff": "^8.0.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

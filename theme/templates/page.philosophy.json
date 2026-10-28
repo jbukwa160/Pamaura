@@ -1,0 +1,674 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "center": false,
+        "page_cover_metafield": "",
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "height": "small"
+      }
+    },
+    "ss_hero_1_RMgmxz": {
+      "type": "ss-hero-1",
+      "blocks": {
+        "slide_nbqaLf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/philosophy-hero.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/philosophy-hero-m.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_nbqaLf"
+      ],
+      "settings": {
+        "height": 700,
+        "height_mobile": 640,
+        "bg_opacity": 0.7,
+        "vertical_alignment": "flex-start",
+        "horizontal_alignment": "center",
+        "interval": 5,
+        "image_radius": 0,
+        "title": "<h1>Здравейте! Ние сме Pamaura.<\/h1>",
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 66,
+        "title_size_mobile": 44,
+        "title_height": 130,
+        "subtitle": "<h5>Вълнуващата среща на последните козметични иновации със златната съставка - пшеничния зародиш. Посветени на едно бъдеще, в което високо-ефективната грижа за кожата е чиста и  достъпна. <\/h5>",
+        "subtitle_custom": false,
+        "subtitle_font": "josefin_sans_n4",
+        "subtitle_size": 20,
+        "subtitle_size_mobile": 18,
+        "subtitle_height": 130,
+        "subtitle_mt": 20,
+        "buttons_mt": 20,
+        "buttons_gap": 20,
+        "button": "",
+        "button_url": "shopify:\/\/collections\/all",
+        "second_button": "",
+        "second_button_url": "shopify:\/\/collections\/all",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 16,
+        "button_height": 120,
+        "button_padding_vertical": 16,
+        "button_padding_vertical_mobile": 16,
+        "button_padding_horizontal": 32,
+        "button_padding_horizontal_mobile": 32,
+        "button_radius": 0,
+        "button_border_thickness": 0,
+        "button_color": "#000000",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#ffffff",
+        "button_bg_hover_color": "#000000",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "second_button_color": "#000000",
+        "second_button_hover_color": "#ffffff",
+        "second_button_bg_color": "#ffffff",
+        "second_button_bg_hover_color": "#000000",
+        "second_button_border_color": "#000000",
+        "second_button_border_hover_color": "#000000",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "background_color": "#535353",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 64,
+        "padding_bottom": 80,
+        "padding_horizontal": 3,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 120,
+        "section_radius": 0,
+        "lazy_load": false
+      }
+    },
+    "text_columns_icons_tDdTAa": {
+      "type": "text-columns-icons",
+      "blocks": {
+        "image_4yXa9L": {
+          "type": "image",
+          "settings": {
+            "icon": "delivery",
+            "image": "shopify:\/\/shop_images\/icon-skincare-accent_cbf7ff66-7df4-40c6-89c7-71572f925248.svg",
+            "crop": true,
+            "title": "",
+            "caption": "Вярваме, че грижата за кожата трябва да е вдъхновена от природата и усъвършенствана от иновацията.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_GDQFdn": {
+          "type": "image",
+          "settings": {
+            "icon": "time-limit",
+            "image": "shopify:\/\/shop_images\/icon-clean-formulas-accent_4dd987e9-bcee-4509-a0ab-f1adb08e7e40.svg",
+            "crop": true,
+            "title": "",
+            "caption": "Държим на прозрачните и чисти формули, които водят до оптимални резултати и представяне.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_WxcHHW": {
+          "type": "image",
+          "settings": {
+            "icon": "store",
+            "image": "shopify:\/\/shop_images\/icon-wheat-germ-accent_d35339aa-284e-4e74-8a35-03a69c2214eb.svg",
+            "crop": true,
+            "title": "",
+            "caption": "Вярваме безрезервно в доказаната сила на нашата звездна съставка - пшеничния зародиш.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_4yXa9L",
+        "image_GDQFdn",
+        "image_WxcHHW"
+      ],
+      "settings": {
+        "heading": "НИЕ СМЕ ГОРДИ, ЧЕ",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "cta_label": "",
+        "cta_url": "",
+        "style": "grid",
+        "layout": "grid-3 grid-lap-2 grid-palm-1",
+        "border_radius": 0,
+        "hide_borders": true,
+        "opacity_on_hover": false,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "text_columns_icons_3EMEQg": {
+      "type": "text-columns-icons",
+      "blocks": {
+        "image_8cYiwt": {
+          "type": "image",
+          "settings": {
+            "icon": "delivery",
+            "image": "shopify:\/\/shop_images\/icon-eu-accent_bcbdce50-b702-4986-968c-b3480ce075e9.svg",
+            "crop": true,
+            "title": "",
+            "caption": "Важно е да подкрепяме общности както у дома, така и по света. Горди сме, че произвеждаме продуктите си в България, част от Европейския съюз.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_nmURLm": {
+          "type": "image",
+          "settings": {
+            "icon": "time-limit",
+            "image": "shopify:\/\/shop_images\/icon-cruelty-free-accent_be80cd64-973f-4027-a2d9-1a16a24b0fc8.svg",
+            "crop": true,
+            "title": "",
+            "caption": "За нас единственият вариант за производство е без жестокост. Никога не бихме тествали продуктите си върху животни.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_bQUmrz": {
+          "type": "image",
+          "settings": {
+            "icon": "store",
+            "image": "shopify:\/\/shop_images\/icon-self-care-accent_5723a2b5-0a72-4b16-8145-322f5dfbf5d5.svg",
+            "crop": true,
+            "title": "",
+            "caption": "Вярваме в грижата за себе си и удоволствието, което носи тя със себе си. Затова произвеждаме продукти, които се усещат и ухаят вълшебно и дават невероятни резултати.",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_8cYiwt",
+        "image_nmURLm",
+        "image_bQUmrz"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "style": "grid",
+        "layout": "grid-3 grid-lap-2 grid-palm-1",
+        "border_radius": 0,
+        "hide_borders": true,
+        "opacity_on_hover": false,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": true,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "rich_text_XpTrJj": {
+      "type": "rich-text",
+      "blocks": {
+        "title_YkWtnH": {
+          "type": "title",
+          "settings": {
+            "title": "ИНОВАТИВНА ГРИЖА ЗА КОЖАТА, ЗАХРАНВАНА ОТ ПРИРОДАТА",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_UYkfNd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pamaura е въплъщение на изисканата грижа за кожата, безпроблемно съчетаваща силите на природата и научните иновации. В основата му е звездната съставка, пшеничният зародиш, щателно включен във всеки продукт заради неговата подхранваща антиоксидантна сила. Марката е доказателство за непоколебима отдаденост, предлагайки качество без компромис, гарантирайки, че всяка формула постига доказани резултати. Същността на Pamaura се крие в съчетаването на достъпност с ефикасност, което прави сияйна и уверена грижа за кожата достъпна за всички. С искрена отдаденост на отговорните и устойчиви практики, Pamaura ви кани на пътешествие, където силата на природата и прецизността на науката се сливат, създавайки изживяване в грижата за кожата, което е едновременно луксозно и основано на реални, измерими резултати. Добре дошли в Pamaura, където автентичността среща съвършенството.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_YkWtnH",
+        "text_UYkfNd"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/innovative-skincare-powered-by-nature.jpg",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "text_columns_icons_jjVnQT": {
+      "type": "text-columns-icons",
+      "blocks": {
+        "image_CERb78": {
+          "type": "image",
+          "settings": {
+            "icon": "delivery",
+            "image": "shopify:\/\/shop_images\/01_86150a00-68c9-40e2-a15a-64d086fca057.svg",
+            "crop": true,
+            "title": "БЕЗ ПАРАБЕНИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_cL6BEH": {
+          "type": "image",
+          "settings": {
+            "icon": "time-limit",
+            "image": "shopify:\/\/shop_images\/02_1ff08012-6a27-488e-9f43-74da169ad6bd.svg",
+            "crop": true,
+            "title": "НЕ Е ТЕСТВАНО ВЪРХУ ЖИВОТНИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_ULEp8q": {
+          "type": "image",
+          "settings": {
+            "icon": "store",
+            "image": "shopify:\/\/shop_images\/03_458a567f-c555-4548-b7ec-c8c7d38996f5.svg",
+            "crop": true,
+            "title": "НАТУРАЛНИ СЪСТАВКИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_H796Td": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify:\/\/shop_images\/04_1cd2b7c7-d183-4bb8-8467-d67c915dcf83.svg",
+            "crop": true,
+            "title": "БЕЗ ГМО",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_R3MNGw": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify:\/\/shop_images\/05_f5941000-16f1-4497-a09b-8502d82f6f4f.svg",
+            "crop": true,
+            "title": "ЧИСТА КРАСОТА",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_W7NaHy": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify:\/\/shop_images\/06_7d46bbac-e225-4ce6-8a2d-b0ee25c6d2b9.svg",
+            "crop": true,
+            "title": "3D ХИДРАТАЦИЯ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_CERb78",
+        "image_cL6BEH",
+        "image_ULEp8q",
+        "image_H796Td",
+        "image_R3MNGw",
+        "image_W7NaHy"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "style": "slider",
+        "layout": "grid-6 grid-portable-4 grid-lap-3 grid-palm-2",
+        "border_radius": 0,
+        "hide_borders": true,
+        "opacity_on_hover": false,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "rich_text_GaCADU": {
+      "type": "rich-text",
+      "blocks": {
+        "title_Y3Pxqe": {
+          "type": "title",
+          "settings": {
+            "title": "„ЗЛАТНАТА“ СЪСТАВКА",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_k9mF6z": {
+          "type": "text",
+          "settings": {
+            "text": "<p>В сърцевината на всеки Pamaura продукт се крие трансформиращата сила на пшеничния зародиш. Нашите основателки Диана и Петя виждат огромен потенциал в тази съставка, след като я включват в ежедневния си хранителен режим. Скоро след това, им хрумва амбициозен план как да използват пълния потенциал на пшеницата.<\/p><p>Пълно с витамини, антиоксиданти и есенциални нутриенти, маслото от пшеничен зародиш подхранва и освежава кожата и й придава сияен и здравословен блясък. Тази “златна” съставка е мощен естествен антиоксидант, който се бори с резултатите на свободните радикали, има доказано действие против стареене и озаряващ ефект и подпомага цялостното здраве на кожата. Гордеем се, че се сдобиваме с пшеничния си зародиш локално (научете повече тук- линк към история) и така се сме напълно сигурни, че всяко семенце е събрано и обработено внимателно от доверени партньори от нашата общност.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_Y3Pxqe",
+        "text_k9mF6z"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/the-golden-ingredient.jpg",
+        "video_controls": false,
+        "image_position": "left",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_QUAkLk": {
+      "type": "rich-text",
+      "blocks": {
+        "title_mtpBP3": {
+          "type": "title",
+          "settings": {
+            "title": "ФОРМУЛИРАНИ С МИСЪЛ",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_PEa7wy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ние не се позиционираме като 100% натурална марка и това не е случайно. Нашата философия се корени в твърдото вярване, че най-добрите и безопасни формули се получават, когато комбинираш силата на природата с напредъка на науката. Гордеем се, че прецизираме продуктите си по такъв начин, че да се възползваме от богатствата на маслото от пшеничен зародиш, но и да инкорпорираме последните иновации в козметичните технологии. Нужни са много време и експертиза, за да достигнем до балансирана формула, която да работи за всички. Затова внимателно подбираме най-силните съставки от природата и добавяме към тях активни съставки с доказани резултати. Създаваме луксозни продукти с нежна текстура и омайващ аромат, с които кожата ви се чувства по-здрава, мека, подмладена и сияйна.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_mtpBP3",
+        "text_PEa7wy"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/thoughtfuly-formulated.jpg",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_KLQDmn": {
+      "type": "rich-text",
+      "blocks": {
+        "title_4V8tkq": {
+          "type": "title",
+          "settings": {
+            "title": "НАШИЯТ ФОКУС - ТИ",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_mffPNH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>В основата на Pamaura лежи дълбок ангажимент към нашите клиенти, отдаденост, която се простира отвъд висококачествената грижа за кожата до царството на ежедневните ритуали. Нашият фокус не е само върху предоставянето на продукти; става въпрос за създаване на трансформиращ ежедневен ритуал на грижа за себе си и удовлетворение. Pamaura ви кани да прегърнете тези моменти като възможности за себеоткриване и издигане, като гарантира, че всяко приложение е празник на вашата уникална красота. Нашите продукти са прецизно проектирани за ефективност, осигуряващи резултати, които се простират отвъд повърхността, повишавайки вашата увереност и представа за себе си. Това не е просто грижа за кожата; това е пътуване на любов към себе си и овластяване, където синергията от ефективни резултати и грижа за себе си се превръща в ежедневно утвърждаване на вашето лъчезарно и уверено аз.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_4V8tkq",
+        "text_mffPNH"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/our-focus.jpg",
+        "video_controls": false,
+        "image_position": "left",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "featured_collection_gm7GbR": {
+      "type": "featured-collection",
+      "blocks": {
+        "rating_YXcjpV": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title_3dtbbp": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_tiBfMx": {
+          "type": "text",
+          "settings": {
+            "metafield": "custom.product_text",
+            "text_color": "text-color--opacity",
+            "text_transform": false
+          }
+        },
+        "price_pDGkmq": {
+          "type": "price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rating_YXcjpV",
+        "title_3dtbbp",
+        "text_tiBfMx",
+        "price_pDGkmq"
+      ],
+      "settings": {
+        "heading": "Най-продавани",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "show_view_all": true,
+        "layout": "grid-3 grid-lap-2",
+        "layout_mobile": "grid-palm-1",
+        "products_number": 3,
+        "collection": "bestsellers",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "1721937190671c7e7a": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_9xgPn3": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Последвайте ни",
+            "title_color": "",
+            "alignment": "center",
+            "margin_bottom": 150,
+            "background_color": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_9xgPn3"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": true,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "newsletter_aN8CGQ": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Запиши се за нашия ел. бюлетин",
+        "text": "",
+        "is_fullwidth": true,
+        "color_background_main": "#e5e5e5",
+        "color_text_main": "#000000",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "gutter_decrease": true,
+        "remove_margin": true,
+        "remove_bottom_margin": true,
+        "seo_h_tag": "h3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ss_hero_1_RMgmxz",
+    "text_columns_icons_tDdTAa",
+    "text_columns_icons_3EMEQg",
+    "rich_text_XpTrJj",
+    "text_columns_icons_jjVnQT",
+    "rich_text_GaCADU",
+    "rich_text_QUAkLk",
+    "rich_text_KLQDmn",
+    "featured_collection_gm7GbR",
+    "1721937190671c7e7a",
+    "newsletter_aN8CGQ"
+  ]
+}

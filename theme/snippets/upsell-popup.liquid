@@ -1,0 +1,59 @@
+{% comment %}
+  Variables:
+    -product: {Object} Product Object
+  Usage:
+    {% render 'upsell-popup', product: product %}
+
+{% endcomment %}
+{% liquid
+assign upsell_product_products = product.metafields.custom.upsell_popup_variants.value.upsell_popup_products.value
+assign upsell_popup_title = product.metafields.custom.upsell_popup_variants.value.upsell_popup_title.value
+%}
+
+{% if upsell_product_products != blank %}
+<upsell-popup>
+<div class="upsell-popup-overlay"></div>
+<div class="upsell-popup-wrapper">
+  <div class="upsell-popup-header">
+    <button class="upsell-popup-close-btn" aria-label="Close Button">
+        {% render 'icon-pack', icon: 'close' %}
+    </button>
+    {% if upsell_popup_title != blank %}
+      <h3 class="upsell-popup-title h5">
+        {{ upsell_popup_title }}
+      </h3>
+    {% endif %}
+    <div class="upsell-popup-timer-wrapper">
+      <span class="upsell-popup-offer-text">Побързай! офертата изтича след</span>
+      {% render
+            'countdown-timer',
+            end_date: "Dec 31, 2023",
+            timer_type: "upsell-timer",
+            seconds: true,
+            minutes: true,
+            hours: false
+          %}
+    </div>
+  </div>
+  <div class="upsell-popup-content-wrapper">
+    {% for entry in upsell_product_products %}
+    {% assign upsell_product_variant = entry.product_variant.value %}
+    {% assign short_description = entry.short_description %}
+    {% assign variant_product = upsell_product_variant.product %}
+    {% render 'upsell-popup-product-card', product: variant_product, variant_to_display: upsell_product_variant, short_description: short_description %}
+    {% endfor %}
+  </div>
+  <div class="upsell-popup-footer">
+    <div class="upsell-popup-footer-buttons">
+      <button class="upsell-popup-decline-btn" aria-label="Decline offer">
+        <span>{{ 'upsell_popup.decline_offer' | t }}</span>
+      </button>
+      <button class="upsell-popup-accept-btn button button--solid button--move button--product button--loader" aria-label="Open cart modal">
+        {% render 'icon-pack', icon: 'cart-new' %}
+        {{ 'upsell_popup.open_cart' | t }}
+      </button>
+    </div>
+  </div>
+</div>
+</upsell-popup>
+{% endif %}

@@ -1,0 +1,147 @@
+{{ 'component-facets-vertical.css' | asset_url | stylesheet_tag }}
+{{ 'component-range-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+
+<facet-filters-form class="facets {% if location == 'desktop' %} element--hide-on-small  {% else %} sidebar-large-padding {% endif %}" data-location="{{ location }}">
+
+  <form id="FacetFiltersForm{%- if location == 'mobile' -%} Mobile {%- endif -%}" class="facets__form facets__form--{{ location }} facets__form--vertical">
+
+    {%- if results.terms -%}
+      <input type="hidden" name="q" value="{{ results.terms | escape }}">
+      <input name="options[prefix]" type="hidden" value="last">
+    {%- elsif results.current_vendor or results.current_type -%}
+      <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
+    {%- endif -%}
+
+    <div>
+      {%- if enable_sorting and results.products.size != 0 -%}
+        <div class="collection-filters__item sorting">
+          <div class="collection-filters__field">
+            <label class="collection-filters__label text-weight--medium" for="{{ location }}-SortBy">{{ 'collections.sort_by_label' | t }}</label>
+            <div class="select">
+              {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+              <select name="sort_by" class="select__select collection-filters__sort" id="{{ location }}-SortBy" aria-describedby="a11y-refresh-page-message">
+                {%- for option in results.sort_options -%}
+                  <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          </div>
+          <noscript>
+            <button type="submit" class="button button button--regular button--outline">{{ 'collections.sort_button' | t }}</button>
+          </noscript>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if enable_filtering -%}
+
+      {%- if location == 'mobile' -%}
+        <div class="active-facets active-facets-mobile">
+          {%- liquid
+            assign sort_by = results.sort_by | default: results.default_sort_by
+            if results.url
+              assign results_url = results.url
+            else 
+              assign terms = results.terms | escape
+              assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+            endif
+          -%}
+          {%- assign has_active_filter = false -%}
+          {%- for filter in results.filters -%}
+            {%- for value in filter.active_values -%}
+              {%- assign has_active_filter = true -%}
+              <a class="pill pill--has-close js-facet-remove" href="{{ value.url_to_remove }}">
+                <span>
+                  {%- if filter.type == 'boolean' -%}
+                    {{ filter.label | escape }}:&nbsp;
+                  {%- endif -%}
+                </span>
+                {{ value.label | escape }}
+                {%- render 'theme-symbols', icon: 'close-small' -%}
+              </a>
+            {%- endfor -%}
+            {%- if filter.type == "price_range" -%}
+              {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                {%- assign has_active_filter = true -%}
+                {%- liquid
+                  if settings.show_currency_codes
+                    assign iso_code = localization.country.currency.iso_code | prepend: ' ' 
+                  endif
+                -%}
+                <a class="pill pill--has-close js-facet-remove" href="{{ filter.url_to_remove }}">
+                  <span>{%- if filter.min_value.value -%}{{ filter.min_value.value | money | append: iso_code }}{%- else -%}{{ 0 | money | append: iso_code }}{%- endif -%}-{%- if filter.max_value.value -%}{{ filter.max_value.value | money | append: iso_code }}{%- else -%}{{ filter.range_max | money | append: iso_code }}{%- endif -%}</span>
+                  {%- render 'theme-symbols', icon: 'close-small' -%}
+                </a>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if has_active_filter -%}
+            <a href="{{ results_url }}" class="text-decoration--underline js-facet-remove">{{ 'collections.clear_all' | t }}</a>
+            <span class="active-facets__title text-weight--medium">{{ 'collections.active_filters' | t }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="facets__wrapper">
+
+      {%- for filter in results.filters -%}
+          {%- case filter.type -%}
+          
+            {%- when 'boolean' or 'list' -%}
+            
+              <div class="facets__disclosure js-filter" data-index="{{ forloop.index }}-{{ location }}" {% if filter.operator == 'AND' %} data-and-operator {% endif %}>
+                
+                <span class="facets__summary-text text-weight--medium">
+                  {{ filter.label | escape }}
+                </span>
+
+                {%- if filter.operator == 'AND' -%}
+                  <span class="facets__and-helper-text text-color--opacity text-size--small" style="display:block">{{ 'collections.match_all_label' | t }}</span>
+                {%- endif -%}
+
+                <show-more class="show-more" 
+                  data-height="200"
+                >
+                  <span class="js-show-more show-more_toggler">
+                    {{ 'general.accessibility_labels.show_more' | t }} 
+                  </span>
+                  
+                  <div class="show-more_panel">
+                    <div class="facets__display">
+                      {%- assign color_label = settings.color_swatches_labels | split: ',' -%}
+                      {%- render 'filter-blocks', filter: filter, color_label: color_label, location: location, image_filter_layout: image_filter_layout -%}
+                    </div>
+                  </div>
+
+                </show-more>
+                
+              </div>
+
+            {%- when 'price_range' -%}
+
+              <div class="facets__disclosure js-filter" data-index="{{ forloop.index }}-{{ location }}">
+                <span class="facets__summary-text text-weight--medium">
+                  {{ filter.label | escape }}  
+                </span>
+
+                <div>
+                  {%- render 'filter-price-range', filter: filter -%}
+                </div>
+              </div>
+
+          {%- endcase -%}
+
+        {%- endfor -%}
+
+        <noscript>
+          <button type="submit" class="facets__button button button--regular button--outline">{{ 'collections.filter_button' | t }}</button>
+        </noscript>
+
+      </div>
+    {%- endif -%}
+  </form>
+
+</facet-filters-form>
+
+<script src="{{ 'component-show-more.js' | asset_url }}" defer></script>

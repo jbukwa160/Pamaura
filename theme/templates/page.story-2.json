@@ -1,0 +1,463 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ss_hero_1_Y7hmkc": {
+      "type": "ss-hero-1",
+      "blocks": {
+        "slide_AkRkVr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-story-hero.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/pamaura-hero-02-m_0061e707-6631-4eac-8e07-6a523a4321ae.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_AkRkVr"
+      ],
+      "settings": {
+        "height": 700,
+        "height_mobile": 600,
+        "bg_opacity": 0.7,
+        "vertical_alignment": "flex-start",
+        "horizontal_alignment": "center",
+        "interval": 5,
+        "image_radius": 0,
+        "title": "<h1>Женското приятелство<\/h1>",
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 80,
+        "title_size_mobile": 48,
+        "title_height": 130,
+        "subtitle": "<h5>Ние не просто вярваме в него - ние знаем, че то може да бъде извор на вдъхновение, кураж и сила.<\/h5>",
+        "subtitle_custom": false,
+        "subtitle_font": "josefin_sans_n4",
+        "subtitle_size": 20,
+        "subtitle_size_mobile": 18,
+        "subtitle_height": 130,
+        "subtitle_mt": 20,
+        "buttons_mt": 20,
+        "buttons_gap": 20,
+        "button": "",
+        "button_url": "shopify:\/\/collections\/all",
+        "second_button": "",
+        "second_button_url": "shopify:\/\/collections\/all",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 16,
+        "button_height": 120,
+        "button_padding_vertical": 16,
+        "button_padding_vertical_mobile": 16,
+        "button_padding_horizontal": 32,
+        "button_padding_horizontal_mobile": 32,
+        "button_radius": 0,
+        "button_border_thickness": 0,
+        "button_color": "#000000",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#ffffff",
+        "button_bg_hover_color": "#000000",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "second_button_color": "#000000",
+        "second_button_hover_color": "#ffffff",
+        "second_button_bg_color": "#ffffff",
+        "second_button_bg_hover_color": "#000000",
+        "second_button_border_color": "#000000",
+        "second_button_border_hover_color": "#000000",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "background_color": "#535353",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_horizontal": 3,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 120,
+        "section_radius": 0,
+        "lazy_load": false
+      }
+    },
+    "rich_text_9qwCUV": {
+      "type": "rich-text",
+      "blocks": {
+        "title_KbWnNx": {
+          "type": "title",
+          "settings": {
+            "title": "Пътят на продуктите",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "title_KbWnNx"
+      ],
+      "settings": {
+        "video_controls": false,
+        "image_position": "top no-image",
+        "height": "small",
+        "image_crop": true,
+        "is_fullwidth": true,
+        "text_alignment": "horizontal-center",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": true,
+        "remove_margin": true,
+        "remove_bottom_margin": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "center": false,
+        "page_cover_metafield": "",
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "height": "small"
+      }
+    },
+    "rich_text_aeyQGK": {
+      "type": "rich-text",
+      "blocks": {
+        "title_WAMVPB": {
+          "type": "title",
+          "settings": {
+            "title": "ПОДБИРАНЕ НА СЪСТАВКИТЕ",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_RFg9Qt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>В сърцевината на Pamaura се крие златната ни съставка - пшеницата, а вдъхновението да се възползваме от нейните безценни блага дойде от семейството на Петя. Тя произхожда от стар мелничарски род, а семейството й притежава собствена мелница, от която набавяме и пшеничния зародиш.<\/p><p>За нас пшеницата е не просто връзката с корените - връзката с предците ни и това, което родната земя ни дава. Пшеницата има вълшебни козметични свойства - тя е мощен естествен антиоксидант, има благотворно въздействие върху микробиома, има силно хидратиращ ефект и богат витаминозен състав. Използваме пшеницата в комбинация с други естествени съставки, така че да създадем разнообразни продукти, които се грижат за вашата естествена красота.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_WAMVPB",
+        "text_RFg9Qt"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/choosing-the-ingredients.jpg",
+        "video_controls": false,
+        "image_position": "left",
+        "height": "regular",
+        "image_crop": false,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_XpTrJj": {
+      "type": "rich-text",
+      "blocks": {
+        "title_YkWtnH": {
+          "type": "title",
+          "settings": {
+            "title": "ФОРМУЛИРАНЕ И ПРОИЗВОДСТВО",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_UYkfNd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Използваме пшеничения зародиш като основа, към която добавяме други изпитани естествени съставки. Комбинираме силите на природата с напредъка на науката. Диана има солиден опит в търговията с козметика и това ни помага да сме винаги в крак с всички последни тенденции и технологии.<\/p><p>В производствения ни процес разчитаме на прецизна оптимизация, периодични нововъведения и внимание към детайла. Създаваме иновативни продукти, които решават както добре познати, така и не толкова популярни дерматологични предизвикателства. Всеки наш продукт е фокусиран върху различен кожен проблем, а нашите серии предлагат цялостни решения за оптимална дерматологична грижа.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_YkWtnH",
+        "text_UYkfNd"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/formula-and-production.jpg",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": false,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_GaCADU": {
+      "type": "rich-text",
+      "blocks": {
+        "title_Y3Pxqe": {
+          "type": "title",
+          "settings": {
+            "title": "ПАКЕТИРАНЕ И ДОСТАВКА",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_k9mF6z": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Целта на Pamaura е да достигне до максимален брой жени, да създадем една голяма общност, която не познава граници. Опаковаме продуктите си с грижа и се стараем да дойдат при теб бързо, където и да се намираш.<\/p><p>За нас основна ценност е да се грижим едни за други - за нас хората и за природата, от чиито блага искаме да продължим да се възползваме. Затова нашите продукти са с чист и проверен произход. В тях няма парабени, ГМО, нано частици, нито пък микропластмаса или карциногенни елементи. Продуктите ни са веган, произведени без жестокост.<\/p><p>Вече знаеш кои сме ние. А ние ще се радваме да разберем коя си ти. Свържи се с нас със своята обратна връзка за нашите продукти. Защото доверието е най-важната стъпка от приятелството.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_Y3Pxqe",
+        "text_k9mF6z"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/packing-and-delivery.jpg",
+        "video_controls": false,
+        "image_position": "left",
+        "height": "regular",
+        "image_crop": false,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_QUAkLk": {
+      "type": "rich-text",
+      "blocks": {
+        "title_mtpBP3": {
+          "type": "title",
+          "settings": {
+            "title": "ЗАПОЗНАЙТЕ СЕ С ДИАНА",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_PEa7wy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Всяко приятелство започва със запознанство и оцелява във времето, благодарение на доверието. Щом си тук - редно е да се запознаем и да ти споделим за пътя на продуктите на Pamaura, искрено и непринудено, както само приятелките могат да споделят.<\/p><p>Ние сме Диана и Петя, а Pamaura е плодът на нашето женско приятелство. Винаги сме вярвали, че женската красотата има нужда от подхранване и защита. Затова създадохме Pamaura, за да ти помогнем да засияеш със собствения си блясък.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_mtpBP3",
+        "text_PEa7wy"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/diana-thumb.webp",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": false,
+        "is_fullwidth": true,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "featured_collection_gm7GbR": {
+      "type": "featured-collection",
+      "blocks": {
+        "rating_RfELFD": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title_3dtbbp": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_KPJ43F": {
+          "type": "text",
+          "settings": {
+            "metafield": "custom.product_text",
+            "text_color": "text-color--opacity",
+            "text_transform": false
+          }
+        },
+        "price_pDGkmq": {
+          "type": "price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rating_RfELFD",
+        "title_3dtbbp",
+        "text_KPJ43F",
+        "price_pDGkmq"
+      ],
+      "settings": {
+        "heading": "Най-продавани",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "show_view_all": true,
+        "layout": "grid-3 grid-lap-2",
+        "layout_mobile": "grid-palm-1",
+        "products_number": 4,
+        "collection": "bestsellers",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "9d62d883-c431-4179-9629-bedf96b6c78f": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-0": {
+          "type": "title",
+          "settings": {
+            "title": "ВЯРВАМЕ В ГРИЖАТА ЗА КОЖАТА БЕЗ КОМПРОМИС",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Вече знаеш кои сме ние. А ние ще се радваме да разберем коя си ти. Свържи се с нас със своята обратна връзка за нашите продукти. Защото доверието е най-важната стъпка от приятелството.<\/p>",
+            "text_size": "regular"
+          }
+        },
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Виж повече",
+            "link": "shopify:\/\/collections\/all",
+            "open_in_new_window": false,
+            "button_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-0",
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-1",
+        "template--18077681418558__9d62d883-c431-4179-9629-bedf96b6c78f-16776759637927f06f-2"
+      ],
+      "settings": {
+        "video_controls": false,
+        "image_position": "top no-image",
+        "height": "small",
+        "image_crop": true,
+        "is_fullwidth": true,
+        "text_alignment": "horizontal-center",
+        "spacing": 24,
+        "color_background_main": "#f5f5f5",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "172193685212cb99ac": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_QjpPqe": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Последвайте ни",
+            "title_color": "",
+            "alignment": "center",
+            "margin_bottom": 150,
+            "background_color": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_QjpPqe"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": true,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "newsletter_ryeqXC": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Запиши се за нашия ел. бюлетин",
+        "text": "",
+        "is_fullwidth": true,
+        "color_background_main": "#e5e5e5",
+        "color_text_main": "#000000",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_margin": true,
+        "remove_bottom_margin": true,
+        "seo_h_tag": "h3"
+      }
+    }
+  },
+  "order": [
+    "ss_hero_1_Y7hmkc",
+    "rich_text_9qwCUV",
+    "main",
+    "rich_text_aeyQGK",
+    "rich_text_XpTrJj",
+    "rich_text_GaCADU",
+    "rich_text_QUAkLk",
+    "featured_collection_gm7GbR",
+    "9d62d883-c431-4179-9629-bedf96b6c78f",
+    "172193685212cb99ac",
+    "newsletter_ryeqXC"
+  ]
+}

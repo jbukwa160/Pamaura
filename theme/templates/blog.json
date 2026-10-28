@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "tags_MxX34U": {
+          "type": "tags",
+          "settings": {
+            "tags_limit": 3
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "info": {
+          "type": "info",
+          "disabled": true,
+          "settings": {
+            "show_date": true,
+            "show_author": true,
+            "show_comments_number": false
+          }
+        },
+        "summary": {
+          "type": "summary",
+          "settings": {
+            "excerpt_limit": 15
+          }
+        }
+      },
+      "block_order": [
+        "tags_MxX34U",
+        "title",
+        "info",
+        "summary"
+      ],
+      "settings": {
+        "enable_tags": false,
+        "layout": "grid-2 grid-lap-1",
+        "post_limit": 4,
+        "blog_show_image": true,
+        "image_aspect_ratio": "1",
+        "image_border_radius": 0
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,431 @@
+{{ 'section-collection-banner-custom.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+    {{ section.settings.section_font | font_face: font_display: 'swap' }}
+
+  .collection-banner__wrapper-{{ section.id }} {
+    height: {{ section.settings.section_fixed_height }}px;
+  }
+
+  .content-font-{{ section.id }} {
+    font-family: {{ section.settings.section_font.family }};
+  }
+
+  .collection-banner__product-{{ section.id }} {
+    border-radius: {{ section.settings.product_block_radius }}px;
+    background-color: {{ section.settings.product_block_bg_color }};
+    padding: {{ section.settings.vertical_padding }}px {{ section.settings.horizontal_padding }}px;
+  }
+
+  @media (max-width: 749px) {
+    .collection-banner__wrapper-{{ section.id }} {
+      height: {{ section.settings.section_fixed_height_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{% if section.settings.bg_image != blank %}
+  {% style %}
+    .collection-banner__wrapper-{{ section.id }} {
+      background-image: url({{ section.settings.bg_image | image_url }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 749px) {
+      .collection-banner__wrapper-{{ section.id }} {
+        background-image: url({{ section.settings.bg_image_mobile | image_url }});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  {% endstyle %}
+{% endif %}
+
+{% liquid
+  assign product = section.settings.product
+%}
+
+<div class="collection-banner__wrapper-{{ section.id }} collection-banner__wrapper">
+  <div class="collection-banner__content content-font-{{ section.id }}">
+    {% if section.settings.heading != blank %}
+      <div class="collection-banner__content">
+        <h1 class="collection-banner__title">{{ section.settings.heading }}</h1>
+      </div>
+    {% endif %}
+    {% if section.settings.product != blank %}
+      <a
+        class="collection-banner__product collection-banner__product-{{ section.id }} hide-mobile"
+        href="{{ section.settings.product.url }}"
+      >
+        <div class="collection-banner__product-image">
+          {% render 'responsive-image',
+            image: section.settings.product.featured_image,
+            mobile_image: section.settings.product.featured_image,
+            image_size: 1920,
+            image_size_mobile: 900,
+            max_width: 989
+          %}
+        </div>
+        <div class="collection-banner__product-content">
+          <div class="product-item_badges">
+            {%- if product.available == false -%}
+              <span
+                class="product-item__badge"
+                style="background-color: {{ settings.product_card_badge_sold_out_color }}; color: {{ settings.product_card_badge_sold_out_text_color }}"
+              >
+                {{ 'products.grid.sold_out_product' | t }}
+              </span>
+            {%- endif -%}
+
+            {%- if product.compare_at_price > product.price -%}
+              {%- liquid
+                if product.compare_at_price_varies or product.price_varies
+                  assign compare_price_nums = 0
+                  assign max_compare_at_price = 0
+                  assign compare_at_price = 0
+                  assign price = 0
+                  for variant in product.variants
+                    if variant.compare_at_price > variant.price
+                      assign variant_compare_at_price = variant.compare_at_price | minus: variant.price
+                      if variant_compare_at_price > max_compare_at_price
+                        assign max_compare_at_price = variant_compare_at_price
+                        assign compare_at_price = variant.compare_at_price
+                        assign price = variant.price
+                        assign compare_price_nums = compare_price_nums | plus: 1
+                      endif
+                    endif
+                  endfor
+                else
+                  assign compare_at_price = product.compare_at_price
+                  assign price = product.price
+                  assign compare_price_nums = 1
+                endif
+              -%}
+              <span
+                class="product-item__badge{% if settings.badge_text_transform %} badge-text-transform--uppercase{% endif %}"
+                style="background-color: {{ settings.product_card_badge_sale_color }}; color: {{ settings.product_card_badge_sale_text_color }}"
+              >
+                {%- liquid
+                  if settings.product_card_badge_sale_type == 'percentage'
+                    assign saved = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | prepend: '-' | append: '%'
+                    if compare_price_nums == 1 and product.compare_at_price_varies == false
+                      echo saved
+                    else
+                      echo 'products.grid.save_percent' | t: percent: saved
+                    endif
+                  elsif settings.product_card_badge_sale_type == 'percentage_with_text'
+                    assign saved = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | append: '%'
+                    if compare_price_nums == 1 and product.compare_at_price_varies == false
+                      echo 'products.grid.save_percent_with_text' | t: percent: saved
+                    else
+                      echo 'products.grid.save_percent_with_text' | t: percent: saved
+                    endif
+                  elsif settings.product_card_badge_sale_type == 'amount'
+                    if settings.show_currency_codes
+                      assign iso_code = localization.country.currency.iso_code | prepend: ' '
+                    endif
+                    assign saved = compare_at_price | minus: price | money | append: iso_code
+                    if compare_price_nums == 1
+                      echo 'products.grid.save_amount_html' | t: amount: saved
+                    else
+                      echo 'products.grid.save_up_to_amount_html' | t: amount: saved
+                    endif
+                  else
+                    echo 'products.grid.on_sale_product' | t
+                  endif
+                -%}
+              </span>
+            {%- endif -%}
+
+            {%- if settings.product_card_badge_custom_1_tags != blank
+              and product.tags contains settings.product_card_badge_custom_1_tags
+            -%}
+              <span
+                class="product-item__badge"
+                style="background-color: {{ settings.product_card_badge_custom_1_color }}; color: {{ settings.product_card_badge_custom_1_text_color }}"
+              >
+                {{ settings.product_card_badge_custom_1_text }}
+              </span>
+            {%- endif -%}
+
+            {%- if settings.product_card_badge_custom_2_tags != blank
+              and product.tags contains settings.product_card_badge_custom_2_tags
+            -%}
+              <span
+                class="product-item__badge"
+                style="background-color: {{ settings.product_card_badge_custom_2_color }}; color: {{ settings.product_card_badge_custom_2_text_color }}"
+              >
+                {{ settings.product_card_badge_custom_2_text }}
+              </span>
+            {%- endif -%}
+
+            {%- if settings.product_card_badge_custom_3_tags != blank
+              and product.tags contains settings.product_card_badge_custom_3_tags
+            -%}
+              <span
+                class="product-item__badge"
+                style="background-color: {{ settings.product_card_badge_custom_3_color }}; color: {{ settings.product_card_badge_custom_3_text_color }}"
+              >
+                {{ settings.product_card_badge_custom_3_text }}
+              </span>
+            {%- endif -%}
+          </div>
+          <div class="collection-banner__product-title">{{ section.settings.product.title }}</div>
+          <div class="collection-banner__product-price">
+            <p class="collection-banner__product-regular-price">{{ section.settings.product.price | money }}</p>
+            {% if section.settings.product.compare_at_price != blank and section.settings.price_compare %}
+              <del class="collection-banner__product-compare-price">
+                {{ section.settings.product.compare_at_price | money }}
+              </del>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="mobile-content__wrapper hide-desktop hide-tablet">
+  {% if section.settings.product != blank %}
+    <a
+      class="collection-banner__product collection-banner__product-{{ section.id }}"
+      href="{{ section.settings.product.url }}"
+    >
+      <div class="collection-banner__product-image">
+        {% render 'responsive-image',
+          image: section.settings.product.featured_image,
+          mobile_image: section.settings.product.featured_image,
+          image_size: 1920,
+          image_size_mobile: 900,
+          max_width: 989
+        %}
+      </div>
+      <div class="collection-banner__product-content">
+        <div class="product-item_badges">
+          {%- if product.available == false -%}
+            <span
+              class="product-item__badge"
+              style="background-color: {{ settings.product_card_badge_sold_out_color }}; color: {{ settings.product_card_badge_sold_out_text_color }}"
+            >
+              {{ 'products.grid.sold_out_product' | t }}
+            </span>
+          {%- endif -%}
+
+          {%- if product.compare_at_price > product.price -%}
+            {%- liquid
+              if product.compare_at_price_varies or product.price_varies
+                assign compare_price_nums = 0
+                assign max_compare_at_price = 0
+                assign compare_at_price = 0
+                assign price = 0
+                for variant in product.variants
+                  if variant.compare_at_price > variant.price
+                    assign variant_compare_at_price = variant.compare_at_price | minus: variant.price
+                    if variant_compare_at_price > max_compare_at_price
+                      assign max_compare_at_price = variant_compare_at_price
+                      assign compare_at_price = variant.compare_at_price
+                      assign price = variant.price
+                      assign compare_price_nums = compare_price_nums | plus: 1
+                    endif
+                  endif
+                endfor
+              else
+                assign compare_at_price = product.compare_at_price
+                assign price = product.price
+                assign compare_price_nums = 1
+              endif
+            -%}
+            <span
+              class="product-item__badge{% if settings.badge_text_transform %} badge-text-transform--uppercase{% endif %}"
+              style="background-color: {{ settings.product_card_badge_sale_color }}; color: {{ settings.product_card_badge_sale_text_color }}"
+            >
+              {%- liquid
+                if settings.product_card_badge_sale_type == 'percentage'
+                  assign saved = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | prepend: '-' | append: '%'
+                  if compare_price_nums == 1 and product.compare_at_price_varies == false
+                    echo saved
+                  else
+                    echo 'products.grid.save_percent' | t: percent: saved
+                  endif
+                elsif settings.product_card_badge_sale_type == 'percentage_with_text'
+                  assign saved = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | append: '%'
+                  if compare_price_nums == 1 and product.compare_at_price_varies == false
+                    echo 'products.grid.save_percent_with_text' | t: percent: saved
+                  else
+                    echo 'products.grid.save_percent_with_text' | t: percent: saved
+                  endif
+                elsif settings.product_card_badge_sale_type == 'amount'
+                  if settings.show_currency_codes
+                    assign iso_code = localization.country.currency.iso_code | prepend: ' '
+                  endif
+                  assign saved = compare_at_price | minus: price | money | append: iso_code
+                  if compare_price_nums == 1
+                    echo 'products.grid.save_amount_html' | t: amount: saved
+                  else
+                    echo 'products.grid.save_up_to_amount_html' | t: amount: saved
+                  endif
+                else
+                  echo 'products.grid.on_sale_product' | t
+                endif
+              -%}
+            </span>
+          {%- endif -%}
+
+          {%- if settings.product_card_badge_custom_1_tags != blank
+            and product.tags contains settings.product_card_badge_custom_1_tags
+          -%}
+            <span
+              class="product-item__badge"
+              style="background-color: {{ settings.product_card_badge_custom_1_color }}; color: {{ settings.product_card_badge_custom_1_text_color }}"
+            >
+              {{ settings.product_card_badge_custom_1_text }}
+            </span>
+          {%- endif -%}
+
+          {%- if settings.product_card_badge_custom_2_tags != blank
+            and product.tags contains settings.product_card_badge_custom_2_tags
+          -%}
+            <span
+              class="product-item__badge"
+              style="background-color: {{ settings.product_card_badge_custom_2_color }}; color: {{ settings.product_card_badge_custom_2_text_color }}"
+            >
+              {{ settings.product_card_badge_custom_2_text }}
+            </span>
+          {%- endif -%}
+
+          {%- if settings.product_card_badge_custom_3_tags != blank
+            and product.tags contains settings.product_card_badge_custom_3_tags
+          -%}
+            <span
+              class="product-item__badge"
+              style="background-color: {{ settings.product_card_badge_custom_3_color }}; color: {{ settings.product_card_badge_custom_3_text_color }}"
+            >
+              {{ settings.product_card_badge_custom_3_text }}
+            </span>
+          {%- endif -%}
+        </div>
+        <div class="collection-banner__product-title">{{ section.settings.product.title }}</div>
+        <div class="collection-banner__product-price">
+          <p class="collection-banner__product-regular-price">{{ section.settings.product.price | money }}</p>
+          {% if section.settings.product.compare_at_price != blank and section.settings.price_compare %}
+            <del class="collection-banner__product-compare-price">
+              {{ section.settings.product.compare_at_price | money }}
+            </del>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection Banner Custom",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_fixed_height",
+      "min": 200,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Fixed Height",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "section_fixed_height_mobile",
+      "min": 100,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Fixed Height - Mobile",
+      "default": 550
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image - Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Product settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "section_font",
+      "label": "Section Font",
+      "default": "josefin_sans_n4"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "checkbox",
+      "id": "price_compare",
+      "label": "Show Compare Price",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_block_radius",
+      "label": "Product Block Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "product_block_bg_color",
+      "label": "Product Block Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical Padding",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal Padding",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner Custom"
+    }
+  ]
+}
+{% endschema %}

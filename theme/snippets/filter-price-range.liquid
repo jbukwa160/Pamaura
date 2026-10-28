@@ -1,0 +1,37 @@
+{%- assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 -%}
+{%- assign max_value = filter.max_value.value | default: filter.range_max | divided_by: 100.0 -%}
+{%- assign range_max = filter.range_max | divided_by: 100.0 | ceil -%}
+
+<price-range class="facets__price">
+  <div class="field">
+    <label class="field__label visually-hidden" for="{{ location }}-Search-In-Modal">{{ 'collections.from' | t }}</label>
+    <span class="field__currency">{{ cart.currency.symbol }}</span>
+    <input class="field__input"
+      name="{{ filter.min_value.param_name }}"
+      id="{{ location }}-Filter-{{ filter.label | escape }}-GTE"
+      type="number"
+      inputmode="numeric"
+      {% if filter.min_value.value %}value="{{ min_value | ceil }}"{% endif %} 
+      min="0" max="{{ max_value | ceil }}" placeholder="0"
+    >
+  </div>
+
+  <label class="field__label" for="{{ location }}-Search-In-Modal">{{ 'collections.to' | t }}</label>
+  
+  <div class="field">
+    <span class="field__currency">{{ cart.currency.symbol }}</span>
+    <input class="field__input"
+      name="{{ filter.max_value.param_name }}"
+      id="{{ location }}-Filter-{{ filter.label | escape }}-LTE"
+      type="number"
+      inputmode="numeric"
+      {% if filter.max_value.value %}value="{{ max_value | ceil }}"{% endif %}
+      min="{{ min_value | ceil }}" max="{{ range_max | ceil }}" placeholder="{{ range_max | ceil }}"
+    >
+  </div>
+</price-range>
+
+<div
+  id="{{ location }}-facets-price-range-slider"
+  data-js-price-range-slider
+></div>

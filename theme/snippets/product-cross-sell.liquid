@@ -1,0 +1,122 @@
+<div class="{{ class }}" style="{{ style }}">
+
+  {%- if heading_position == 'outside' -%}
+    <div class="text-weight--medium gutter-bottom--small gutter-top--small">{{ heading | escape }}</div>
+  {%- endif -%}
+
+  <div class="sidebar-widget sidebar-widget--{{ widget_style }}">
+
+    {%- if heading_position == 'inside' -%}
+      <span class="sidebar-widget__title">{{ heading | escape }}</span>
+    {%- endif -%}
+
+    <div class="sidebar-widget__content" {% if heading_position == 'outside' %} style="padding:20px" {% endif %}>
+
+      {%- if heading_position == 'widget' -%}
+        <span class="text-weight--medium gutter-bottom--small"
+          style="display:block;border-bottom: solid 1px var(--color-secondary-background-main); margin-bottom: var(--gutter-regular)"
+        >{{ heading | escape }}</span>
+      {%- endif -%}
+
+      <div class="product-item-compact product-item-compact--{{ layout }}">
+
+        <div class="product-item-compact__image">
+          <a href="{{ product.url }}">
+            {%- render 'lazy-image-small', image: product.featured_media, aspect_ratio: settings.cart_image_ratio, fit: settings.cart_image_fit, class: 'lazy-image--scale-animation' -%}
+          </a>
+        </div>
+
+        <div class="product-item-compact__details">
+
+          {%- liquid
+            if settings.show_currency_codes
+              assign iso_code = localization.country.currency.iso_code | prepend: ' '
+            endif
+          -%}
+
+          <div class="product-item-compact__price compact-price-container{% if product.compare_at_price > product.price %} compact-price-container-sale{% endif %}" id="product-price-{{ id }}" data-js-product-price>
+            <span data-js-product-price-original>
+              {%- unless product == blank -%}
+                {%- liquid
+                  if product.price_varies
+                    assign produce_price = product.price_min | money | append: iso_code
+                    if product.compare_at_price > product.price
+                      echo 'products.grid.on_sale_from_html' | t: price: produce_price
+                    else
+                      echo 'products.grid.from_text_html' | t: price: produce_price
+                    endif
+                  else
+                    echo product.price | money | append: iso_code
+                  endif
+                -%}
+              </span>
+              <del data-js-product-price-compare>
+                {%- liquid
+                  if product.compare_at_price > product.price
+                    echo product.compare_at_price | money | append: iso_code | prepend: '<span>' | append: '</span>'
+                  endif
+                -%}
+              </del>
+              {%- assign variant = product.selected_or_first_available_variant -%}
+              <span data-js-product-price-unit {% unless variant.unit_price_measurement %}style="display:none" {% endunless %}>
+                {%- if variant.unit_price_measurement -%}
+                  <span class="cart-item__unit-price text-size--small text-color--opacity" style="display:block">
+                    {{ variant.unit_price | money | append: iso_code }} /
+                    {% if variant.unit_price_measurement.reference_value != 1 %}
+                      {{ variant.unit_price_measurement.reference_value }}
+                    {% endif %}
+                    {{ variant.unit_price_measurement.reference_unit }}
+                  </span>
+                {%- endif -%}
+              </span>
+            {%- else -%}
+              {{ 9999 | money | append: iso_code }}
+            {%- endunless -%}
+          </div>
+
+          <a href="{{ product.url }}" class="">
+            <span class="text-animation--underline-thin text-weight--bold">{%- liquid
+              unless product == blank
+                echo product.title | escape
+              else
+                echo 'general.onboarding.product_title' | t
+              endunless
+            -%}</span>
+          </a>
+
+          {%- if product.available -%}
+            <div class="product-item-compact__form product-item-compact__form--horizontal">
+              {%- liquid
+                if heading_position == 'inside'
+                  assign defer_ajax_cart = false
+                else
+                  assign defer_ajax_cart = true
+                endif
+                render 'quick-buy', product: product, defer_ajax_cart: defer_ajax_cart, variants_style: 'select', button_style: 'solid', show_color_swatches: false, change_variant_images: false, default_to_first_variant: false, add_to_cart_price: false, show_variant_quantities: "no", unavailable_variants: 'hide', id: id, show_icon: show_giftbox_icon
+              -%}
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '                render ''quick-buy'', product: product, defer_ajax_cart:
+    defer_ajax_cart, variants_style: ''select'', button_style: ''solid'', show_color_swatches:
+    false, change_variant_images: false, default_to_first_variant: false, add_to_cart_price:
+    false, show_variant_quantities: "no", unavailable_variants: ''hide''.settings.unavailable_variants,
+    id: id, show_icon: show_giftbox_icon'
+  to: '                render ''quick-buy'', product: product, defer_ajax_cart: defer_ajax_cart,
+    variants_style: ''select'', button_style: ''solid'', show_color_swatches: false,
+    change_variant_images: false, default_to_first_variant: false, add_to_cart_price:
+    false, show_variant_quantities: "no", unavailable_variants: ''hide'', id: id,
+    show_icon: show_giftbox_icon'
+  position: 4304..4655
+{%- endcomment -%}

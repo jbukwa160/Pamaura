@@ -1,0 +1,176 @@
+{% comment %}
+  Renders product variant options
+
+  Accepts:
+  - type: {String} type of variant picker. Possible values: 'select', 'radio', 'swatch'.
+  - product: {Object} product object.
+  - option: {Object} option object.
+  - current_variant: {Object} current variant object.]
+  - default_to_first_variant: {Boolean} default to first available variant if true.
+  - handle_unavailable_variants: {String} how are unavailable variants rendered. Possible values: 'show', 'disable'.
+  - id: {String} unique id (can be section.id).
+  Usage:
+  {% render 'product-variant-options', type: 'select', option: option, product: product, current_variant: current_variant, default_to_first_variant: true, handle_unavailable_variants: 'show' %}
+{% endcomment %}
+
+{%- if type == 'select' -%}
+  {%- unless default_to_first_variant -%}
+    <option class="product-variant-value" default selected disabled>
+      {{ 'products.grid.select_variant' | t: variant: option.name }}
+    </option>
+  {%- endunless -%}
+{%- endif -%}
+
+{%- for value in option.values -%}
+  {%- capture option_id -%}{{ product.handle }}-option-{{ option.name | escape | downcase | strip }}-{{ forloop.index }}-{{ id }}{%- endcapture -%}
+  {%- capture option_name -%}product-{{ option.name | escape | downcase | strip }}-{{ id }}{%- endcapture -%}
+
+  {%- if type == 'select' -%}
+    <option
+      class="product-variant-value"
+      value="{{ value | escape }}"
+      {% if default_to_first_variant and option.selected_value == value %}
+        selected
+      {% endif %}
+    >
+      {{ value | escape }}
+    </option>
+
+  {%- elsif type == 'swatch' -%}
+    <div class="product-variant__item product-variant__item--radio product-variant__item--color">
+      <input
+        type="radio"
+        name="{{ option_name }}"
+        id="{{ option_id }}"
+        value="{{ value | escape }}"
+        {% if default_to_first_variant and option.selected_value == value %}
+          checked
+        {% endif %}
+        class="product-variant__input product-variant-value"
+      >
+      <label for="{{ option_id }}" class="product-variant__label">
+        {%- liquid
+          if value.swatch.image
+            assign color_swatch_image = value.swatch.image
+          elsif value.swatch.color
+            assign color_swatch_background = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+          else
+            assign color_swatch_name = value | handle | append: '.png'
+            assign color_swatch_image = images[color_swatch_name]
+            assign color_swatch_background = value | downcase | escape | replace: ' ', ''
+          endif
+        -%}
+        {%- if color_swatch_image != blank -%}
+          <img
+            class="product-variant__item-swatch product-variant__item-swatch--color"
+            src="{{ color_swatch_image | image_url: width: 30, height: 30, crop: 'center' }}"
+            srcset="
+              {{ color_swatch_image | image_url: width: 30, height: 30, crop: 'center' }} 30w,
+              {{ color_swatch_image | image_url: width: 60, height: 60, crop: 'center' }} 60w,
+              {{ color_swatch_image | image_url: width: 90, height: 90, crop: 'center' }} 90w
+            "
+            sizes="30px"
+            width="30"
+            height="30"
+            loading="lazy"
+            alt="{{ color_swatch_image.alt | escape }}"
+          >
+        {%- else -%}
+          <span
+            class="product-variant__item-swatch product-variant__item-swatch--image"
+            style="background-color:{{ color_swatch_background }}"
+          ></span>
+        {%- endif -%}
+        <span class="visually-hidden">{{ value | escape }}</span>
+      </label>
+    </div>
+
+  {%- else -%}
+    <div class="product-variant__item product-variant__item--radio">
+      <input
+        type="radio"
+        name="{{ option_name }}"
+        id="{{ option_id }}"
+        value="{{ value | escape }}"
+        {% if default_to_first_variant and option.selected_value == value %}
+          checked
+        {% endif %}
+        class="product-variant__input product-variant-value"
+      >
+      {% if use_custom_variant_style %}
+        <div class="product-variant-options">
+          {% assign current_value = value %}
+          {% assign variant_found = false %}
+          {% assign image_count = forloop.index %}
+          {% for variant in product.variants %}
+            {% if variant.options contains current_value %}
+              {% assign variant_found = true %}
+
+              {% if variant.featured_image != blank %}
+                <div class="variant-images-container">
+                  {% for i in (1..image_count) %}
+                    <img
+                      src="{{ variant.featured_image | image_url: width: 50, height: 50, crop: 'center' }}"
+                      srcset="
+                        {{ variant.featured_image | image_url: width: 50, height: 50, crop: 'center' }} 50w,
+                        {{ variant.featured_image | image_url: width: 100, height: 100, crop: 'center' }} 100w
+                      "
+                      sizes="50px"
+                      width="50"
+                      height="50"
+                      loading="lazy"
+                      alt="{{ variant.featured_image.alt | escape }}"
+                    >
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <label for="{{ option_id }}" class="product-variant__label text-size--small">
+                {{ value | escape }}
+              </label>
+              {% if variant.compare_at_price > variant.price %}
+                {% if variant.metafields.custom.price_text
+                  and variant.metafields.custom.compare_at_price_text != blank
+                %}
+                  <div class="product-original-prices">
+                    <span class="product-price--sale" data-js-product-price>
+                      {{ variant.metafields.custom.compare_at_price_text }}
+                    </span>
+                    <del class="variant-product-price-original" data-js-product-price-original>
+                      {{ variant.metafields.custom.price_text }}
+                    </del>
+                    <span class="variant-product-price-each"> {{ 'products.page.each' | t }} </span>
+                  </div>
+                {% endif %}
+                <div class="product-variant-compare-prices">
+                  <span class="product-price--sale" data-js-product-price>
+                    {{ variant.price | money }}
+                  </span>
+                  <del class="variant-product-price-original" data-js-product-price-original>
+                    {{ variant.compare_at_price | money }}
+                  </del>
+                </div>
+                <div class="variant-price-savings">
+                  <span class="variant-price-savings-text">
+                    {%- liquid
+                      assign price = variant.compare_at_price | minus: variant.price | money
+                      echo 'products.grid.save_amount_with_text' | t: amount: price
+                    -%}
+                  </span>
+                </div>
+              {% else %}
+                <span class="variant-product-price" data-js-product-price>
+                  {{ variant.price | money }}
+                </span>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <label for="{{ option_id }}" class="product-variant__label text-size--small">
+          {{ value | escape }}
+        </label>
+      {% endif %}
+    </div>
+  {%- endif -%}
+{%- endfor -%}

@@ -1,0 +1,137 @@
+{%- if section.settings.enable or request.design_mode -%}
+
+ <modal-box id="exit-intent-popup" class="modal" 
+    data-options='{
+      "show": {% unless request.design_mode %} 1 {% else %} 1000 {% endunless %},
+      "enabled": {{ section.settings.enable }},
+      "frequency": "{{ section.settings.show_repeat }}",
+      "type": "exit_intent_popup"
+    }'
+    style="display:none"
+    tabindex="-1" role="dialog" aria-modal="true" 
+    data-modal-box
+    {{ block.shopify_attributes }}
+  >
+    
+    <div class="container--small">
+      <div class="modal-content" id="modal_{{ section.id }}" 
+        style="padding-top:calc(var(--gutter-large) * 0.6)"
+      >
+
+        <div class="modal-heading">
+          <div class="modal-heading__text remove-empty-space">
+            <span class="text-size--larger text-weight--bold">{{ section.settings.title | escape }}</span>
+          </div>
+          <div class="modal-heading__actions" style="margin-top:-12px">
+            <button class="modal-close" data-js-close>{%- render 'theme-symbols', icon: 'close' -%}</button>
+          </div>
+        </div>
+
+        <div class="rte">
+          {{ section.settings.text }}
+        </div>
+
+        {%- liquid
+          unless section.settings.image == blank
+            render 'lazy-image', image: section.settings.image, sizes: 'sizes="(max-width: 480px) 100vw, 500px"', ratio: section.settings.image.aspect_ratio, alt: section.settings.title, class: 'margin-top--regular element--border-radius'
+          endunless 
+        -%}
+
+        {%- if section.settings.cta_label != blank -%}
+          <div class="modal-footer">
+            {%- render 'button', label: section.settings.cta_label, style: 'outline-arrow', link: section.settings.cta_url, class: 'button--medium', target: section.settings.cta_target -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+    <span class="modal-background" data-js-close></span>
+
+  </modal-box>
+
+</div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:settings_schema.exit_intent.exit_intent_popup",
+  "class": "element--has-section-borders mount-exit-intent-popup",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "t:sections.popup.settings.enable.label",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "t:settings_schema.exit_intent.exit_intent_popup_info"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.local-extra-words.sections.headings.title",
+      "default": "Before you leave"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.rich-text.blocks.text.settings.text.label",
+      "default": "<p>Be the first to know about new collections and exclusive offers.</p>"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "t:sections.gallery.blocks.image.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.bundle-extra-words.settings_schema.labels.button_text"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.bundle-extra-words.settings_schema.labels.button_url"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_target",
+      "label": "t:footer-menu-items.open_links_in_new_window",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.popup.settings.functionality.content"
+    },
+    {
+      "type": "select",
+      "id": "show_repeat",
+      "label": "t:sections.popup.settings.frequency.label",
+      "options": [
+        {
+          "value": "day",
+          "label": "t:sections.popup.settings.frequency.options__1.label"
+        },
+        {
+          "value": "week",
+          "label": "t:sections.popup.settings.frequency.options__2.label"
+        },
+        {
+          "value": "once",
+          "label": "t:sections.popup.settings.frequency.options__3.label"
+        }
+      ],
+      "default": "week"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:settings_schema.exit_intent.exit_intent_popup"
+    }
+  ]
+}
+{% endschema %}

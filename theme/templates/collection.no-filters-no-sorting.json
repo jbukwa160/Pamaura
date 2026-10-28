@@ -1,0 +1,216 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "height": "small"
+      }
+    },
+    "ss_featured_product_qNTWNy": {
+      "type": "ss-featured-product",
+      "settings": {
+        "section_height": "fixed_height",
+        "section_fixed_height": 650,
+        "section_fixed_height_mobile": 550,
+        "bg_image": "shopify:\/\/shop_images\/products-hero.jpg",
+        "bg_image_mobile": "shopify:\/\/shop_images\/products-hero-m.jpg",
+        "content_horizontal_position": "start",
+        "content_horizontal_position_mobile": "center",
+        "content_vertical_position": "start",
+        "content_vertical_position_mobile": "start",
+        "heading": "<h2>НОВ ПРОДУКТ<\/h2>",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 36,
+        "heading_size_mobile": 24,
+        "heading_height": 130,
+        "product": "pamaura-premium-wheat-therapy",
+        "block_padding_vertical": 14,
+        "block_padding_vertical_mobile": 14,
+        "block_padding_horizontal": 14,
+        "block_padding_horizontal_mobile": 14,
+        "block_radius": 18,
+        "block_border_thickness": 0,
+        "block_mt": 32,
+        "block_mt_mobile": 16,
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 16,
+        "title_size_mobile": 16,
+        "title_height": 130,
+        "vendor_custom": false,
+        "vendor_font": "josefin_sans_n4",
+        "vendor_size": 0,
+        "vendor_size_mobile": 0,
+        "vendor_height": 130,
+        "vendor_mt": 8,
+        "vendor_mt_mobile": 8,
+        "price_custom": false,
+        "price_font": "josefin_sans_n4",
+        "price_size": 16,
+        "price_size_mobile": 16,
+        "price_height": 130,
+        "price_mt_mobile": 8,
+        "price_compare": true,
+        "image_ratio": "square",
+        "image_ratio_mobile": "square",
+        "image_radius": 18,
+        "image_border_thickness": 0,
+        "image_mt": 10,
+        "button": "КУПИ СЕГА",
+        "button_url": "",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 14,
+        "button_size_mobile": 14,
+        "button_height": 100,
+        "button_padding_vertical": 16,
+        "button_padding_vertical_mobile": 16,
+        "button_padding_horizontal": 24,
+        "button_padding_horizontal_mobile": 24,
+        "button_radius": 10,
+        "button_border_thickness": 0,
+        "button_mt": 14,
+        "button_mt_mobile": 14,
+        "button_style": "non_outline",
+        "button_hide_mobile": true,
+        "block_bg_color": "#ffffff",
+        "block_border_color": "#000000",
+        "title_color": "#000000",
+        "vendor_color": "#2b2b2b",
+        "price_color": "#000000",
+        "price_original_color": "#000000",
+        "image_border_color": "#000000",
+        "button_color": "#ffffff",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_bg_hover_color": "#4d4d4d",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "heading_color": "#000000",
+        "background_color": "#d6d3d3",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 36,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "rating_WGVXtB": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_UJJKN8": {
+          "type": "text",
+          "settings": {
+            "metafield": "custom.product_text",
+            "text_color": "text-color--opacity",
+            "text_transform": false
+          }
+        }
+      },
+      "block_order": [
+        "rating_WGVXtB",
+        "title",
+        "price",
+        "text_UJJKN8"
+      ],
+      "settings": {
+        "products_number": 24,
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "image_filter_layout": "onecolumn",
+        "filters_position": "top",
+        "layout_desktop": "three-columns",
+        "layout_mobile": "grid-palm-1"
+      }
+    },
+    "1721936297eab69252": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_7RFtWk": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Последвайте ни",
+            "title_color": "",
+            "alignment": "center",
+            "margin_bottom": 100,
+            "background_color": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_7RFtWk"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": true,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "newsletter_eN4aA3": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Запиши се за нашия ел. бюлетин",
+        "text": "",
+        "is_fullwidth": true,
+        "color_background_main": "#e5e5e5",
+        "color_text_main": "#000000",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_margin": true,
+        "remove_bottom_margin": true,
+        "seo_h_tag": "h3"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "ss_featured_product_qNTWNy",
+    "product-grid",
+    "1721936297eab69252",
+    "newsletter_eN4aA3"
+  ]
+}

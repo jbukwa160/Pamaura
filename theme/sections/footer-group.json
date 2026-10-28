@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.refactor_words.labels.footer_group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_XFtidy": {
+          "type": "text",
+          "settings": {
+            "title": "Contact information",
+            "image_heading": "shopify://shop_images/pamaura-logo-dark-accent.svg",
+            "image_heading_size": 200,
+            "content": "<p>Pamaura е въплъщение на изисканата грижа за кожата, безпроблемно съчетаваща силите на природата и научните иновации. </p>",
+            "show_social_icons": false,
+            "image_bottom": "shopify://shop_images/planet.png"
+          }
+        },
+        "menu_GhFbQf": {
+          "type": "menu",
+          "settings": {
+            "title": "МАГАЗИН",
+            "menu": "footer-1",
+            "menu_target": false,
+            "menu_style": false
+          }
+        },
+        "menu_MEV7pC": {
+          "type": "menu",
+          "settings": {
+            "title": "ПОВЕРИТЕЛНОСТ",
+            "menu": "footer-2",
+            "menu_target": false,
+            "menu_style": false
+          }
+        },
+        "text_GQC7RB": {
+          "type": "text",
+          "settings": {
+            "title": "СВЪРЖИ СЕ С НАС",
+            "image_heading_size": 40,
+            "content": "<p>+359 886 537 710<br/>hello@pamaura.com<br/>гр. София, ул. Иван Радоев 34</p><p>Последвай ни</p>",
+            "show_social_icons": true
+          }
+        }
+      },
+      "block_order": [
+        "text_XFtidy",
+        "menu_GhFbQf",
+        "menu_MEV7pC",
+        "text_GQC7RB"
+      ],
+      "settings": {
+        "layout": "grid-4 grid-portable-2 grid-lap-1",
+        "show_locale_selector": false,
+        "show_country_selector": false,
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

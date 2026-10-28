@@ -1,0 +1,141 @@
+.article--indent-for-social {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-areas: "content social";
+  gap: 5rem;
+}
+@media screen and (max-width: 1023px) {
+  .article--indent-for-social {
+    grid-template-areas: "content" "social";
+    gap: 0;
+    grid-template-columns: 100%;
+  }
+}
+.article__content {
+  grid-area: content;
+}
+.article__meta {
+  grid-area: social;
+  position: relative;
+}
+.article__meta__sticky {
+  position: sticky;
+  top: 1.25rem;
+}
+html[dir=rtl] .article__meta__sticky {
+  right: 0;
+}
+html[dir=ltr] .article__meta__sticky {
+  left: 0;
+}
+.article__meta-tags .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+@media screen and (min-width: 768px) {
+  .article__meta-tags .tags--right-aligned-on-large {
+    justify-content: end;
+  }
+}
+.article__meta-social + .article__meta-tags {
+  margin-top: var(--gutter-large);
+}
+.article__meta .social-icons svg path {
+  fill: var(--color-text-main);
+  transition: all 100ms linear;
+}
+.no-touchevents .article__meta .social-icons a:hover svg path {
+  fill: var(--color-text-main);
+}
+.article__intro {
+  margin-bottom: var(--gutter-large);
+}
+.article__featured-image {
+  position: relative;
+  text-align: center;
+  margin-top: var(--gutter-large);
+}
+.article__featured-image svg {
+  max-height: 25rem;
+}
+
+.article-header {
+  display: flex;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.article-title-wrapper,
+.article-image-wrapper {
+  width: 100%;
+}
+
+.article-title-wrapper {
+  padding-right: var(--gutter-container);
+}
+
+.article-title-inner h1 {
+  font-size: 40px;
+}
+
+.blog-item__author {
+  margin-left: 10px;
+}
+
+.article-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-product-card);
+}
+
+.article-content {
+  margin-top: 50px;
+}
+
+.article-content-bottom-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+}
+
+.article-tags {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.article-tags .pill {
+  font-size: 14px;
+  color: #000;
+  margin-right: 5px;
+}
+
+.article-content ol,
+.article-content ul {
+  list-style: inside;
+}
+
+.article-content li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 989px) {
+  .article-header {
+    flex-direction: column-reverse;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .article-title-inner h1 {
+    font-size: 32px;
+  }
+
+  .article-content {
+    margin-top: 0;
+  }
+
+  .article-content-bottom-wrapper {
+    margin: 0;
+  }
+}

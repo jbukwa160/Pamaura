@@ -1,0 +1,210 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "collection": "за дълбока хидратация и блестяща кожа",
+            "text_uppercase": true
+          }
+        },
+        "judge_me_reviews_preview_badge_Xx3bXc": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "label": ""
+          }
+        },
+        "products_selling_points_yBbx6q": {
+          "type": "products_selling_points",
+          "settings": {
+            "heading": "100% натурално масло за тяло с блестящи частици. Богата формула с масло от пшеничен зародиш, какао, кокос, ший и други, даваща луксозно усещане за дълбоко хидратирана и блестяща кожа.",
+            "first_image": "shopify://shop_images/Frame_2187.png",
+            "first_text": "Натурални съставки",
+            "second_image": "shopify://shop_images/Frame_2187_3_-cropped.svg",
+            "second_text": "Без тестове върху животни",
+            "third_image": "shopify://shop_images/01_1.png",
+            "third_text": "Без парабени",
+            "fourth_image": "shopify://shop_images/04_1.png",
+            "fourth_text": "Без ГМО",
+            "fifth_image": "shopify://shop_images/Frame_2187_2.png",
+            "fifth_text": "Чиста красота",
+            "sixth_image": "shopify://shop_images/Frame_2187_3.png",
+            "sixth_text": "3D хидратация",
+            "seventh_image": "shopify://shop_images/07_1.png",
+            "seventh_text": "Неинжекционен филър"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": false,
+            "use_custom_variant_style": true,
+            "heading": "купи повече, спести повече!",
+            "variants_style": "radio",
+            "variant_labels": true,
+            "color_swatches": false,
+            "style": "outline",
+            "unavailable_variants": "hide"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder": false,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "show_price": false,
+            "style": "outline"
+          }
+        },
+        "delivery_info_BqHM9J": {
+          "type": "delivery_info",
+          "settings": {
+            "first_image": "shopify://shop_images/express-delivery_1_1.png",
+            "first_text": "Безплатна доставка над 50 лв.",
+            "second_image": "shopify://shop_images/shopping-cart_6_1.png",
+            "second_text": "30 дни право на връщане",
+            "third_image": "shopify://shop_images/shopping-cart_6_1_1.png",
+            "third_text": "Очаквай доставка между  delivery_dates до 14:00 ч. (до 1-2 работни дни)"
+          }
+        },
+        "cross_sell_Km4pDM": {
+          "type": "cross_sell",
+          "settings": {
+            "heading": "купи в сет и спести",
+            "product": "pamaura-cocoa-glow-30",
+            "products": [],
+            "style": "outline",
+            "button_text": "допълни и спести",
+            "giftbox": true,
+            "show_giftbox_icon": false,
+            "hide_block_if": false
+          }
+        },
+        "cross_sell_JdDGyR": {
+          "type": "cross_sell",
+          "settings": {
+            "heading": "комбинира се добре с",
+            "product": "pamaura-premium-wheat-therapy-60",
+            "products": [],
+            "style": "outline",
+            "button_text": "допълни и спести",
+            "giftbox": true,
+            "show_giftbox_icon": false,
+            "hide_block_if": false
+          }
+        },
+        "videos_6YbyfN": {
+          "type": "videos",
+          "settings": {
+            "heading": "Виж продукта в действие",
+            "description": "",
+            "slides_per_view": 3,
+            "videos_border_radius": 10,
+            "video_1": "shopify://files/videos/-4ecf-41c2-9647-9098c9e228ab.mov",
+            "video_2": "shopify://files/videos/coconut-scrub.mp4",
+            "video_3": "shopify://files/videos/02-cocoa-glow_811c94c7-b63b-4a98-a260-f6555d45135c.mp4",
+            "video_4": "shopify://files/videos/01-cocoa-glow.mp4",
+            "video_5": "shopify://files/videos/01-face-cream-muted-compressed.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_Xx3bXc",
+        "price",
+        "products_selling_points_yBbx6q",
+        "variant_picker",
+        "buy_buttons",
+        "delivery_info_BqHM9J",
+        "cross_sell_Km4pDM",
+        "cross_sell_JdDGyR",
+        "videos_6YbyfN"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "show_rating_on_sticky_add_to_cart": false,
+        "cart_label": "",
+        "show_stock": true,
+        "gallery_layout": "one-col slider",
+        "gallery_desktop_width": "one-half",
+        "gallery_mobile_width": 100,
+        "gallery_mobile_margin": false,
+        "gallery_aspect_ratio": "1",
+        "gallery_fit": false,
+        "gallery_padding": 0,
+        "gallery_background": "rgba(0,0,0,0)",
+        "gallery_border": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "show_thumbnails": true,
+        "show_arrows": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "default_to_first_variant": false,
+        "sticky_add_to_cart": true,
+        "sticky_atc_style": "wide",
+        "sticky_bar_bgcolor": "#ffffff",
+        "sticky_bar_txtcolor": "#111111"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "product_link": {
+          "type": "product_link",
+          "settings": {
+            "button_label": "View product"
+          }
+        }
+      },
+      "block_order": [
+        "price",
+        "title",
+        "product_link"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "heading": "Recommended",
+        "subheading": "You may also <strong>like</strong> these products",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "layout_desktop": "four-columns",
+        "layout_mobile": "grid-palm-2",
+        "layout_mobile_less_items": true,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations"
+  ]
+}

@@ -1,0 +1,189 @@
+.basicLightbox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0.01;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+  will-change: opacity;
+}
+
+.basicLightbox--visible {
+  opacity: 1;
+}
+
+.basicLightbox__placeholder {
+  max-width: 100%;
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+  z-index: 1;
+  will-change: transform;
+}
+
+.basicLightbox__placeholder > iframe:first-child:last-child, .basicLightbox__placeholder > img:first-child:last-child, .basicLightbox__placeholder > video:first-child:last-child {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.basicLightbox__placeholder > iframe:first-child:last-child, .basicLightbox__placeholder > video:first-child:last-child {
+  pointer-events: auto;
+}
+
+.basicLightbox__placeholder > img:first-child:last-child, .basicLightbox__placeholder > video:first-child:last-child {
+  width: auto;
+  height: auto;
+}
+
+.basicLightbox--iframe .basicLightbox__placeholder, .basicLightbox--img .basicLightbox__placeholder, .basicLightbox--video .basicLightbox__placeholder {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.basicLightbox--visible .basicLightbox__placeholder {
+  transform: scale(1);
+}
+
+.basicLightboxClose {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  top: 0;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.65;
+  padding: 0 0 18px 10px;
+  color: #fff;
+  font-style: normal;
+  font-size: 28px;
+  font-family: Arial, Baskerville, monospace;
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  display: block;
+  outline: none;
+  padding: 0;
+  z-index: 1046;
+  box-shadow: none;
+  touch-action: manipulation;
+}
+
+.basicLightbox {
+  z-index: 99999;
+}
+html[dir=rtl] .basicLightbox {
+  right: 0;
+  transition: right 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 400ms ease;
+}
+html[dir=ltr] .basicLightbox {
+  left: 0;
+  transition: left 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 400ms ease;
+}
+@media screen and (max-width: 1023px) {
+  html[dir=rtl] .basicLightbox {
+    transition: right 250ms linear, opacity 400ms ease;
+  }
+  html[dir=ltr] .basicLightbox {
+    transition: left 250ms linear, opacity 400ms ease;
+  }
+}
+html[dir=rtl] body.sidebar-move .basicLightbox {
+  right: calc(var(--sidebar-movement) * -1);
+}
+html[dir=ltr] body.sidebar-move .basicLightbox {
+  left: calc(var(--sidebar-movement) * -1);
+}
+
+.basicLightbox--img {
+  cursor: zoom-out;
+}
+
+.basic-lightbox-image {
+  cursor: zoom-in;
+}
+
+.basicLightboxCloseWithIcon {
+  opacity: 1;
+  top: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[dir=rtl] .basicLightboxCloseWithIcon {
+  left: 30px;
+}
+html[dir=ltr] .basicLightboxCloseWithIcon {
+  right: 30px;
+}
+.basicLightboxCloseWithIcon svg {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+.basicLightboxCloseWithIcon svg path {
+  fill: var(--main-text);
+}
+
+.page-popup {
+  width: 80vw;
+  max-width: 780px;
+  margin: 50px auto;
+  background: var(--main-background);
+  padding: 70px 50px;
+  flex-direction: column;
+  position: relative;
+  overflow: auto;
+  max-height: calc(100vh - 100px);
+  overflow: scroll;
+}
+.page-popup span {
+  margin-bottom: 1.2em;
+}
+.page-popup a {
+  margin-top: 0.9em;
+}
+.page-popup .spr-form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.page-popup .spr-form-title,
+.page-popup .page-popup-title {
+  font-size: calc(0.4px * var(--base-headings-size) + 0px) !important;
+}
+.page-popup .basicLightboxClose {
+  color: var(--main-text);
+  opacity: 1;
+  top: 5px;
+  transition: all 100ms linear;
+}
+html[dir=rtl] .page-popup .basicLightboxClose {
+  left: 5px;
+}
+html[dir=ltr] .page-popup .basicLightboxClose {
+  right: 5px;
+}
+@media screen and (max-width: 767px) {
+  .page-popup {
+    width: 90vw;
+    padding: 50px 30px;
+  }
+}

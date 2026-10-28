@@ -1,0 +1,906 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "collection": "Сетове"
+          }
+        },
+        "judge_me_reviews_preview_badge_Wf3RAb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price_f7YUMq": {
+          "type": "price",
+          "settings": {
+            "label": "+ 🎁 Безплатна подаръчна кутия"
+          }
+        },
+        "products_selling_points_FRhQ3C": {
+          "type": "products_selling_points",
+          "settings": {
+            "heading": "За кожа, която изглежда и се усеща прекрасно!",
+            "first_image": "shopify://shop_images/Frame_2187.png",
+            "first_text": "100% Натурални съставки",
+            "second_image": "shopify://shop_images/Frame_2187_3_-cropped.svg",
+            "second_text": "Без тестове върху животни",
+            "third_image": "shopify://shop_images/01_1.png",
+            "third_text": "Без парабени",
+            "fourth_image": "shopify://shop_images/04_1.png",
+            "fourth_text": "Без ГМО",
+            "fifth_image": "shopify://shop_images/Frame_2187_2.png",
+            "fifth_text": "Чиста красота",
+            "sixth_image": "shopify://shop_images/Frame_2187_3.png",
+            "sixth_text": "3D хидратация",
+            "seventh_image": "shopify://shop_images/07_1.png",
+            "seventh_text": "Неинжекционен филър"
+          }
+        },
+        "variant_picker_VN3tFQ": {
+          "type": "variant_picker",
+          "settings": {
+            "heading": "",
+            "variants_style": "radio",
+            "variant_labels": true,
+            "color_swatches": true,
+            "style": "outline",
+            "unavailable_variants": "hide"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder": false,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "show_price": false,
+            "style": "outline"
+          }
+        },
+        "custom_liquid_acDxwx": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id='ss-trust-badges'></div>"
+          }
+        },
+        "review_UCthPy": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1000006063.png",
+            "rating": "4.6",
+            "review": "Използвам крема от няколко дни и кожата ми изглежда по-гладка и сияйна. Определено се превърна в любимия ми продукт.",
+            "link_text": "- @hanni.ng",
+            "link_url": ""
+          }
+        },
+        "bundle_BfNfLy": {
+          "type": "bundle",
+          "settings": {
+            "title": "Какво съдържа комплектът",
+            "first_product": "pamaura-premium-wheat-therapy",
+            "first_product_title": "2х {{ block.settings.first_product.title }}",
+            "first_product_description": "<p>за дълбока хидратация, с анти-ейдж ефект</p>",
+            "second_product": "pamaura-coconut-scrub",
+            "second_product_title": "1x {{ block.settings.second_product.title }}",
+            "second_product_description": "<p>ексфолира мъртвите клетки и замърсявания</p>",
+            "third_product": "pamaura-cocoa-glow",
+            "third_product_title": "2x {{ block.settings.third_product.title }}",
+            "third_product_description": "<p>за мигновено блясък и подмладен вид</p>",
+            "fourth_product": "",
+            "fourth_product_title": "",
+            "fourth_product_description": ""
+          }
+        },
+        "collapsible_tab_zVXY4H": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": true,
+            "heading": "Защо ще го заобичаш",
+            "content": "{{ product.metafields.custom.collapsible_tab_why_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": true
+          }
+        },
+        "collapsible_tab_BXnGG3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": false,
+            "heading": "Основни съставки",
+            "content": "{{ product.metafields.custom.collapsible_tab_ingredients_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": true
+          }
+        },
+        "collapsible_tab_KFTTAq": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": false,
+            "heading": "Как се използва",
+            "content": "{{ product.metafields.custom.collapsible_tab_how_to_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": true
+          }
+        },
+        "ad1a5bf2-807f-49df-acb2-8fefa9cb4df3": {
+          "type": "cross_sell",
+          "settings": {
+            "heading": "допълни и спечели безплатен подарък изненада 🎁",
+            "product": "",
+            "products": "{{ product.metafields.custom.upsells.value }}",
+            "style": "outline",
+            "button_text": "допълни и спечели",
+            "giftbox": true,
+            "hide_block_if": false
+          }
+        },
+        "cross_sell_zKm68A": {
+          "type": "cross_sell",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "product": "",
+            "products": "{{ block.settings.product.metafields.custom.upsells.value }}",
+            "style": "outline",
+            "button_text": "допълни и спечели",
+            "giftbox": true,
+            "hide_block_if": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_Wf3RAb",
+        "price_f7YUMq",
+        "products_selling_points_FRhQ3C",
+        "variant_picker_VN3tFQ",
+        "buy_buttons",
+        "custom_liquid_acDxwx",
+        "review_UCthPy",
+        "bundle_BfNfLy",
+        "collapsible_tab_zVXY4H",
+        "collapsible_tab_BXnGG3",
+        "collapsible_tab_KFTTAq",
+        "ad1a5bf2-807f-49df-acb2-8fefa9cb4df3",
+        "cross_sell_zKm68A"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "cart_label": "🎁 Получавате безплатен подарък",
+        "show_stock": true,
+        "gallery_layout": "one-col slider",
+        "gallery_desktop_width": "one-half",
+        "gallery_mobile_width": 100,
+        "gallery_mobile_margin": false,
+        "gallery_aspect_ratio": "1",
+        "gallery_fit": false,
+        "gallery_padding": 0,
+        "gallery_background": "rgba(0,0,0,0)",
+        "gallery_border": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "show_thumbnails": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "default_to_first_variant": true,
+        "sticky_add_to_cart": true,
+        "sticky_atc_style": "wide",
+        "sticky_bar_bgcolor": "#ffffff",
+        "sticky_bar_txtcolor": "#111111"
+      }
+    },
+    "ss_trust_badges_2_zgVFkr": {
+      "type": "ss-trust-badges-2",
+      "blocks": {
+        "item_mKmda6": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "<p>Безплатна доставка над 50 лв.</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": false
+          }
+        },
+        "item_dde9Nf": {
+          "type": "item",
+          "settings": {
+            "icon": "return_arrow",
+            "title": "<p>30 дни право на връщане</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": false
+          }
+        },
+        "item_AipPUB": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "title": "<p>Очаквай доставка между </p>",
+            "subtitle": "",
+            "date": "(до 1-2 работни дни)",
+            "show_date": true
+          }
+        }
+      },
+      "block_order": [
+        "item_mKmda6",
+        "item_dde9Nf",
+        "item_AipPUB"
+      ],
+      "settings": {
+        "template": "standard",
+        "svg_color": "#d46275",
+        "bg_color": "",
+        "bg_color_item": "",
+        "title_color": "#4f4f4f",
+        "subtitle_color": "#4f4f4f",
+        "icon_size": 22,
+        "title_font_size": 14,
+        "subtitle_font_size": 10,
+        "subtitle_margin_top": 0,
+        "space_items": 5,
+        "pt": 0.5,
+        "pb": 0.5,
+        "mt": 0,
+        "mb": 0
+      }
+    },
+    "promotion_cards_LABH3B": {
+      "type": "promotion-cards",
+      "blocks": {
+        "card_zdwwAE": {
+          "type": "card",
+          "settings": {
+            "video": "shopify://files/videos/coconut-scrub_fffe4718-d92c-43ba-b0cc-4260eee917c4.mp4",
+            "caption": "",
+            "title": "Pamaura Coconut скраб",
+            "subtitle": "Нанесете ексфолиант на влажна кожа, масажирайте 1-2 минути и изплакнете. Използвайте 2-3 пъти седмично.",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": true,
+            "seo_h_tag": "h3"
+          }
+        },
+        "card_V4tWYC": {
+          "type": "card",
+          "settings": {
+            "video": "shopify://files/videos/-4ecf-41c2-9647-9098c9e228ab.mov",
+            "caption": "",
+            "title": "Pamaura Premium Wheat Therapy",
+            "subtitle": "Нанасяйте ежедневно, сутрин и/или вечер на почистена кожа. Масажирайте потупайте леко с върха на пръстите си, докато не се абсорбира.",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": true,
+            "seo_h_tag": "h3"
+          }
+        },
+        "card_DpzBzY": {
+          "type": "card",
+          "settings": {
+            "video": "shopify://files/videos/-ac9d-4b99-b72b-ba00702d2a3d.mov",
+            "caption": "",
+            "title": "Pamaura Cocoa Glow",
+            "subtitle": "Нанасяйте ежедневно на чиста кожа, масажирайте до пълно попиване.",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": true,
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "card_zdwwAE",
+        "card_V4tWYC",
+        "card_DpzBzY"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "heading": "Как да използваш Premium Wheat Shine?",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "cta_label": "",
+        "cta_url": "",
+        "layout": "grid-3 grid-lap-1",
+        "image_aspect_ratio": "1",
+        "text_alignment": "text-align--left",
+        "caption_size": "regular",
+        "title_size": "100%",
+        "subtitle_size": "regular",
+        "spacing": 18,
+        "button_style": "outline",
+        "border_radius": 0,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": true,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "info_tabs_dcVLRL": {
+      "type": "info-tabs",
+      "blocks": {
+        "tab_kCNzLL": {
+          "type": "tab",
+          "settings": {
+            "title": "Дългосрочни ползи за красотата",
+            "caption": "<p>Premium Wheat Shine предоставя трайна грижа за кожата, подобрява текстурата ѝ и подпомага естествената регенерация, за да изглеждате и да се чувствате прекрасно всеки ден.</p>",
+            "image": "shopify://shop_images/c440cd9fb2f837f79ab07e92f619d579.jpg",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_1000006137.svg"
+          }
+        },
+        "tab_JLJd8F": {
+          "type": "tab",
+          "settings": {
+            "title": "Мигновено сияние и здрава кожа",
+            "caption": "<p>Формулата осигурява естествен блясък и хидратация, които правят кожата мека, гладка и видимо по-здрава още след първото нанасяне.</p>",
+            "image": "shopify://shop_images/c440cd9fb2f837f79ab07e92f619d579.jpg",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2188.svg"
+          }
+        },
+        "tab_VegmMQ": {
+          "type": "tab",
+          "settings": {
+            "title": "Дълбоко подхранва и възстановява",
+            "caption": "<p>Съдържа висококачествени съставки, които проникват в дълбочина, за да осигурят интензивно подхранване, възстановяване и защита на кожата от външни агресори</p>",
+            "image": "shopify://shop_images/c440cd9fb2f837f79ab07e92f619d579.jpg",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2187.svg"
+          }
+        },
+        "tab_93EEje": {
+          "type": "tab",
+          "settings": {
+            "title": "С вдъхновение от природата",
+            "caption": "<p>Създадено с грижа за вас, Premium Wheat Shine използва естествени активни съставки, вдъхновени от силата и чистотата на природата, за да достави ефикасна и нежна грижа.</p>",
+            "image": "shopify://shop_images/c440cd9fb2f837f79ab07e92f619d579.jpg",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2188_1.svg"
+          }
+        }
+      },
+      "block_order": [
+        "tab_kCNzLL",
+        "tab_JLJd8F",
+        "tab_VegmMQ",
+        "tab_93EEje"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "heading": "Защо да избереш Premium Wheat Shine?",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--left section-heading--two-rows",
+        "cta_label": "",
+        "cta_url": "",
+        "desktop_layout": "half",
+        "image_position": "left",
+        "image_aspect_ratio": "1",
+        "border_radius": 12,
+        "style": "icons",
+        "autoplay_active": false,
+        "autoplay": 5,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "172355159077ca9efb": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_AdjUVr": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_AdjUVr"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": false,
+        "remove_margin": true,
+        "seo_h_tag": "h2"
+      }
+    },
+    "info_tabs_Vi7wKU": {
+      "type": "info-tabs",
+      "blocks": {
+        "tab_DC6t4k": {
+          "type": "tab",
+          "settings": {
+            "title": "Подхранва и овлажнява кожата, правейки я мека и гладка.",
+            "caption": "<p>Богатият състав на пшеничния зародиш прониква в дълбочина, осигурявайки интензивна хидратация и трайна мекота, като същевременно подобрява еластичността и копринената текстура на кожата.</p>",
+            "image": "shopify://shop_images/2774567a8121962dd7f78f9dafdfed45.png",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2187_1.svg"
+          }
+        },
+        "tab_wPNmnT": {
+          "type": "tab",
+          "settings": {
+            "title": "Стимулира регенерацията и подмладяването на кожата.",
+            "caption": "<p>Естествените витамини и хранителни вещества в пшеничния зародиш активират обновяването на клетките, изглаждат фините линии и възвръщат свежестта и младостта на кожата.</p>",
+            "image": "shopify://shop_images/2774567a8121962dd7f78f9dafdfed45.png",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2188_2.svg"
+          }
+        },
+        "tab_F4RLmT": {
+          "type": "tab",
+          "settings": {
+            "title": "Защитава от вредните въздействия на околната среда благодарение на мощните антиоксиданти.",
+            "caption": "<p>Формулата предпазва кожата от свободните радикали, замърсяването и UV лъчите, осигурявайки дълготрайна защита и поддържане на здравословния ѝ баланс.</p>",
+            "image": "shopify://shop_images/2774567a8121962dd7f78f9dafdfed45.png",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2187_2.svg"
+          }
+        },
+        "tab_makRDh": {
+          "type": "tab",
+          "settings": {
+            "title": "Придава свежо и сияйно излъчване, като укрепва естествената бариера на кожата.",
+            "caption": "<p>Подсилва естествените защитни механизми на кожата, възстановява естествения ѝ блясък и я прави видимо по-озарена и жизнена</p>",
+            "image": "shopify://shop_images/2774567a8121962dd7f78f9dafdfed45.png",
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_2187_3.svg"
+          }
+        }
+      },
+      "block_order": [
+        "tab_DC6t4k",
+        "tab_wPNmnT",
+        "tab_F4RLmT",
+        "tab_makRDh"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "heading": "Пшеничен зародиш – природният еликсир за твоята кожа",
+        "subheading": "В сърцето на нашата грижа за кожата стои пшеничният зародиш – златната съставка, която носи ключа за сияйна и подхранена кожа. Тази съставка е истински дар за кожата, обогатена с есенциални нутриенти, витамини и антиоксиданти, които я подмладяват и регенерират.",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--left section-heading--two-rows",
+        "cta_label": "",
+        "cta_url": "",
+        "desktop_layout": "half",
+        "image_position": "left",
+        "image_aspect_ratio": "1",
+        "border_radius": 12,
+        "style": "icons",
+        "autoplay_active": false,
+        "autoplay": 5,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "rich_text_rHmD66": {
+      "type": "rich-text",
+      "blocks": {
+        "title_UdaQDf": {
+          "type": "title",
+          "settings": {
+            "title": "Безопасно за кожата, безопасно за околната среда",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_tJmG3g": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ежедневно правим малки крачки към промяната, която искаме да видим в света. За нас общото благо има значение, затова ви предлагаме продукти, които са полезни както за вас, така и за околната среда.</p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_UdaQDf",
+        "text_tJmG3g"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "image": "shopify://shop_images/ba60b8a7f75705d324669f25ab1b92fe.jpg",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": true,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "rating_hrn3iM": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "quick_buy_QBwrnM": {
+          "type": "quick_buy",
+          "settings": {
+            "show_only_available": false,
+            "variant_default": false,
+            "show_price": false,
+            "unavailable_variants": "hide"
+          }
+        }
+      },
+      "block_order": [
+        "rating_hrn3iM",
+        "title",
+        "price",
+        "quick_buy_QBwrnM"
+      ],
+      "settings": {
+        "pdp_set": true,
+        "heading": "Препоръчани продукти",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "layout_desktop": "four-columns",
+        "layout_mobile": "grid-palm-2",
+        "layout_mobile_less_items": true,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": true,
+        "remove_bottom_margin": false
+      }
+    },
+    "ss_shoppable_video_8tiyaB": {
+      "type": "ss-shoppable-video",
+      "blocks": {
+        "item_KEK37A": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/02-cocoa-glow_811c94c7-b63b-4a98-a260-f6555d45135c.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "product": "",
+            "use_variants": false,
+            "modal_heading": "<h4>Pamaura Cocoa Glow</h4>",
+            "modal_text": "<p>100% натурално масло за тяло с блестящи частици.</p>"
+          }
+        },
+        "item_iDJLjw": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/02-face-cream_ec8a2506-e339-44c7-a465-6f444c3f5991.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "product": "",
+            "use_variants": false,
+            "modal_heading": "<h4>Pamaura Premium Wheat Therapy</h4>",
+            "modal_text": "<p>Подхранваща крем терапия за дълбока хидратация, с анти-ейдж ефект.</p>"
+          }
+        },
+        "item_Wc7cpV": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/wheat-scurb_c9ee889c-c1ae-4462-b0f2-ceba99c08bad.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "product": "",
+            "use_variants": false,
+            "modal_heading": "<h4>Pamaura Wheat Bran Face Scrub</h4>",
+            "modal_text": "<p>100% натурален скраб за лице с пшеничен зародиш и пшенични трици.</p>"
+          }
+        },
+        "item_64kC6k": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/coconut-scrub_fffe4718-d92c-43ba-b0cc-4260eee917c4.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "product": "",
+            "use_variants": false,
+            "modal_heading": "<h4>Pamaura Coconut Face Scrub</h4>",
+            "modal_text": "<p>100% натурален скраб за лице с пшеничен зародиш и кокос.</p>"
+          }
+        },
+        "item_N4rwzN": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/03-cocoa-glow_09bdd4a3-8a5d-4c43-a54e-d66cb7cea122.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "product": "",
+            "use_variants": false,
+            "modal_heading": "<h4>Pamaura Cocoa Glow</h4>",
+            "modal_text": "<p>100% натурално масло за тяло с блестящи частици.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_KEK37A",
+        "item_iDJLjw",
+        "item_Wc7cpV",
+        "item_64kC6k",
+        "item_N4rwzN"
+      ],
+      "settings": {
+        "heading": "<h2>Виж продуктите ни в действие</h2>",
+        "heading_custom": true,
+        "heading_font": "fira_sans_n3",
+        "heading_size": 28,
+        "heading_size_mobile": 28,
+        "heading_height": 130,
+        "heading_align": "center",
+        "heading_align_mobile": "center",
+        "slider_view": 5,
+        "slider_view_mobile": 1.4,
+        "slider_gap": 16,
+        "slider_gap_mobile": 16,
+        "slider_mt": 20,
+        "card_radius": 10,
+        "card_border_thickness": 0,
+        "card_shadow": true,
+        "video_ratio": "portrait",
+        "video_ratio_mobile": "portrait",
+        "video_overlay": 0.3,
+        "image_width": 44,
+        "image_width_mobile": 44,
+        "image_radius": 6,
+        "image_border_thickness": 0,
+        "title_custom": true,
+        "title_font": "fira_sans_n3",
+        "title_size": 14,
+        "title_size_mobile": 14,
+        "title_height": 130,
+        "title_uppercase": false,
+        "price_custom": true,
+        "price_font": "fira_sans_n3",
+        "price_size": 14,
+        "price_size_mobile": 14,
+        "price_height": 130,
+        "button": "Добави в количката",
+        "button_soldout": "Разпродадено",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 16,
+        "button_padding_vertical": 10,
+        "button_padding_vertical_mobile": 10,
+        "button_padding_horizontal": 10,
+        "button_padding_horizontal_mobile": 10,
+        "reload_after_adding": true,
+        "redirect_after_adding": false,
+        "option_custom": false,
+        "option_font": "josefin_sans_n4",
+        "option_size": 12,
+        "option_size_mobile": 12,
+        "option_height": 100,
+        "option_mt": 24,
+        "variants_price_custom": false,
+        "variants_price_font": "josefin_sans_n4",
+        "variants_price_size": 14,
+        "variants_price_size_mobile": 14,
+        "variants_price_height": 100,
+        "variants_price_mt": 10,
+        "variants_price_align": "center",
+        "variants_price_align_mobile": "center",
+        "modal_width": 740,
+        "modal_width_mobile": 100,
+        "modal_radius": 16,
+        "modal_border_thickness": 0,
+        "modal_overlay": 50,
+        "close_size": 42,
+        "close_size_mobile": 42,
+        "close_radius": 8,
+        "close_border_thickness": 0,
+        "buttons_size": 48,
+        "buttons_size_mobile": 48,
+        "buttons_radius": 8,
+        "buttons_border_thickness": 0,
+        "modal_video_radius": 0,
+        "modal_video_border_thickness": 0,
+        "modal_video_ratio": "portrait",
+        "modal_video_ratio_mobile": "portrait",
+        "modal_heading_custom": false,
+        "modal_heading_font": "josefin_sans_n4",
+        "modal_heading_size": 28,
+        "modal_heading_size_mobile": 28,
+        "modal_heading_height": 130,
+        "modal_heading_align": "center",
+        "modal_heading_align_mobile": "center",
+        "modal_text_custom": false,
+        "modal_text_font": "josefin_sans_n4",
+        "modal_text_size": 16,
+        "modal_text_size_mobile": 16,
+        "modal_text_height": 130,
+        "modal_text_align": "center",
+        "modal_text_align_mobile": "center",
+        "modal_text_mt": 16,
+        "use_modal_product": true,
+        "modal_image_width": 70,
+        "modal_image_width_mobile": 66,
+        "modal_image_radius": 12,
+        "modal_title_custom": false,
+        "modal_title_font": "josefin_sans_n4",
+        "modal_title_size": 16,
+        "modal_title_size_mobile": 16,
+        "modal_title_height": 130,
+        "modal_title_uppercase": false,
+        "modal_price_custom": false,
+        "modal_price_font": "josefin_sans_n4",
+        "modal_price_size": 14,
+        "modal_price_size_mobile": 14,
+        "modal_price_height": 130,
+        "modal_button": "Добави в количката",
+        "modal_button_soldout": "Разпродадено",
+        "modal_button_custom": false,
+        "modal_button_font": "josefin_sans_n4",
+        "modal_button_size": 16,
+        "modal_button_size_mobile": 16,
+        "modal_button_radius": 8,
+        "modal_button_border_thickness": 1,
+        "modal_button_mt": 16,
+        "modal_button_align": "center",
+        "modal_button_align_mobile": "center",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#000000",
+        "card_shadow_color": "#000000",
+        "video_border_color": "#000000",
+        "video_overlay_color": "#000000",
+        "image_border_color": "#000000",
+        "title_color": "#ffffff",
+        "price_color": "#ffffff",
+        "button_color": "#ffffff",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_bg_hover_color": "#000000",
+        "arrow_bg_color": "#000000",
+        "arrow_border_color": "#ffffff",
+        "arrow_icon_color": "#ffffff",
+        "option_color": "#000000",
+        "variants_price_color": "#000000",
+        "modal_bg_color": "#ffffff",
+        "modal_border_color": "#000000",
+        "close_bg_color": "#ffffff",
+        "close_border_color": "#000000",
+        "close_icon_color": "#ffffff",
+        "buttons_bg_color": "#ffffff",
+        "buttons_border_color": "#000000",
+        "buttons_icon_color": "#ffffff",
+        "modal_video_border_color": "#000000",
+        "modal_content_bg_color": "#ffffff",
+        "modal_heading_color": "#000000",
+        "modal_text_color": "#000000",
+        "modal_title_color": "#000000",
+        "modal_price_color": "#000000",
+        "modal_button_color": "#ffffff",
+        "modal_button_hover_color": "#000000",
+        "modal_button_bg_color": "#000000",
+        "modal_button_bg_hover_color": "#ffffff",
+        "modal_button_border_color": "#000000",
+        "modal_button_border_hover_color": "#000000",
+        "heading_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 140,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "1721728327f64dee01": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_GeGeUK": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Последвайте ни",
+            "title_color": "",
+            "alignment": "center",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_GeGeUK"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": true,
+        "remove_margin": true,
+        "seo_h_tag": "h2"
+      }
+    },
+    "newsletter_pVJF9M": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Запиши се за нашия бюлетин",
+        "text": "<p>Получавай ексклузивни съвети и предложения за здрава и сияйна кожа.</p>",
+        "is_fullwidth": true,
+        "color_background_main": "#f2efec",
+        "color_text_main": "#000000",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "gutter_decrease": true,
+        "remove_margin": false,
+        "remove_bottom_margin": true,
+        "seo_h_tag": "h3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ss_trust_badges_2_zgVFkr",
+    "promotion_cards_LABH3B",
+    "info_tabs_dcVLRL",
+    "172355159077ca9efb",
+    "info_tabs_Vi7wKU",
+    "rich_text_rHmD66",
+    "product-recommendations",
+    "ss_shoppable_video_8tiyaB",
+    "1721728327f64dee01",
+    "newsletter_pVJF9M"
+  ]
+}

@@ -1,0 +1,48 @@
+{% comment %}
+  Variables:
+    - seconds: {Boolean} Indicates wheter to show or hide seconds
+    - minutes: {Boolean} Indicates wheter to show or hide minutes
+    - hours: {Boolean} Indicates wheter to show or hide hours
+    - days: {Boolean} Indicates wheter to show or hide days
+
+  Usage:
+    {% render
+    'countdown-timer-cb',
+    end_date: "Dec 31, 2023",
+    timer_type: "upsell-timer",
+    seconds: true,
+    minutes: true,
+    hours: false,
+    days: false
+  %}
+{% endcomment %}
+
+{% if end_date != blank %}
+<countdown-timer data-end-date="{{end_date}}" data-timer-type="{{ timer_type }}">
+  <div class="timer">
+    {% if title != blank %}<h4 class="timer__title">{{ title }}</h4>{% endif %}
+    <div class="timer-display">
+      {% if days %}
+        <div class="timer-block">
+          <span class="timer-block__num js-timer-days">00</span>
+        </div>
+      {% endif %}
+      {% if hours %}
+        <div class="timer-block">
+          <span class="timer-block__num js-timer-hours">00</span>
+        </div>
+      {% endif %}
+      {% if minutes %}
+        <div class="timer-block">
+          <span class="timer-block__num js-timer-minutes">00</span>
+        </div>
+      {% endif %}
+      {% if seconds %}
+        <div class="timer-block">
+          <span class="timer-block__num js-timer-seconds">00</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</countdown-timer>
+{% endif %}

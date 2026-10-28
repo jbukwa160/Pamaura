@@ -1,0 +1,45 @@
+<script src="{{ 'component-product-video.js' | asset_url }}" defer></script>
+
+<div class="product-videos">
+  <div class="product-videos__heading">
+    <h2>{{ block.settings.heading }}</h2>
+    <p>{{ block.settings.description }}</p>
+  </div>
+  <div
+    class="product-videos__videos swiper"
+    id="product-videos-{{ section.id }}"
+    data-slides-per-view="{{ block.settings.slides_per_view }}"
+  >
+    <div class="swiper-wrapper">
+      {% for i in (1..5) %}
+        {% assign video_key = 'video_' | append: i %}
+        {% if block.settings[video_key] != blank %}
+          <div
+            class="product-videos__video swiper-slide"
+            style="--video-border-radius: {{ block.settings.videos_border_radius }}px;"
+          >
+            <product-video data-video-id="video-id-{{ i }}">
+              {{
+                block.settings[video_key]
+                | video_tag: controls: false, autoplay: false, muted: false, class: 'custom-video-player'
+              }}
+              <button class="custom-play-button">▶</button>
+            </product-video>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="swiper-navigation">
+      <button class="swiper-button-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13" fill="none">
+          <path d="M0.836975 1.47037L5.71621 6.47579L0.836976 11.4812C0.749617 11.5706 0.700708 11.6907 0.700708 11.8157C0.700708 11.9407 0.749617 12.0608 0.836976 12.1502C0.879403 12.1935 0.930044 12.2279 0.985933 12.2514C1.04182 12.2749 1.10184 12.287 1.16246 12.287C1.22308 12.287 1.28309 12.2749 1.33898 12.2514C1.39487 12.2279 1.44551 12.1935 1.48794 12.1502L6.67964 6.82531C6.77079 6.7318 6.8218 6.60638 6.8218 6.47579C6.8218 6.3452 6.77079 6.21978 6.67964 6.12627L1.48894 0.801376C1.44648 0.757769 1.39572 0.723108 1.33964 0.699442C1.28357 0.675776 1.22332 0.663583 1.16246 0.663583C1.10159 0.663583 1.04135 0.675776 0.985272 0.699442C0.929197 0.723108 0.878433 0.757769 0.835974 0.801376C0.748614 0.890803 0.699707 1.01086 0.699707 1.13587C0.699707 1.26089 0.748614 1.38094 0.835974 1.47037L0.836975 1.47037Z" fill="white" stroke="white" stroke-width="1.03623"/>
+        </svg>
+      </button>
+      <button class="swiper-button-next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13" fill="none">
+          <path d="M0.836975 1.47037L5.71621 6.47579L0.836976 11.4812C0.749617 11.5706 0.700708 11.6907 0.700708 11.8157C0.700708 11.9407 0.749617 12.0608 0.836976 12.1502C0.879403 12.1935 0.930044 12.2279 0.985933 12.2514C1.04182 12.2749 1.10184 12.287 1.16246 12.287C1.22308 12.287 1.28309 12.2749 1.33898 12.2514C1.39487 12.2279 1.44551 12.1935 1.48794 12.1502L6.67964 6.82531C6.77079 6.7318 6.8218 6.60638 6.8218 6.47579C6.8218 6.3452 6.77079 6.21978 6.67964 6.12627L1.48894 0.801376C1.44648 0.757769 1.39572 0.723108 1.33964 0.699442C1.28357 0.675776 1.22332 0.663583 1.16246 0.663583C1.10159 0.663583 1.04135 0.675776 0.985272 0.699442C0.929197 0.723108 0.878433 0.757769 0.835974 0.801376C0.748614 0.890803 0.699707 1.01086 0.699707 1.13587C0.699707 1.26089 0.748614 1.38094 0.835974 1.47037L0.836975 1.47037Z" fill="white" stroke="white" stroke-width="1.03623"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+@media (min-width: 990px) {
+  .text-with-icons-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .text-with-icons-row .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 30px;
+  }
+
+  .text-with-icons-row .grid .card {
+    flex: 1 0 12vw;
+  }
+
+  .custom-text-style .section-heading {
+    width: 100%;
+    max-width: 40%;
+  }
+
+  .custom-text-style .swiper-container--text-with-icons {
+    width: 100%;
+    max-width: 50%;
+  }
+
+  .text-columns-prev-next {
+    display: none;
+  }
+}
+
+.custom-text-style .section-heading__title {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.custom-text-style .section-heading__subheading {
+  font-size: 16px;
+  color: #171717;
+  opacity: 1;
+  font-weight: 400;
+}
+
+@media (max-width: 990px) {
+  .mount-css-slider .swiper-container {
+    overflow: hidden;
+  }
+  .custom-text-style .section-heading__title {
+    font-size: 28px;
+  }
+
+  .text-columns-prev-next .swiper-button-next,
+  .text-columns-prev-next .swiper-button-prev {
+    top: unset;
+    bottom: -40px;
+    color: #171717;
+  }
+
+  .text-columns-prev-next .swiper-button-next:after,
+  .text-columns-prev-next .swiper-button-prev:after {
+    font-size: 10px;
+  }
+
+  .text-columns-prev-next .swiper-button-next {
+    right: 50%;
+    left: auto;
+    transform: translateX(300%);
+  }
+
+  .text-columns-prev-next .swiper-button-prev {
+    left: 50%;
+    right: auto;
+    transform: translateX(-300%);
+  }
+
+  .swiper-horizontal>.swiper-scrollbar.text-columns-scrollbar,
+  .swiper-scrollbar.swiper-scrollbar-horizontal.text-columns-scrollbar {
+    width: 100%;
+    max-width: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+    height: 5px;
+  }
+
+  .text-columns-scrollbar .swiper-scrollbar-drag {
+    background-color: #171717;
+  }
+
+  .swiper-container--text-with-icons .grid.swiper-wrapper {
+    gap: 0;
+  }
+}
+
+.text-columns-icons-grid .text-font--primary {
+  font-size: 14px;
+}
+
+@media (max-width: 749px) {
+  .text-columns-icons-grid .text-font--primary {
+    font-size: 13px;
+  }
+}

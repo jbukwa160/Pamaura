@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "index.json",
+  "context": {
+    "market": "bg"
+  },
+  "sections": {
+    "text_columns_images_BADtQY": {
+      "settings": {},
+      "blocks": {
+        "image_mJHACh": {
+          "settings": {
+            "caption": "Формула с пшеничен зародиш за хидратация",
+            "title": "Натурални съставки",
+            "link": "shopify:\/\/products\/pamaura-premium-wheat-therapy"
+          }
+        },
+        "image_pYBcBb": {
+          "settings": {
+            "title": "Озаряващ ефект",
+            "caption": "Придава естествен блясък и сияние на тена",
+            "link": "shopify:\/\/products\/pamaura-cocoa-glow"
+          }
+        },
+        "image_N4JcNp": {
+          "settings": {
+            "title": "Защитна бариера",
+            "caption": "Укрепва кожния микробиом и защитава от външни влияния",
+            "link": "shopify:\/\/products\/pamaura-premium-wheat-therapy"
+          }
+        }
+      }
+    }
+  }
+}

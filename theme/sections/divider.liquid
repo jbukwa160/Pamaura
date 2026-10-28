@@ -1,0 +1,119 @@
+<div id="element-{{ section.id }}" class="{% unless section.settings.is_fullwidth %} container--large {% else %} container--fullwidth {% endunless %} {% unless section.settings.remove_margin %} container--vertical-space{% if section.settings.gutter_decrease %}-small{% endif %} {% endunless %} {% if section.settings.remove_bottom_margin %} container--negative-margin {% elsif section.settings.decrease_bottom_margin %} container--negative-margin-small {% endif %}" style="font-size:0">
+
+  <span class="divider" 
+    style="
+    --divider-height: {{ section.settings.height }}px; 
+
+    {% if section.settings.image %}
+      background-image: url('https:{{ section.settings.image | image_url }}');
+      height: var(--divider-height);
+    {% else %}
+      --divider-color: {{ section.settings.color }}; 
+      --divider-style: {{ section.settings.style }};
+    {% endif %}
+    
+    "></span>
+  
+</div>
+
+{% schema %}
+{
+  "name": "t:divider.label",
+  "class": "can-be-fullwidth",
+  "settings": [
+    {
+      "type": "range",
+      "id": "height",
+      "label": "t:sections.bundle-extra-words.sections.main-collection.settings.image_banner.height",
+      "unit": "px",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "is_fullwidth",
+      "label": "t:sections.local-extra-words.sections.rich-text.settings.fullwidth.label",
+      "default": true,
+      "info": "t:sections.local-extra-words.sections.rich-text.settings.fullwidth.info"
+    },
+    {
+      "type": "header",
+      "content": "t:divider.divider_design"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:divider.divider_color",
+      "default": "rgba(0,0,0,1)"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:sections.local-extra-words.sections.main-product.blocks.pickup_availability.settings.style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:divider.divider_style_solid"
+        },
+        {
+          "value": "dotted",
+          "label": "t:divider.divider_style_dotted"
+        },
+        {
+          "value": "dashed",
+          "label": "t:divider.divider_style_dashed"
+        },
+        {
+          "value": "double",
+          "label": "t:divider.divider_style_double"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "t:divider.divider_image",
+      "info": "A horizontally repetitive image (pattern). Replaces the style and color above."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.bundle-extra-words.sections.headings.gutter.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "gutter_decrease",
+      "label": "t:sections.bundle-extra-words.sections.headings.gutter.content",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_margin",
+      "label": "t:sections.local-extra-words.sections.rich-text.settings.remove_margin.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_bottom_margin",
+      "label": "t:sections.local-extra-words.settings_schema.layout.sections.remove_bottom_margin",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "decrease_bottom_margin",
+      "label": "t:sections.bundle-extra-words.sections.headings.gutter.content_bottom",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:divider.label"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

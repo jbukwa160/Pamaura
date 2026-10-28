@@ -1,0 +1,100 @@
+<div id="AjaxCartSubtotal">
+
+  {%- liquid
+    if settings.show_currency_codes
+      assign iso_code = localization.country.currency.iso_code | prepend: ' '
+    endif
+  -%}
+
+	{%- if type == 'page' -%}
+
+		{%- if settings.cart_free_shipping -%}
+			<div class="sidebar-widget sidebar-widget--outline gutter-regular margin-bottom--regular">
+				<div class="sidebar-widget__content">
+					<shipping-notice
+						data-free-shipping="{{ settings.cart_free_shipping_amount | times: 100 }}"
+						data-cart-total="{{ cart.total_price }}"
+					>
+						<span data-js-free-shipping-text></span>
+						<span class="cart-notice__slider">
+							<span class="cart-notice__slider-bar" data-js-free-shipping-slider></span>
+						</span>
+					</shipping-notice>
+					<script src="{{ 'component-shipping-notice.js' | asset_url }}" defer></script>
+				</div>
+			</div>
+		{%- endif -%}
+
+		{%- liquid
+			unless settings.cart_upsell_product == blank
+				render 'product-cross-sell', heading: settings.cart_upsell_heading, product: settings.cart_upsell_product, id: 'cart-individual-product-cross-sell', widget_style: 'outline', heading_position: 'widget', class: 'cart-individual-product-recommendation hide-if-empty-cart margin-bottom--regular', layout: 'expanded'
+			endunless
+		-%}
+
+	{%- endif -%}
+
+	<div class="cart__details
+		{% if type == 'page' %} cart__subtotal-widget element--has-border--body element--border-radius {% endif %}
+		{% if cart.item_count == 0 %} cart--empty {% endif %}
+	">
+
+		<div class="cart__total cart__details--row">
+			<span>{{ 'cart.total' | t }}</span>
+			<div class="cart_total_wrapper">
+				{% if cart.original_total_price > cart.total_price %}<s>{{ cart.original_total_price | money | append: iso_code }}</s>{% endif %}
+				<strong>{{ cart.total_price | money | append: iso_code }}</strong>
+			</div>
+		</div>
+
+
+		{%- if settings.cart_notes_enable and type == 'page' -%}
+			<div class="cart__instructions">
+				<div class="form-field">
+					<label for="cartSpecialInstructions">{{ 'cart.note' | t }}</label>
+					<textarea name="note" id="cartSpecialInstructions" form="cart">{{ cart.note }}</textarea>
+				</div>
+			</div>
+		{%- endif -%}
+
+		<div class="cart__shipping text-color--opacity text-size--small">
+			{%- liquid
+				if cart.taxes_included and shop.shipping_policy.body != blank
+					echo 'cart.policies.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url
+				elsif cart.taxes_included
+					echo 'cart.policies.taxes_included_but_shipping_at_checkout' | t
+				elsif shop.shipping_policy.body != blank
+					echo 'cart.policies.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url
+				else
+					echo 'cart.policies.taxes_and_shipping_at_checkout' | t
+				endif
+			-%}
+		</div>
+
+		<div class="cart__promocode"> {% render 'icon-pack', icon: 'discount-new' %} {{ 'cart.discounts_add' | t }}</div>
+
+		<div {% unless template contains 'cart' %} class="flex-buttons" {% endunless %}>
+			{%- unless type == 'page' -%}
+				{%- if settings.cart_drawer_actions contains 'show-view' -%}
+					<a id="ViewCart" href="{{ routes.cart_url }}" class="button button--regular button--outline button--move">
+						<span class="button__text">{{ 'cart.view_cart' | t }}</span>
+					</a>
+				{%- endif -%}
+			{%- endunless -%}
+			{%- if settings.cart_drawer_actions contains 'show-checkout' or type == 'page' -%}
+				<button id="CheckOut" class="button button--regular button--solid button--move" type="submit" name="checkout" form="cart">
+					<span class="button__text">{% render 'icon-pack', icon: 'lock-new' %} {{ 'cart.checkout' | t }}</span>
+				</button>
+			{%- endif -%}
+		</div>
+
+		{%- unless template contains 'order' -%}
+			{%- if settings.cart_drawer_actions contains 'show-checkout' or type == 'page' -%}
+				{%- if additional_checkout_buttons and settings.cart_additional_buttons -%}
+					<div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+				{%- endif -%}
+			{%- endif -%}
+		{%- endunless -%}
+
+	</div>
+
+</div>

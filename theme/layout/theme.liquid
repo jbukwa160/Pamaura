@@ -1,0 +1,499 @@
+<!doctype html>
+  {%- liquid
+    assign direction = 'ltr'
+    assign rtl_iso_codes = 'ar,he,ur,fa,pa,sd,ku' | split: ','
+    if rtl_iso_codes contains request.locale.iso_code
+      assign direction = 'rtl'
+    endif
+  -%}
+  <html id="html" class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "om39p6rklk");
+</script>
+  <head>
+ {%- render 'ecom_header' -%}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 48, height: 48 }}" type="image/png" />
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+      {%- if template contains 'search' -%}
+        {{ search.terms | replace: '*', '' | split: ' AND ' | last }} - {{ shop.name | escape }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name | escape }}{% endunless %}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <title>{{ seo_title }}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- liquid
+      render 'open-graph'
+      unless settings.disable_microdata
+        render 'microdata-schema'
+      endunless
+    -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    {%- unless settings.headings_font.system? and settings.body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    {%- render 'head-variables' -%}
+    {%- render 'head-preloader' -%}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'component-slider-custom.css' | asset_url | stylesheet_tag }}
+    {{ 'euro-price.css' | asset_url | stylesheet_tag }}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+
+    <script>
+
+      /* js helpers */
+      const debounce = (fn, wait) => {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn.apply(this, args), wait);
+        };
+      }
+      window.KEYCODES = {
+        TAB: 9,
+        ESC: 27,
+        DOWN: 40,
+        RIGHT: 39,
+        UP: 38,
+        LEFT: 37,
+        RETURN: 13
+      };
+
+      /* background image sizes */
+      const rbi = [];
+      const rbiSetSize = (img) => {
+        if ( img.offsetWidth / img.dataset.ratio < img.offsetHeight ) {
+          img.setAttribute('sizes', `${Math.ceil(img.offsetHeight * img.dataset.ratio)}px`);
+        } else {
+          img.setAttribute('sizes', `${Math.ceil(img.offsetWidth)}px`);
+        }
+      }
+      window.addEventListener('resize', debounce(()=>{
+        for ( let img of rbi ) {
+          rbiSetSize(img);
+        }
+      }, 250));
+
+      /* lazy looad images reveal effect */
+      const imageReveal = new IntersectionObserver((entries, observer)=>{
+        entries.forEach(entry=>{
+          if ( entry.isIntersecting ) {
+            setTimeout(()=>{
+              entry.target.classList.remove('lazy-image--to-reveal');
+            }, 500);
+            entry.target.classList.add('lazy-image--revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {rootMargin: '20px 0px 0px 0px'});
+
+    </script>
+
+    {%- if template == 'customers/addresses' or request.design_mode -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+    {%- endif -%}
+
+    <noscript>
+      <link rel="stylesheet" href="{{ 'theme-noscript.css' | asset_url }}">
+    </noscript>
+
+    {% render 'script-mouseflow' %}
+
+  </head>
+
+  <body id="{{ page_title | handle }}" class="no-touchevents
+    {% if customer %} customer-logged-in {% endif %}
+    template-{{ template.name }} template-{{ template | replace: '.', ' ' | handle }}
+    {% unless settings.show_sidebars_scrollbar %} sidebars-has-scrollbars {% endunless %}
+  ">
+
+    <script type="text/javascript">
+      if ( 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch ) { document.querySelector('body').classList.remove('no-touchevents'); document.querySelector('body').classList.add('touchevents'); }
+    </script>
+
+    <a href="#main" class="visually-hidden skip-to-content" tabindex="0" data-js-inert>{{ 'general.accessibility_labels.skip_to_content' | t }}</a>
+    <div id="screen-reader-info" aria-live="polite" class="visually-hidden"></div>
+
+    <div class="{% if settings.header_group_sticky %}sticky-header-group{% endif %}">
+      {%- sections 'header-group' -%}
+    </div>
+
+    {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'section-slider-vertical.js' | asset_url }}"></script>
+
+    {{ 'component-product-item.css' | asset_url | stylesheet_tag }}
+    {{ 'component-product-variants.css' | asset_url | stylesheet_tag }}
+
+    <main id="main" class="main-content">
+      {{ content_for_layout }}
+    </main>
+
+    {%- sections 'footer-group' -%}
+    {%- section 'popups' -%}
+    {%- section 'popup-age-verification' -%}
+    {%- section 'exit-intent-popup' -%}
+
+    <script src="{{ 'component-modal.js' | asset_url }}" defer></script>
+    <link rel="stylesheet" href="{{ 'component-modal.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'component-popup.css' | asset_url }}" media="print" onload="this.media='all'">
+
+    <script type="text/javascript">
+
+      KROWN = {
+        themeName: "Combine",
+        themeVersion: "2.4.2.1",
+        settings: {
+          shop_money_format: '{{ shop.money_format }}',
+          iso_code: '{% if settings.show_currency_codes %} {{ localization.country.currency.iso_code }}{% endif %}',
+          cart_action: "{{ settings.cart_action }}",
+          cart_popup: "{{ settings.cart_mini_enabled }}",
+          routes: {
+            cart_url: "{{ routes.cart_url }}",
+            cart_add_url: "{{ routes.cart_add_url }}",
+            cart_change_url: "{{ routes.cart_change_url }}",
+            search_url: "{{ routes.search_url }}",
+            predictive_search_url: "{{ routes.predictive_search_url }}",
+            product_recommendations_url: "{{ routes.product_recommendations_url }}"
+          },
+          locales: {
+            products_preorder_button: `{{ 'products.page.preorder_button' | t }}`,
+            products_add_to_cart_button: `{{ 'products.page.add_to_cart_button' | t }}`,
+            products_add_to_bundle_button: `{{ 'products.bundles.add_product_to_bundle' | t }}`,
+            products_added_to_bundle_label: `{{ 'products.bundles.product_added_to_bundle' | t }}`,
+            products_sold_out_variant: `{{ 'products.page.inventory.sold_out_variant' | t }}`,
+            products_unavailable_variant: `{{ 'products.page.inventory.unavailable_variant' | t }}`,
+            products_variant_required: `{{ 'products.grid.choose_variant_first' | t }}`,
+            sets_choose_products: `{{ 'products.bundles.choose_products_first' | t }}`,
+            sets_add_to_cart: `{{ 'products.bundles.add_all_to_cart' | t }}`,
+            products_one_product: `{{ 'products.page.inventory.one_product' | t }}`,
+            products_few_products: `{{ 'products.page.inventory.few_products' | t }}`,
+            products_many_products: `{{ 'products.page.inventory.many_products' | t }}`,
+            products_no_products: `{{ 'products.page.inventory.no_products' | t }}`,
+            products_preorder: `{{ 'products.page.inventory.preoder' | t }}`,
+            products_enough_products: `{{ 'products.page.inventory.enough_products' | t }}`,
+            product_sku: `{{ 'products.page.sku' | t }}`,
+            product_barcode: `{{ 'products.page.barcode' | t }}`,
+            product_compare_price: `{{ 'products.page.sales_amount_html' | t: amount: '$SAVE_PRICE' }}`,
+            cart_add_error: `<span class="alert__icon">{%- render 'theme-symbols', icon: 'alert-error' -%}</span>{{ 'cart.add_error' | t }}`,
+            cart_general_error: `{{ 'cart.general_error' | t }}`,
+            cart_added_items_count: `{{ 'cart.added_items_count.other_html' | t }}`,
+            cart_announcement: `{{ 'general.accessibility_labels.item_added' | t }}`,
+            shipping_calculator_results_heading_one: `{{ 'cart.shipping_calculator.results_heading_one' | t }}`,
+            shipping_calculator_results_heading_multiple: `{{ 'cart.shipping_calculator.results_heading_multiple' | t }}`,
+            shipping_notice_remaining_to_free: `{{ 'cart.free_shipping_remaining_html' | t }}`,
+            shipping_notice_eligible_for_free: `{{ 'cart.free_shipping_eligible' | t }}`,
+            show_more: `{{ 'general.accessibility_labels.show_more' | t }}`,
+            show_less: `{{ 'general.accessibility_labels.show_less' | t }}`
+          },
+          symbols: {
+            zoom_out: `{%- render 'theme-symbols', icon: 'zoom-out' -%}`,
+            zoom_in: `{%- render 'theme-symbols', icon: 'zoom-in' -%}`,
+            zoom_loader: `<svg class="zoom__loader-element" viewBox="25 25 50 50"><circle cx="50" cy="50" r="20" fill="none" stroke-width="4"/></svg>`,
+            close: `{%- render 'theme-symbols', icon: 'close' -%}`,
+            toggle_pack: `<span class="toggle__icon"><span class="toggle__icon--plus">{%- render 'theme-symbols', icon: 'plus' -%}</span><span class="toggle__icon--minus">{%- render 'theme-symbols', icon: 'minus' -%}</span></span>`,
+            toggle_pack_alternate: `<span class="toggle__icon-alternate"><span class="toggle__icon--plus">{%- render 'theme-symbols', icon: 'plus' -%}</span><span class="toggle__icon--minus">{%- render 'theme-symbols', icon: 'minus' -%}</span></span>`
+          },
+          predictive_search_enabled: "true",
+          predictive_search_script: "{{ 'component-predictive-search.js' | asset_url }}",
+          predictive_search_placeholder: `<div class="search-results"><div class="search-block"><a class="search-item search-item--blank"><div class="thumbnail"></div><div class="content"><span class="title"></span><span class="caption"></span></div></a><a class="search-item search-item--blank"><div class="thumbnail"></div><div class="content"><span class="title"></span><span class="caption"></span></div></a><a class="search-item search-item--blank"><div class="thumbnail"></div><div class="content"><span class="title"></span><span class="caption"></span></div></a></div></div>`,
+          cart_image_ratio: (1 / {{ settings.cart_image_ratio }})
+        }
+      }
+
+    </script>
+
+    <script src="{{ 'component-slider.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-product-form.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-quick-buy.js' | asset_url }}" defer></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" async></script>
+    {%- if settings.cart_notes_enable -%}
+      <script src="{{ 'component-order-instructions.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- if request.design_mode -%}
+      <script src="{{ 'section-announcement-bar.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-toggle.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-main-product.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-video.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-localization-form.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-predictive-search.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-image-hotspots.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-before-after.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-shipping-calculator.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-countdown-clock.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-scrolling-text.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-lightbox.js' | asset_url }}" defer></script>
+      {{ 'component-lightbox.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- unless settings.cart_action == "no-overlay" or template.name contains "cart" -%}
+
+      <sidebar-drawer id="site-cart-sidebar" class="sidebar sidebar--right {% if cart.item_count == 0 %} cart-is-empty {% endif %}" tabindex="-1" role="dialog" aria-modal="true" data-cart-items="{{ cart.item_count }}" style="display:none" data-js-site-cart-sidebar>
+
+        <div class="sidebar__header">
+          <span class="sidebar__title">
+            {{ 'cart.title' | t }}
+            <span><span data-header-cart-count>{{ cart.item_count }}</span>{{ 'cart.products' | t }}</span>
+          </span>
+          <button class="sidebar__close" data-js-close>
+            <span class="visually-hidden">{{ 'general.accessibility_labels.close_sidebar' | t }}</span>
+            <span aria-hidden="true" aria-role="img">{%- render 'theme-symbols', icon: 'close' -%}</span>
+          </button>
+        </div>
+
+        <div class="sidebar__body">
+
+          <div class="cart-form sidebar-large-padding">
+            {%- render 'cart-form', type: 'sidebar' -%}
+            <a href="{{ routes.all_products_collection_url }}" class="cart-continue button button--fullwidth button--solid button--regular">
+              {{ 'cart.continue_browsing' | t }}
+            </a>
+          </div>
+
+          {%- liquid
+            unless settings.cart_upsell_product == blank
+              render 'product-cross-sell', heading: settings.cart_upsell_heading, product: settings.cart_upsell_product, id: 'cart-individual-product-cross-sell', widget_style: 'outline', heading_position: 'outside', style: 'margin-bottom: var(--sidebar-gutter);padding-bottom: 5px;', class: 'cart-individual-product-recommendation hide-if-empty-cart', layout: 'expanded'
+            endunless
+          -%}
+
+          {%- if settings.cart_notes_enable -%}
+            <div class="cart-instructions sidebar-large-padding hide-if-empty-cart"
+              style="border-top: 0;margin-top:-24px;"
+            >
+              <div class="form-field">
+                <label for="cartSpecialInstructions">{{ 'cart.note' | t }}</label>
+                <textarea name="note" id="cartSpecialInstructions" form="cart">{{ cart.note }}</textarea>
+              </div>
+            </div>
+          {%- endif -%}
+
+        </div>
+
+        {%- render 'cart-gift-wrapping', class: 'cart-wrapping--sidebar' -%}
+
+        <div class="sidebar__footer hide-if-empty-cart" {% if settings.sticky_cart_actions %}style="position:sticky;"{% endif %}>
+          {%- if settings.cart_recommendations -%}
+            <cart-recommendations class="hide-if-empty-cart" id="cart-recommendations-sidebar" data-section="cart-recommendations" data-limit="6"></cart-recommendations>
+            <script src="{{ 'component-cart-recommendations.js' | asset_url }}" defer></script>
+          {%- endif -%}
+          {%- render 'cart-subtotal', type: 'sidebar' -%}
+        </div>
+
+      </sidebar-drawer>
+
+      <script>
+        new MutationObserver((mutations, observer) => {
+          if ( document.getElementById('cart').classList.contains('cart--empty') ) {
+            document.getElementById('site-cart-sidebar').classList.add('cart-is-empty');
+          } else {
+            document.getElementById('site-cart-sidebar').classList.remove('cart-is-empty');
+          }
+        }).observe(document.querySelector('.cart-form'), {
+          attributes: false, childList: true, subtree: true
+        })
+      </script>
+
+    {%- endunless -%}
+
+    <sidebar-drawer id="site-search-sidebar" class="sidebar sidebar--left" tabindex="-1" role="dialog" aria-modal="true" style="display:none">
+      <div class="sidebar__header">
+        <span class="sidebar__title">
+          {{ 'search.drawer.title' | t }}
+        </span>
+        <button class="sidebar__close" data-js-close>
+          <span class="visually-hidden">{{ 'general.accessibility_labels.close_sidebar' | t }}</span>
+          <span aria-hidden="true" aria-role="img">{%- render 'theme-symbols', icon: 'close' -%}</span>
+        </button>
+      </div>
+      <div class="sidebar__body">
+
+        <search-form class="sidebar-large-padding">
+          <form action="{{ routes.search_url }}" method="get" class="input-group search-bar ajax subtitle" role="search" autocomplete="off">
+            <label for="search-form-sidebar" class="visually-hidden">{{ 'search.drawer.title' | t }}</label>
+            <input id="search-form-sidebar" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.drawer.placeholder' | t }}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-js-search-input>
+          </form>
+          <div class="top">
+            <div id="search-results" class="search-results predictive-search" data-js-search-results></div>
+          </div>
+        </search-form>
+
+      </div>
+    </sidebar-drawer>
+
+    <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+
+    <script src="{{ 'component-quantity-selector.js' | asset_url }}" defer></script>
+    {%- if settings.cart_action == "overlay" or template.name contains "cart" -%}
+      <script src="{{ 'component-cart.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    <link rel="stylesheet" href="{{ 'component-sidebar.css' | asset_url }}" media="print" onload="this.media='all';">
+    <script src="{{ 'section-header.js' | asset_url }}" defer></script>
+
+    {%- if template contains 'product' -%}
+      <script>
+        if ( document.getElementById('shopify-product-reviews') ) {
+          var element = document.createElement("link");
+          element.setAttribute("rel", "stylesheet");
+          element.setAttribute("type", "text/css");
+          element.setAttribute("href", "{{ 'component-shopify-reviews.css' | asset_url }}");
+          document.body.appendChild(element);
+        }
+      </script>
+    {%- endif -%}
+
+    <div class="site-overlay" style="display:none"></div>
+
+    <link rel="stylesheet" href="{{ 'section-main-product.css' | asset_url }}" media="print" onload="this.media='all';">
+
+    {%- if settings.show_gotop -%}
+      <span id="go-top" class="main-go-top"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      >
+        <span class="visually-hidden">{{ 'general.accessibility_labels.go_to_top' | t }}</span>
+        <span class="main-go-top__icon" aria-hidden="true">{%- render 'theme-symbols', icon: 'chevron' -%}</span>
+        <span class="main-go-top__text">{{ 'general.accessibility_labels.top' | t }}</span>
+      </span>
+      <script>
+        window.addEventListener('scroll', ()=>{
+          if ( window.scrollY > 500 ) {
+            document.getElementById('go-top').classList.add('show');
+          } else {
+            document.getElementById('go-top').classList.remove('show');
+          }
+        }, {passive: true});
+      </script>
+    {%- endif -%}
+
+    <script>
+      document.querySelectorAll('.rte a img').forEach(function(elm){
+        elm.parentNode.style.border = 'none';
+      });
+      document.querySelectorAll('.rte table').forEach(elm => {
+        elm.outerHTML = '<div class="table-wrapper">' + elm.outerHTML + "</div>";
+     });
+    </script>
+
+    {%- if settings.enable_instapage -%}
+      <script src="{{ 'instantpage.js' | asset_url }}" type="module" defer></script>
+    {%- endif -%}
+
+    {%- if settings.disable_all_image_animations -%}
+      <style>
+        img,
+        img:hover {
+          transition: all 0ms !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        .no-touchevents a:hover .lazy-image.lazy-image--zoom-animation img,
+        .no-touchevents .card--animation:hover .lazy-image.lazy-image--animation img  {
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      </style>
+    {%- endif -%}
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+        {% if product %}
+      {% render 'upsell-popup', product: product %}
+    {% endif %}
+
+    <script src="{{ 'pamaura-pack-pricing.js' | asset_url }}" defer></script>
+    {%- render "ecom_footer"-%}
+
+  <div class="pkip-band" role="contentinfo" aria-label="Финансиране по европейски проект">
+    <div class="pkip-band__in">
+      <div class="pkip-band__logos">
+        <img src="{{ 'pkip-programa.png' | asset_url }}"
+             alt="Програма „Конкурентоспособност и иновации в предприятията“ 2021–2027"
+             width="433" height="120" loading="lazy">
+        <img src="{{ 'pkip-eu.png' | asset_url }}"
+             alt="Съфинансирано от Европейския съюз"
+             width="571" height="120" loading="lazy">
+      </div>
+      <p class="pkip-band__text">
+        Проект <strong>BG16RFPR001-1.012-0691</strong> — бенефициент
+        <strong>ДИЛОН ЕООД</strong>, ЕИК 203244428.
+        Административен договор по процедура
+        <strong>BG16RFPR001-1.012 „Дигитализация на предприятията“</strong>,
+        програма <strong>„Конкурентоспособност и иновации в предприятията“ 2021–2027</strong>,
+        <strong>съфинансирана от Европейския съюз</strong>.
+      </p>
+    </div>
+  </div>
+  <style>
+    .pkip-band{background:#fff;border-top:1px solid #e3e6ea;padding:26px 20px 30px;color:#5a6472;font-size:13px;line-height:1.65}
+    .pkip-band__in{max-width:1180px;margin:0 auto}
+    .pkip-band__logos{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-bottom:16px}
+    .pkip-band__logos img{height:58px;width:auto;display:block}
+    .pkip-band__text{margin:0;max-width:88ch}
+    .pkip-band__text strong{color:#1d2430;font-weight:600}
+    @media (max-width:640px){
+      .pkip-band{padding:20px 16px 24px;font-size:12.5px}
+      .pkip-band__logos{gap:18px;margin-bottom:14px}
+      .pkip-band__logos img{height:46px}
+    }
+  </style>
+
+  <script>
+  (function(d,t){
+    var BASE_URL = "https://chat.diloncentral.com";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
+    g.defer = true; g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function(){
+      window.chatwootSDK.run({
+        websiteToken: 'vdxoZMzWaXfQX5PSv5hZK51n',
+        baseUrl: BASE_URL,
+        locale: 'bg'
+      });
+    };
+  })(document, "script");
+</script>
+<style>
+  .woot-widget-bubble,
+  .woot-widget-bubble.woot-elements--right { bottom: 95px !important; }
+  .woot--bubble-holder { bottom: 95px !important; }
+  .woot-widget-holder,
+  .woot-widget-holder.woot-elements--right { bottom: 169px !important; }
+  @media (max-width: 640px){
+    .woot-widget-holder, .woot-widget-holder.woot-elements--right { bottom: 0 !important; }
+  }
+</style>
+
+
+
+</body>
+
+
+  </html>

@@ -1,0 +1,70 @@
+{% liquid
+  assign day_of_week = 'now' | date: '%u' | plus: 0
+  case day_of_week
+    when 5
+      assign seconds_1 = 3 | times: 24 | times: 60 | times: 60
+      assign seconds_2 = 4 | times: 24 | times: 60 | times: 60
+
+    when 4
+      assign seconds_1 = 1 | times: 24 | times: 60 | times: 60
+      assign seconds_2 = 4 | times: 24 | times: 60 | times: 60
+
+    when 3
+      assign seconds_1 = 1 | times: 24 | times: 60 | times: 60
+      assign seconds_2 = 2 | times: 24 | times: 60 | times: 60
+
+    else
+      assign seconds_1 = 1 | times: 24 | times: 60 | times: 60
+      assign seconds_2 = 2 | times: 24 | times: 60 | times: 60
+  endcase
+
+  assign days_1 = 'now' | date: '%s' | plus: seconds_1 | date: '%d'
+  assign months_1 = 'now' | date: '%s' | plus: seconds_1 | date: '%m'
+  assign date_1 = days_1 | append: '.' | append: months_1
+  assign days_2 = 'now' | date: '%s' | plus: seconds_2 | date: '%d'
+  assign months_2 = 'now' | date: '%s' | plus: seconds_2 | date: '%m'
+  assign date_2 = days_2 | append: '.' | append: months_2
+  assign product_label_date = date_1 | append: ' - ' | append: date_2
+  assign product_date_block = product_label_date | prepend: '<span class="delivery-info-date">' | append: '</span>'
+%}
+
+{% if block.settings.first_text != blank or block.settings.second_text != blank or block.settings.third_text != blank %}
+  <div class="delivery-info">
+    {% if block.settings.first_text != blank %}
+      <div class="delivery-info-item">
+        {% render 'responsive-image', image: block.settings.first_image, image_size: 1920, max_width: 989 %}
+        <p>
+          {% if block.settings.first_text contains 'delivery_dates' %}
+            {{ block.settings.first_text | replace: 'delivery_dates', product_date_block }}
+          {% else %}
+            {{ block.settings.first_text }}
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+    {% if block.settings.second_text != blank %}
+      <div class="delivery-info-item">
+        {% render 'responsive-image', image: block.settings.second_image, image_size: 1920, max_width: 989 %}
+        <p>
+          {% if block.settings.second_text contains 'delivery_dates' %}
+            {{ block.settings.second_text | replace: 'delivery_dates', product_date_block }}
+          {% else %}
+            {{ block.settings.second_text }}
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+    {% if block.settings.third_text != blank %}
+      <div class="delivery-info-item">
+        {% render 'responsive-image', image: block.settings.third_image, image_size: 1920, max_width: 989 %}
+        <p>
+          {% if block.settings.third_text contains 'delivery_dates' %}
+            {{ block.settings.third_text | replace: 'delivery_dates', product_date_block }}
+          {% else %}
+            {{ block.settings.third_text }}
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

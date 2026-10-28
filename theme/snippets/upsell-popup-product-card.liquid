@@ -1,0 +1,74 @@
+{% comment %}
+  Variables:
+  -product: {Object} Product Object
+  -variant_to_display: {Object} Variant of the product to display
+  - short_description: {String} Short Description of the upsell product
+
+  Usage:
+    {% render 'upsell-popup-product-card',
+      product: upsell_product_variant.product,
+      variant_to_display: upsell_product_variant,
+      short_description: short_description
+    %}
+{% endcomment %}
+
+{% if product %}
+
+    {% liquid
+      if variant_to_display.available
+        assign button_label = 'ДОБАВИ +'
+        assign disabled = false
+      else
+        assign button_label = 'ПРОДАДЕНО'
+        assign disabled = true
+      endif
+    %}
+    <upsell-popup-product data-variant-id="{{ variant_to_display.id }}" data-text-add="{{ button_label }}" data-text-added ="ДОБАВЕНО">
+      <div class="upsell-popup-media-wrapper">
+        {% if variant_to_display.featured_image != blank %}
+          {% render 'responsive-image', image: variant_to_display.featured_image %}
+        {% else %}
+          {% render 'responsive-image', image: product.featured_image %}
+        {% endif %}
+      </div>
+      <div class="upsell-popup-product-content-wrapper">
+        <div class="upsell-popup-product-content">
+          <div class="reviews-badges-wrapper">
+            {%- render 'product-rating', vendor: settings.reviews_app, product: product -%}
+          </div>
+          <h4 class="upsell-popup-product-title h6">
+            {% if product.has_only_default_variant != true %}
+              {{ variant_to_display.title }}
+            {% endif %}
+            {{ product.title }}
+          </h4>
+          {% if short_description != blank %}
+            <div class="short-description-wrapper hide-mobile hide-tablet">
+              <span class="short-description-text">
+                {{ short_description }}
+              </span>
+            </div>
+          {% endif %}
+          <div class="upsell-popup-money-wrapper">
+            {{ product.price | money }}
+            {% if product.compare_at_price %}
+              <s class="upsell-popup-product-price-compare">{{ product.compare_at_price | money }}</s>
+            {% endif %}
+          </div>
+        </div>
+        <div class="upsell-popup-product-buttons-holder">
+          <div class="upsell-popup-product-buttons">
+            <input class="visually-hidden upsell-product-input" name="upsell-popup-product" value="">
+            <button class="upsell-popup-add-button btn btn--primary btn--solid btn--black" aria-label="Add to cart"{% if disabled == true %} disabled="true"{% endif %}>
+              <div>
+                <span class="button-text">{{ button_label }}</span>
+              </div>
+            </button>
+            <button class="upsell-popup-remove-button btn" aria-label="Add to cart"{% if disabled == true %} disabled="true"{% endif %}>
+              {% render 'icon-pack', icon: 'close' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </upsell-popup-product>
+  {% endif %}

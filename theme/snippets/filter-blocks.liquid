@@ -1,0 +1,128 @@
+<ul class="facets__list list-unstyled swatch-list--{{ filter.presentation }} swatch-list--{{ filter.presentation }}-{{ image_filter_layout }}" role="list">
+
+  {%- liquid
+    assign sorted_values = filter.values
+    if filter.operator == 'AND'  
+      assign active_filter_values = filter.values | where: 'active', true
+      assign inactive_filter_values = filter.values | where: 'active', false
+      assign sorted_values = active_filter_values | concat: inactive_filter_values
+    endif
+  -%}
+
+  {%- for value in sorted_values -%}
+
+    {%- assign filter_downcased = filter.label | downcase -%}
+    <li class="list-menu__item facets__item  {% if filter.presentation and filter.presentation != "text" %} swatch-list__item swatch-list__item--{{ filter.presentation }} {% endif %} {% if color_label contains filter_downcased and settings.color_swatches %} facets__item--swatch {% endif %} {% if value.active %} swatch-list__item--{{ filter.presentation }}-active {% endif %}">
+
+      <label for="{{ location }}-Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+        
+        <input type="checkbox"
+          class="styled-checkbox"
+          name="{{ value.param_name }}"
+          value="{{ value.value }}"
+          id="{{ location }}-Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+          {% if value.active %}checked{% endif %}
+          {% if value.count == 0 and value.active == false %}disabled{% endif %}
+        >
+        
+        {%- if color_label contains filter_downcased and settings.color_swatches -%}
+          
+          {%- liquid 
+            assign color_swatch_name = value.value | handle | append: '.png'
+            assign color_swatch_image = images[color_swatch_name]
+            assign color_swatch_background = value.value | downcase | escape | replace: ' ', ''
+          -%}
+          
+          {%- if color_swatch_image != blank -%}
+            <img class="swatch swatch--color"
+              src="{{ color_swatch_image | image_url: width: 30, height: 30, crop: 'center' }}"
+              srcset="
+                {{ color_swatch_image | image_url: width: 30, height: 30, crop: 'center' }} 30w,
+                {{ color_swatch_image | image_url: width: 60, height: 60, crop: 'center' }} 60w,
+                {{ color_swatch_image | image_url: width: 90, height: 90, crop: 'center' }} 90w
+              "
+              sizes="30px" width="30" height="30"
+              loading="lazy"
+              alt="{{ color_swatch_image.alt | escape }}"
+            />
+          {%- else -%}
+            <span class="swatch swatch--image" style="background-color:{{ color_swatch_background }}"></span>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if filter.presentation -%}
+
+          {%- liquid
+            case filter.presentation
+              when 'swatch'
+                if value.swatch.image
+                  assign swatch_value = value.swatch.image
+                  assign presentation_type = 'swatch-image'
+                elsif value.swatch.color
+                  assign swatch_value = value.swatch.color
+                  assign presentation_type = 'swatch-colors'
+                else
+                  assign swatch_value = nil
+                endif
+              when 'image'
+                assign image = value.image
+                assign presentation_type = 'image'
+              when 'text'
+                assign presentation_type = 'text'
+              else
+            endcase
+          -%}
+          
+          {%- case presentation_type -%}
+
+            {%- when 'swatch-colors' -%}
+              <div
+                class="swatch-list__item-color"
+                style="background: {{ swatch_value }};"
+              ></div>
+
+            {%- when 'swatch-image' -%}
+              <div class="swatch-list__item-image">
+                <img 
+                  src="{{ swatch_value | image_url: width: 30, height: 30, crop: 'center' }}" 
+                  srcset="
+                    {{ swatch_value | image_url: width: 30, height: 30, crop: 'center' }} 30w, 
+                    {{ swatch_value | image_url: width: 60, height: 60, crop: 'center' }} 60w, 
+                    {{ swatch_value | image_url: width: 90, height: 90, crop: 'center' }} 90w
+                  "
+                  alt="{{ swatch_value.alt | escape }}"
+                  loading="lazy"
+                  sizes="30px"
+                  width="30" height="30"
+                />
+              </div>
+            
+            {%- when 'image' -%}
+              <span class="swatch-list__item--image-shape"></span>
+              <img 
+                src="{{ image | image_url: width: 80 }}" 
+                srcset="
+                  {{ image | image_url: width: 80 }} 80w, 
+                  {{ image | image_url: width: 160 }} 160w, 
+                  {{ image | image_url: width: 240 }} 240w
+                "
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                sizes="80px"
+                width="{{ image.width }}" height="{{ image.height }}"
+              />
+          {%- endcase -%}
+          
+          <span class="text-size--small">{{ value.label | escape }} ({{ value.count }})</span>
+          
+        {%- else -%}
+          {{ value.label | escape }} ({{ value.count }})
+        {%- endif -%}
+
+      </label>
+
+    </li>
+
+  {%- endfor -%}
+  
+</ul>

@@ -1,0 +1,675 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "judge_me_reviews_preview_badge_Wf3RAb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "product_description_truncated": "full"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "heading": "Choose variants",
+            "variants_style": "radio",
+            "variant_labels": true,
+            "color_swatches": true,
+            "style": "outline",
+            "unavailable_variants": "hide"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder": false,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "show_price": true,
+            "style": "outline"
+          }
+        },
+        "dealeasy_vd_cards_3knzQ6": {
+          "type": "shopify://apps/dealeasy/blocks/vd-cards/e47a8634-0496-480d-9e46-6f7fafd34b30",
+          "disabled": true,
+          "settings": {
+            "lb-product-handle": "",
+            "lb-product-id": ""
+          }
+        },
+        "custom_liquid_AxTF6a": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id='ss-trust-badges'></div>"
+          }
+        },
+        "098ecf80-2fe9-4879-8b3d-479e0882b7ed": {
+          "type": "product_promotion",
+          "settings": {
+            "heading": "Купи в сет и спести",
+            "product": "premium-wheat-shine",
+            "show_price_free": false,
+            "text": "",
+            "style": "outline",
+            "hide_block_if": false
+          }
+        },
+        "ad1a5bf2-807f-49df-acb2-8fefa9cb4df3": {
+          "type": "cross_sell",
+          "settings": {
+            "heading": "Комбинира се добре с",
+            "product": "pamaura-premium-wheat-therapy",
+            "style": "outline",
+            "button_text": "",
+            "giftbox": false,
+            "hide_block_if": false
+          }
+        },
+        "collapsible_tab_zVXY4H": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": false,
+            "heading": "Защо ще го заобичаш",
+            "content": "{{ product.metafields.custom.collapsible_tab_why_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "collapsible_tab_BXnGG3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": false,
+            "heading": "Основни съставки",
+            "content": "{{ product.metafields.custom.collapsible_tab_ingredients_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "collapsible_tab_KFTTAq": {
+          "type": "collapsible_tab",
+          "settings": {
+            "open": false,
+            "heading": "Как се използва",
+            "content": "{{ product.metafields.custom.collapsible_tab_how_to_ | metafield_tag }}",
+            "page": "",
+            "hide_block_if": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_Wf3RAb",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "dealeasy_vd_cards_3knzQ6",
+        "custom_liquid_AxTF6a",
+        "098ecf80-2fe9-4879-8b3d-479e0882b7ed",
+        "ad1a5bf2-807f-49df-acb2-8fefa9cb4df3",
+        "collapsible_tab_zVXY4H",
+        "collapsible_tab_BXnGG3",
+        "collapsible_tab_KFTTAq"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "cart_label": "",
+        "show_stock": false,
+        "gallery_layout": "one-col slider",
+        "gallery_desktop_width": "one-half",
+        "gallery_mobile_width": 100,
+        "gallery_mobile_margin": false,
+        "gallery_aspect_ratio": "1",
+        "gallery_fit": false,
+        "gallery_padding": 0,
+        "gallery_background": "rgba(0,0,0,0)",
+        "gallery_border": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "show_thumbnails": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "default_to_first_variant": true,
+        "sticky_add_to_cart": true,
+        "sticky_atc_style": "wide",
+        "sticky_bar_bgcolor": "#ffffff",
+        "sticky_bar_txtcolor": "#111111"
+      }
+    },
+    "ss_trust_badges_2_zgVFkr": {
+      "type": "ss-trust-badges-2",
+      "blocks": {
+        "item_mKmda6": {
+          "type": "item",
+          "settings": {
+            "icon": "plant",
+            "title": "<p>Натурални съставки</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": false
+          }
+        },
+        "item_dde9Nf": {
+          "type": "item",
+          "settings": {
+            "icon": "return_arrow",
+            "title": "<p>Лесни връщания</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": false
+          }
+        },
+        "item_AipPUB": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "<p>Безплатна доставка &gt; 50 лв.</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": false
+          }
+        },
+        "item_ghW7fJ": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "title": "<p>Доставка между</p>",
+            "subtitle": "",
+            "date": "",
+            "show_date": true
+          }
+        }
+      },
+      "block_order": [
+        "item_mKmda6",
+        "item_dde9Nf",
+        "item_AipPUB",
+        "item_ghW7fJ"
+      ],
+      "settings": {
+        "template": "standard",
+        "svg_color": "#000000",
+        "bg_color": "",
+        "bg_color_item": "",
+        "title_color": "#000000",
+        "subtitle_color": "#716969",
+        "icon_size": 30,
+        "title_font_size": 16,
+        "subtitle_font_size": 10,
+        "subtitle_margin_top": 0,
+        "space_items": 7,
+        "pt": 0,
+        "pb": 0,
+        "mt": 2,
+        "mb": 1
+      }
+    },
+    "text_columns_icons_P7VReV": {
+      "type": "text-columns-icons",
+      "blocks": {
+        "image_MAfJaM": {
+          "type": "image",
+          "settings": {
+            "icon": "delivery",
+            "image": "shopify://shop_images/01_1a849a70-22b7-4127-85ba-3ff664995da1.svg",
+            "crop": true,
+            "title": "БЕЗ ПАРАБЕНИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_z7Bbxb": {
+          "type": "image",
+          "settings": {
+            "icon": "time-limit",
+            "image": "shopify://shop_images/02_7afc0590-3d7b-42b4-bc6c-b271145233a5.svg",
+            "crop": true,
+            "title": "НЕ Е ТЕСТВАНО ВЪРХУ ЖИВОТНИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_FGGPbB": {
+          "type": "image",
+          "settings": {
+            "icon": "store",
+            "image": "shopify://shop_images/03_ecbf84a4-819a-469d-a08a-e89ae97f0083.svg",
+            "crop": true,
+            "title": "НАТУРАЛНИ СЪСТАВКИ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_pahX8j": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify://shop_images/04_873a8ccb-1ef0-4d38-b783-2e6d471b072e.svg",
+            "crop": true,
+            "title": "БЕЗ ГМО",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_agLbCW": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify://shop_images/05_d6e33b4c-cdc2-4127-9df9-528228e26bd5.svg",
+            "crop": true,
+            "title": "ЧИСТА КРАСОТА",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        },
+        "image_9Ep6wr": {
+          "type": "image",
+          "settings": {
+            "icon": "earth-globe",
+            "image": "shopify://shop_images/06_5c04db81-077e-476b-a729-8fde5dc7ec5c.svg",
+            "crop": true,
+            "title": "3D ХИДРАТАЦИЯ",
+            "caption": "",
+            "link": "",
+            "open_in_new_window": false,
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_MAfJaM",
+        "image_z7Bbxb",
+        "image_FGGPbB",
+        "image_pahX8j",
+        "image_agLbCW",
+        "image_9Ep6wr"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "style": "slider",
+        "layout": "grid-6 grid-portable-4 grid-lap-3 grid-palm-2",
+        "border_radius": 0,
+        "hide_borders": true,
+        "opacity_on_hover": false,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "before_after_QUD9iH": {
+      "type": "before-after",
+      "blocks": {
+        "image_pLCW7V": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pamaura-cocoa-glow-before.png",
+            "image_mobile": "shopify://shop_images/pamaura-cocoa-glow-before.png",
+            "label": "Преди"
+          }
+        },
+        "image_7fWRJB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pamaura-cocoa-glow-after.jpg",
+            "image_mobile": "shopify://shop_images/pamaura-cocoa-glow-after.jpg",
+            "label": "След"
+          }
+        }
+      },
+      "block_order": [
+        "image_pLCW7V",
+        "image_7fWRJB"
+      ],
+      "settings": {
+        "heading": "Преди и след",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "cta_label": "",
+        "cta_url": "",
+        "layout": "horizontal",
+        "invert_layout": false,
+        "desktop_height": "before-after--desktop-medium",
+        "mobile_height": "before-after--mobile-medium",
+        "color_style": "dark",
+        "border_radius": 0,
+        "gutter_decrease": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "rich_text_dF8fUj": {
+      "type": "rich-text",
+      "blocks": {
+        "title_gdLXdg": {
+          "type": "title",
+          "settings": {
+            "title": "{{ product.metafields.custom.product_rich_text_1_title.value }}",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_QekWdB": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.product_rich_text_1_description | metafield_tag }}",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_gdLXdg",
+        "text_QekWdB"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "image": "{{ product.metafields.custom.product_rich_text_1_image_.value }}",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": false,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_K6reNA": {
+      "type": "rich-text",
+      "blocks": {
+        "title_zVt3ri": {
+          "type": "title",
+          "settings": {
+            "title": "{{ product.metafields.custom.product_rich_text_2_title_.value }}",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_yyzjmX": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.product_rich_text_2_description_ | metafield_tag }}",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_zVt3ri",
+        "text_yyzjmX"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "image": "{{ product.metafields.custom.product_rich_text_2_image_.value }}",
+        "video_controls": false,
+        "image_position": "left",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "rich_text_WRUF3e": {
+      "type": "rich-text",
+      "blocks": {
+        "title_w9pqac": {
+          "type": "title",
+          "settings": {
+            "title": "{{ product.metafields.custom.product_rich_text_3_title_.value }}",
+            "title_size": "heading-size--small",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_dBzaP6": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.product_rich_text_3_description_ | metafield_tag }}",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_w9pqac",
+        "text_dBzaP6"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "image": "{{ product.metafields.custom.product_rich_text_3_image_.value }}",
+        "video_controls": false,
+        "image_position": "right",
+        "height": "regular",
+        "image_crop": true,
+        "is_fullwidth": false,
+        "text_alignment": "horizontal-left",
+        "spacing": 24,
+        "color_background_main": "rgba(0,0,0,0)",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "border_radius": 0,
+        "color_hide_borders": true,
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "172355159077ca9efb": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_AdjUVr": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_AdjUVr"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": false,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "rating_hrn3iM": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rating_hrn3iM",
+        "title",
+        "price"
+      ],
+      "settings": {
+        "pdp_set": false,
+        "heading": "Препоръчани продукти",
+        "subheading": "",
+        "section_heading_size": "text-size--large",
+        "section_heading_layout": "section-heading--center section-heading--two-rows",
+        "layout_desktop": "four-columns",
+        "layout_mobile": "grid-palm-2",
+        "layout_mobile_less_items": true,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": "",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_bottom_margin": false
+      }
+    },
+    "1721728327f64dee01": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_GeGeUK": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Последвайте ни",
+            "title_color": "",
+            "alignment": "center",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_GeGeUK"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": true,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "newsletter_pVJF9M": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Запиши се за нашия ел. бюлетин",
+        "text": "",
+        "is_fullwidth": true,
+        "color_background_main": "#eceff0",
+        "color_text_main": "#000000",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "gutter_decrease": false,
+        "remove_margin": false,
+        "remove_bottom_margin": true,
+        "seo_h_tag": "h3"
+      }
+    },
+    "172736432228247d15": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_email_marketing_sms_form_embed_block_fB7GJR": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": ""
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_email_marketing_sms_form_embed_block_fB7GJR"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "section_heading_size": "text-size--regular",
+        "section_heading_layout": "section-heading--left section-heading--one-row",
+        "cta_label": "",
+        "cta_url": "",
+        "full_width": false,
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ss_trust_badges_2_zgVFkr",
+    "text_columns_icons_P7VReV",
+    "before_after_QUD9iH",
+    "rich_text_dF8fUj",
+    "rich_text_K6reNA",
+    "rich_text_WRUF3e",
+    "172355159077ca9efb",
+    "product-recommendations",
+    "1721728327f64dee01",
+    "newsletter_pVJF9M",
+    "172736432228247d15"
+  ]
+}

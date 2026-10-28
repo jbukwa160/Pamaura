@@ -1,0 +1,373 @@
+<div class="container--large container--vertical-space{% if section.settings.gutter_decrease %}-small{% endif %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" or section.settings.section_background_gradient != blank %} container--has-background {% endif %} {% if section.settings.remove_bottom_margin %} container--negative-margin {% endif %} remove-empty-space">
+
+  {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, heading_size: section.settings.section_heading_size, section_layout: section.settings.section_heading_layout, button: section.settings.cta_label, button_label: section.settings.cta_label, link: section.settings.cta_url, seo_h_tag: section.settings.seo_h_tag -%}
+
+  <div class="grid grid--layout {{ section.settings.layout }} grid--align-items-stretch">
+  
+    {%- for block in section.blocks -%}
+
+      <div id="element-{{ block.id }}" class="card card--animation 
+        {% unless section.settings.hide_borders %} gutter-top--small gutter-bottom--small {% endunless %} 
+        {{ section.settings.block_text_alignment }}" 
+        {{ block.shopify_attributes }}
+      >
+
+        <div class="spacing--small remove-empty-space 
+          {% if section.settings.hide_borders %} gutter-top--regular {% else %} gutter--regular {% endif %} 
+          {{ section.settings.block_text_alignment }}
+        ">
+
+          {%- unless block.settings.title == blank -%}
+            <div>
+              <{{ section.settings.seo_h_tag }} class="text-font--primary text-size--large text-weight--bold">
+                {{ block.settings.title | escape }}
+              </{{ section.settings.seo_h_tag }}>
+            </div>
+            {%- endunless -%}
+
+          {%- unless block.settings.caption == blank -%}
+            <div class="rte remove-empty-space">{{ block.settings.caption }}</div>
+          {%- endunless -%}
+
+        </div>
+
+      </div>
+
+      {%- render 'custom-colors', id: block.id, text: block.settings.color_text_main, background: block.settings.color_background_main, borders: block.settings.color_borders_main, border_radius: section.settings.border_radius, hide_borders: section.settings.hide_borders -%}
+
+    {%- endfor %}
+
+  </div>
+
+  {%- render 'section-footer', button: section.settings.cta_label, button_label: section.settings.cta_label, link: section.settings.cta_url -%}
+
+</div>
+
+<style>
+  {%- if section.settings.section_background_color != "rgba(0,0,0,0)" -%}
+    #shopify-section-{{ section.id }} {
+      background-color: {{ section.settings.section_background_color }};
+    }
+  {%- endif -%}
+  {%- if section.settings.section_background_gradient != blank -%}
+    #shopify-section-{{ section.id }} {
+      background-image: {{ section.settings.section_background_gradient }};
+    }
+  {%- endif -%}
+  {%- if section.settings.section_heading_color != "rgba(0,0,0,0)" -%}
+    #shopify-section-{{ section.id }} .section-heading,
+    #shopify-section-{{ section.id }} .section-footer {
+      --color-text-main: {{ section.settings.section_heading_color }};
+      --color-borders-forms-primary: {{ section.settings.section_heading_color | color_modify: 'alpha', 0.3 }};
+    }
+  {%- endif -%}
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.words_210.text_columns.name",
+  "class": "mount-css-slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.bundle-extra-words.sections.headings.name"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.local-extra-words.sections.headings.heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:sections.local-extra-words.sections.headings.subheading"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_size",
+      "label": "t:sections.bundle-extra-words.sections.headings.size.label",
+      "options": [
+        {
+          "value": "text-size--regular",
+          "label": "t:sections.bundle-extra-words.sections.headings.size.option_1"
+        },
+        {
+          "value": "text-size--large",
+          "label": "t:sections.bundle-extra-words.sections.headings.size.option_2"
+        }
+      ],
+      "default": "text-size--regular"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_layout",
+      "label": "t:sections.bundle-extra-words.sections.headings.alignment.label",
+      "options": [
+        {
+          "value": "section-heading--left section-heading--one-row",
+          "label": "t:sections.bundle-extra-words.sections.headings.alignment.option_1",
+          "group": "t:sections.bundle-extra-words.sections.headings.layout.option_1"
+        },
+        {
+          "value": "section-heading--left section-heading--two-rows",
+          "label": "t:sections.bundle-extra-words.sections.headings.alignment.option_1",
+          "group": "t:sections.bundle-extra-words.sections.headings.layout.option_2"
+        },
+        {
+          "value": "section-heading--center section-heading--two-rows",
+          "label": "t:sections.bundle-extra-words.sections.headings.alignment.option_2",
+          "group": "t:sections.bundle-extra-words.sections.headings.layout.option_2"
+        }
+      ],
+      "default": "section-heading--left section-heading--one-row"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.bundle-extra-words.settings_schema.labels.button_text"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.bundle-extra-words.settings_schema.labels.button_url"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.bundle-extra-words.sections.headings.layout.label"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.local-extra-words.sections.columns.name",
+      "info": "t:sections.local-extra-words.sections.columns.info",
+      "options": [
+        {
+          "value": "grid-3 grid-lap-1",
+          "label": "t:sections.local-extra-words.sections.columns.option__2"
+        },
+        {
+          "value": "grid-4 grid-lap-2 grid-palm-1",
+          "label": "t:sections.local-extra-words.sections.columns.option__3"
+        }
+      ],
+      "default": "grid-3 grid-lap-1"
+    },
+    {
+      "type": "select",
+      "id": "block_text_alignment",
+      "label": "t:sections.rich-text.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "text-align--left",
+          "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+        },
+        {
+          "value": "text-align--center",
+          "label": "t:sections.rich-text.settings.text_alignment.options__2.label"
+        }
+      ],
+      "default": "text-align--left"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.bundle-extra-words.settings_schema.card.settings.design.header"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:sections.bundle-extra-words.settings_schema.buttons.settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_borders",
+      "label": "t:sections.local-extra-words.settings_schema.colors.settings.hide_border",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:bundle-240.section_design"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "t:bundle-240.background_color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color_background",
+      "id": "section_background_gradient",
+      "label": "t:bundle-240.background_gradient"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "t:bundle-240.heading_text_color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.bundle-extra-words.sections.headings.gutter.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "gutter_decrease",
+      "label": "t:sections.bundle-extra-words.sections.headings.gutter.content",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_bottom_margin",
+      "label": "t:sections.local-extra-words.settings_schema.layout.sections.remove_bottom_margin",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.refactor_words.seo.name"
+    },
+    {
+      "type": "select",
+      "id": "seo_h_tag",
+      "label": "t:sections.refactor_words.seo.label",
+      "info": "t:sections.refactor_words.seo.info",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "span",
+          "label": "span"
+        }
+      ],
+      "default": "h2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "t:sections.words_210.text_columns.block.name",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.local-extra-words.sections.headings.text_content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.local-extra-words.sections.headings.title",
+          "default": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "caption",
+          "label": "t:sections.local-extra-words.sections.faq.headings.content",
+          "default": "<p>Introduce your brand</p>"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.refactor_words.seo.name"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.bundle-extra-words.settings_schema.card.settings.design.header"
+        },
+        {
+          "type": "color",
+          "id": "color_background_main",
+          "label": "t:sections.split-extra-words.settings_schema.colors.settings.background",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_text_main",
+          "label": "t:sections.split-extra-words.settings_schema.colors.settings.text",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_borders_main",
+          "label": "t:sections.local-extra-words.settings_schema.colors.settings.borders",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "seo_h_tag",
+          "label": "t:sections.refactor_words.seo.label",
+          "info": "t:sections.refactor_words.seo.info",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "span",
+              "label": "span"
+            }
+          ],
+          "default": "h3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.words_210.text_columns.name",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "title": "Shipping",
+            "caption": "<p>Useful information about your shipping details</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "title": "Returns",
+            "caption": "<p>Show how much time customers have for testing your products</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "title": "Pickup",
+            "caption": "<p>Let your customers know about local pickup</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}
