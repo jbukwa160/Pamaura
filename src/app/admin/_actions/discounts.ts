@@ -102,3 +102,23 @@ export async function deleteDiscountAction(id: number): Promise<Result> {
   revalidatePath("/admin/otstapki", "layout");
   return { ok: true };
 }
+
+/** Automatic discounts (no code), e.g. "Bundle & Save" — setting "automatic_discounts". */
+export async function saveAutomaticDiscountsAction(input: { id: string; title: string; enabled: boolean; percentage: number; min_items: number }[]): Promise<Result> {
+  await requireAdmin();
+  if (!Array.isArray(input) || input.length > 10) return { error: "Невалидни данни." };
+  const clean = [];
+  for (const [i, d] of input.entries()) {
+    const title = String(d?.title ?? "").trim().slice(0, 60);
+    const percentage = Number(d?.percentage);
+    const minItems = Number(d?.min_items);
+    if (!title) return { error: `Ред ${i + 1}: въведете име (вижда се в количката и поръчката).` };
+    if (!(percentage > 0 && percentage <= 90) || Math.round(percentage * 10) !== percentage * 10) return { error: `Ред ${i + 1}: процентът трябва да е между 0,1 и 90.` };
+    if (!Number.isInteger(minItems) || minItems < 1 || minItems > 100) return { error: `Ред ${i + 1}: минималният брой продукти трябва да е цяло число от 1 до 100.` };
+    clean.push({ id: /^[a-z0-9-]{1,40}$/.test(String(d?.id)) ? String(d.id) : `auto-${Date.now()}-${i}`, title, enabled: Boolean(d?.enabled), percentage, min_items: minItems });
+  }
+  const { setSetting } = await import("@/lib/db");
+  setSetting("automatic_discounts", clean);
+  revalidatePath("/admin/otstapki");
+  return { ok: true };
+}

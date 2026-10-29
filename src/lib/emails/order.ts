@@ -97,7 +97,7 @@ export function orderSummaryHtml(order: OrderRec, origin: string, forShop = fals
   const rate = order.total ? Math.round(((order.tax_total / (order.total - order.tax_total)) * 100)) : 20;
   const totals = [
     [t(L, "subtotal"), money(order.subtotal)],
-    ...(order.discount_total ? [[`${t(L, "discount")}${order.discount_code ? ` (${e(order.discount_code)})` : ""}`, "−" + money(order.discount_total)]] : []),
+    ...(order.discount_total ? [[`${t(L, "discount")}${order.discount_title || order.discount_code ? ` (${e(order.discount_title || order.discount_code || "")})` : ""}`, "−" + money(order.discount_total)]] : []),
     [`${t(L, "shipping")} — ${e(order.shipping_title)}`, order.shipping_total ? money(order.shipping_total) : t(L, "free")],
     ...(order.cod_fee ? [[t(L, "cod_fee"), money(order.cod_fee)]] : []),
   ]

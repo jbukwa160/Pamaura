@@ -49,6 +49,8 @@ export interface QuoteLine {
   price: number;
   compare_at_price: number | null;
   line_price: number;
+  /** share of the automatic discount ("Bundle & Save"), as Shopify allocates it */
+  cart_discount: number;
   image: string | null;
   /** thumbnail URL for the checkout summary */
   image_url: string | null;
@@ -72,6 +74,8 @@ export interface Quote {
   item_count: number;
   subtotal: number;
   discount: { code: string; amount: number; free_shipping: boolean; error: string | null } | null;
+  /** automatic discount applied instead of a code ("Bundle & Save") */
+  automatic: { title: string; amount: number } | null;
   shipping: number;
   method: QuoteMethod | null;
   cod_fee: number;
@@ -88,12 +92,14 @@ const TEXT: Record<string, Record<string, string>> = {
     cod_desc: "Плащате в брой или с карта на куриера при получаване.",
     bank: "Банков превод",
     bank_desc: "Ще получите данните за превод в имейла за поръчката. Изпращаме след получаване на плащането.",
+    not_combinable: "Кодът не може да се комбинира с отстъпката „{{title}}“, която е по-голяма.",
   },
   ro: {
     cod: "Ramburs",
     cod_desc: "Plătiți curierului la livrare, numerar sau cu cardul.",
     bank: "Transfer bancar",
     bank_desc: "Primiți datele pentru transfer în e-mailul comenzii. Expediem după primirea plății.",
+    not_combinable: "Codul nu se poate combina cu reducerea „{{title}}”, care este mai mare.",
   },
 };
 export const ct = (locale: string, key: string) => TEXT[locale]?.[key] ?? TEXT.bg[key];
@@ -130,17 +136,21 @@ export function quote(s: RenderState, cart: CartData, input: Partial<CheckoutInp
       price: l.price,
       compare_at_price: l.compare_at_price,
       line_price: l.line_price,
+      cart_discount: l.cart_discount,
       image: media?.file ?? null,
       image_url: media?.file ? `${cdnFileUrl(s, media.file)}&width=160` : null,
       handle: l.product.handle,
       sku: l.variant.sku,
     };
   });
-  const subtotal = pc.total_price;
+  const subtotal = pc.original_total_price;
 
   let discount: Quote["discount"] = null;
   let discountAmount = 0;
   let freeShipping = false;
+  // automatic discount ("Bundle & Save"): applies unless a code gives more; they do not combine
+  let automatic: Quote["automatic"] = pc.auto ? { title: pc.auto.discount.title, amount: pc.auto.total } : null;
+  if (automatic) discountAmount = automatic.amount;
   const code = (input.discount_code || "").trim();
   if (code) {
     const dl: DiscountLine[] = pc.lines.map((l) => ({
@@ -149,7 +159,14 @@ export function quote(s: RenderState, cart: CartData, input: Partial<CheckoutInp
       line_price: l.line_price,
     }));
     const r = evaluateDiscount(code, dl, subtotal, market, input.email);
-    if (r.ok) {
+    if (r.ok && r.freeShipping) {
+      // free delivery combines with the automatic discount
+      freeShipping = true;
+      discount = { code: r.discount!.code, amount: 0, free_shipping: true, error: null };
+    } else if (r.ok && automatic && r.amount <= automatic.amount) {
+      discount = { code, amount: 0, free_shipping: false, error: ct(s.locale, "not_combinable").replace("{{title}}", automatic.title) };
+    } else if (r.ok) {
+      automatic = null;
       discountAmount = r.amount;
       freeShipping = r.freeShipping;
       discount = { code: r.discount!.code, amount: r.amount, free_shipping: r.freeShipping, error: null };
@@ -177,7 +194,7 @@ export function quote(s: RenderState, cart: CartData, input: Partial<CheckoutInp
   const total = afterDiscount + shipping + codFee;
   const rate = taxRate(market);
   const tax = total - Math.round(total / (1 + rate / 100));
-  return { currency: market.currency, market: market.handle, lines, item_count: pc.item_count, subtotal, discount, shipping, method, cod_fee: codFee, total, tax, tax_rate: rate, methods, payments };
+  return { currency: market.currency, market: market.handle, lines, item_count: pc.item_count, subtotal, discount, automatic, shipping, method, cod_fee: codFee, total, tax, tax_rate: rate, methods, payments };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -298,7 +315,10 @@ export async function placeOrder(s: RenderState, cart: CartData, input: Checkout
   }
   if (!q.payments.some((p) => p.code === input.payment)) errors.payment = checkoutError(L, "payment");
   if (!input.terms) errors.terms = checkoutError(L, "terms");
-  if (q.discount?.error) errors.discount_code = checkoutError(L, "discount", { msg: q.discount.error });
+  // a code that loses to the automatic discount does not stop the order
+  if (q.discount?.error && !q.automatic) errors.discount_code = checkoutError(L, "discount", { msg: q.discount.error });
+  const usedCode = q.discount && !q.discount.error ? q.discount.code : null;
+  const discountTotal = q.automatic ? q.automatic.amount : usedCode ? q.discount!.amount : 0;
 
   // stock
   const cat = getCatalog();
@@ -340,8 +360,8 @@ export async function placeOrder(s: RenderState, cart: CartData, input: Checkout
     const info = db
       .prepare(
         `INSERT INTO orders(number, token, idempotency_key, customer_id, email, phone, market, locale, currency, subtotal, discount_total, shipping_total, cod_fee, total, tax_included, tax_total,
-          discount_code, payment_method, financial_status, fulfillment_status, status, shipping_method, shipping_title, shipping_address, note, attributes, ip, user_agent, created_at, updated_at)
-         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, 'pending', 'unfulfilled', 'new', ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          discount_code, discount_title, payment_method, financial_status, fulfillment_status, status, shipping_method, shipping_title, shipping_address, note, attributes, ip, user_agent, created_at, updated_at)
+         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, 'pending', 'unfulfilled', 'new', ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .run(
         number,
@@ -354,12 +374,13 @@ export async function placeOrder(s: RenderState, cart: CartData, input: Checkout
         L,
         s.market.currency,
         q.subtotal,
-        q.discount?.amount ?? 0,
+        discountTotal,
         q.shipping,
         q.cod_fee,
         q.total,
         q.tax,
-        q.discount && !q.discount.error ? q.discount.code : null,
+        usedCode,
+        q.automatic?.title ?? null,
         input.payment,
         method!.code,
         method!.title,
@@ -373,19 +394,19 @@ export async function placeOrder(s: RenderState, cart: CartData, input: Checkout
       );
     orderId = Number(info.lastInsertRowid);
     // spread the order discount over the lines (for invoices / refunds)
-    let left = q.discount?.amount ?? 0;
+    let left = discountTotal;
     const ins = db.prepare(
       "INSERT INTO order_lines(order_id, product_id, variant_id, title, variant_title, sku, image, handle, quantity, price, original_price, compare_at_price, discount_allocated, properties, requires_shipping, weight) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     );
     q.lines.forEach((l, i) => {
-      const share = i === q.lines.length - 1 ? left : Math.round(((q.discount?.amount ?? 0) * l.line_price) / Math.max(1, q.subtotal));
+      const share = q.automatic ? l.cart_discount : i === q.lines.length - 1 ? left : Math.round((discountTotal * l.line_price) / Math.max(1, q.subtotal));
       left -= share;
       const v = cat.variantById.get(l.variant_id)!;
       const item = cart.items.find((x) => x.key === l.key);
       ins.run(orderId, l.product_id, l.variant_id, l.title, l.variant_title, l.sku, l.image, l.handle, l.quantity, l.price, l.price, l.compare_at_price, share, JSON.stringify(item?.properties || {}), v.requires_shipping ? 1 : 0, v.weight);
       if (v.inventory_management) db.prepare("UPDATE variants SET inventory_quantity = inventory_quantity - ?, updated_at = ? WHERE id = ?").run(l.quantity, now, v.id);
     });
-    if (q.discount && !q.discount.error) db.prepare("UPDATE discounts SET times_used = times_used + 1 WHERE code = ?").run(q.discount.code);
+    if (usedCode) db.prepare("UPDATE discounts SET times_used = times_used + 1 WHERE code = ?").run(usedCode);
     addOrderEvent(orderId, "created", `Поръчката е направена от ${s.origin.replace(/^https?:\/\//, "")} (${s.market.path}).`);
     deleteCart(cart.token);
   })();

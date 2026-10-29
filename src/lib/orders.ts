@@ -20,6 +20,8 @@ export interface OrderRec {
   tax_included: number;
   tax_total: number;
   discount_code: string | null;
+  /** automatic discount applied ("Bundle & Save") */
+  discount_title: string | null;
   payment_method: string;
   financial_status: string;
   fulfillment_status: string;

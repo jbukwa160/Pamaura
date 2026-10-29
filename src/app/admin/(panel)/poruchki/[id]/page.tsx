@@ -95,7 +95,7 @@ export default async function OrderPage({ params }: Props) {
               </div>
               {order.discount_total ? (
                 <div className="flex justify-between">
-                  <dt className="text-ink-soft">Отстъпка{order.discount_code ? ` (${order.discount_code})` : ""}</dt>
+                  <dt className="text-ink-soft">Отстъпка{order.discount_title || order.discount_code ? ` (${order.discount_title || order.discount_code})` : ""}</dt>
                   <dd className="font-bold text-mint">−{m(order.discount_total)}</dd>
                 </div>
               ) : null}

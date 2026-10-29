@@ -89,7 +89,7 @@ export default async function OrderPage({ params }: Props) {
                   <div className="co-tr co-tr--discount">
                     <dt>
                       {T.discount}
-                      {order.discount_code ? ` (${order.discount_code})` : ""}
+                      {order.discount_title || order.discount_code ? ` (${order.discount_title || order.discount_code})` : ""}
                     </dt>
                     <dd>−{money(order.discount_total)}</dd>
                   </div>

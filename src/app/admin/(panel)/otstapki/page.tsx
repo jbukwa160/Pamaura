@@ -7,6 +7,10 @@ import { STATE_LABELS, appliesText, discountState, parseAppliesTo } from "@/lib/
 import { listDiscounts, type DiscountRec } from "@/lib/discounts";
 import { Badge, Empty, PageHeader } from "@/components/admin/ui";
 import { DiscountRowActions } from "./DiscountRowActions";
+import { AutoDiscountsEditor } from "./AutoDiscountsEditor";
+import { automaticDiscounts } from "@/lib/auto-discounts";
+import { getDb } from "@/lib/db";
+import { Card } from "@/components/admin/ui";
 
 export const metadata: Metadata = { title: "Отстъпки" };
 export const dynamic = "force-dynamic";
@@ -27,6 +31,8 @@ function datesText(d: DiscountRec) {
 export default async function DiscountsPage() {
   await requireAdmin();
   const rows = listDiscounts();
+  const usedBy = getDb().prepare("SELECT discount_title AS t, COUNT(*) AS n FROM orders WHERE discount_title IS NOT NULL GROUP BY discount_title").all() as { t: string; n: number }[];
+  const auto = automaticDiscounts().map((d) => ({ ...d, used: usedBy.find((u) => u.t === d.title)?.n ?? 0 }));
 
   return (
     <>
@@ -39,6 +45,14 @@ export default async function DiscountsPage() {
           </Link>
         }
       />
+      <Card
+        className="mb-6"
+        title="Автоматични отстъпки (без код)"
+        description="Прилагат се сами в количката и при поръчка — като „Bundle & Save“ в сайта досега: 15% от 3 продукта нагоре (бройките се събират; вариант „2 БРОЯ“ е един продукт). Не се комбинират с код за отстъпка — клиентът получава по-голямата."
+      >
+        <AutoDiscountsEditor rows={auto} />
+      </Card>
+      <h2 className="mb-3 text-xl font-black">Кодове за отстъпка</h2>
       {rows.length ? (
         <div className="relative overflow-x-auto rounded-3xl border border-line bg-white">
           <table className="table">

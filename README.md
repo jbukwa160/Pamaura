@@ -58,7 +58,7 @@ Shopify's own storefront URLs keep working the same way, so the theme's JavaScri
 | Поръчки | Status changes with e-mail to the customer and restocking on cancel, paid / unpaid, tracking number, Econt / Speedy / BOX NOW waybill and label (needs the courier logins), internal notes, history. |
 | Клиенти, Абонати | Customer accounts and newsletter subscribers (CSV export). |
 | Продукти, Колекции | Texts BG / RO, prices (RON preview), stock, variants and options, pictures, metafields, upsells, SEO; changing an address adds a 301 redirect. |
-| Отстъпки | Discount codes (END10 is carried over from the store). |
+| Отстъпки | Automatic discounts such as "Bundle & Save" (15% off the cart from 3 items, as on Shopify), and discount codes (END10 is carried over from the announcement bar). A code and an automatic discount don't combine; the customer gets the larger. |
 | Отзиви | Approve / hide reviews; customers can write reviews on product pages. |
 | Страници, Блог, Меню | Content pages, blog articles (with redirects when an address changes), the header and footer menus with RO titles. |
 | Текстове в сайта | Every heading, paragraph and button of the theme's sections, BG / RO, without touching the theme files. |
@@ -71,7 +71,8 @@ The catalog was copied from the live store's public pages:
 
 - products, variants, prices, pictures and videos;
 - collections, pages, the blog, menus and theme texts;
-- the Romanian translations, product metafields and upsells;
+- the Romanian translations, product metafields and upsells (cross-sells, the "Хей, не пропускай…" add-to-cart popup);
+- Shopify's product recommendations for every product (cart page "Recommended");
 - 212 Judge.me reviews with their photos.
 
 Verification: every page in both languages was rendered here and compared with the live page, section by section. The only differences are the replaced apps listed below.
@@ -98,13 +99,15 @@ Not available from Shopify's public pages, so not migrated:
 | izprati.bg (couriers in the cart) | Econt / Speedy / BOX NOW offices and lockers in our checkout; waybills from the admin. |
 | T-Lab language switcher | Same switcher, own code; Romanian texts imported. |
 | Shopify Markets (RON) | Markets with an exchange rate set in the admin (no daily automatic rate). |
-| Klaviyo, Instafeed | Kept: their public scripts load as before (Klaviyo forms only work on the real domain). |
-| Dealeasy, Essential Countdown | Removed (not used by the visible pages). |
+| Klaviyo, Instafeed | Kept: their public scripts and Klaviyo's "Viewed Product" tracking load as before (Klaviyo forms only work on the real domain). The theme's upsell popup relies on that tracking snippet. |
+| Dealeasy ("Bundle & Save") | Own automatic discount with the same rule and amounts: 15% off every line from 3 items, totals rounded as Shopify does. Editable in admin → Отстъпки. |
+| Essential Countdown | Removed (not used by the visible pages). |
 
 ## Known content issues carried over from the live store
 
 - Delivery texts in the theme say "Безплатна доставка над 50 лв." and the RO announcement says "peste 25 €". The theme setting and the checkout use €35. Align them in Текстове в сайта, and the threshold in Доставка и плащане.
 - The theme shows the variant metafields `custom.price_text` / `compare_at_price_text` next to the variant prices. Several still say "19 лв." from before the euro switch. They are copied as the live store has them and are not editable in the admin yet.
+- END10 is advertised in the announcement bar, but on 2026-10-29 the live Shopify store rejected it for every cart ("not applicable"). Here it works as the bar describes (−10% over €25). Switch it off in Отстъпки if the campaign has ended.
 
 ## Environment
 

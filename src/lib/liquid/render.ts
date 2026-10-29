@@ -254,10 +254,31 @@ export async function renderPage(env: PageEnv, templateName: string, suffix: str
 }
 
 /** Section Rendering API: a static section, a section of the page's template, or a group section. */
+/** JSON template whose id (stableId) is `id`. */
+function templateById(id: number): string | null {
+  for (const f of fs.readdirSync(themePath("templates"))) {
+    if (!f.endsWith(".json") || f.includes(".context.")) continue;
+    const name = f.slice(0, -5);
+    if (stableId(`templates/${name}`) === id) return name;
+  }
+  for (const dir of ["customers"]) {
+    const d = themePath("templates", dir);
+    if (!fs.existsSync(d)) continue;
+    for (const f of fs.readdirSync(d)) {
+      if (!f.endsWith(".json") || f.includes(".context.")) continue;
+      const name = `${dir}/${f.slice(0, -5)}`;
+      if (stableId(`templates/${name}`) === id) return name;
+    }
+  }
+  return null;
+}
+
 export async function renderSectionById(env: PageEnv, id: string, templateName: string, suffix: string | null): Promise<string | null> {
   const tm = id.match(/^template--(\d+)__(.+)$/);
-  const tname = templateFileName(templateName, suffix);
+  let tname = templateFileName(templateName, suffix);
   if (tm) {
+    // the id names its template (e.g. the cart page's recommendations, fetched from /recommendations/products)
+    if (stableId(`templates/${tname}`) !== Number(tm[1])) tname = templateById(Number(tm[1])) ?? tname;
     const json = jsonTemplate(tname, env.s.market.handle);
     const data = json?.sections[tm[2]];
     if (!json || !data) return null;

@@ -370,7 +370,9 @@ export default function CheckoutForm(p: CheckoutProps) {
     }
   };
 
-  const discountAmount = quote.discount && !quote.discount.error ? quote.discount.amount : 0;
+  // the automatic discount ("Bundle & Save") or the code, whichever applies
+  const discountAmount = quote.automatic ? quote.automatic.amount : quote.discount && !quote.discount.error ? quote.discount.amount : 0;
+  const discountLabel = quote.automatic ? quote.automatic.title : quote.discount?.code ?? "";
   const freeHint = useMemo(() => {
     if (p.freeThreshold === null || !quote.methods.length) return null;
     const left = p.freeThreshold - (quote.subtotal - discountAmount);
@@ -434,7 +436,7 @@ export default function CheckoutForm(p: CheckoutProps) {
           {discountAmount ? (
             <div className="co-tr co-tr--discount">
               <dt>
-                {T.discount} ({quote.discount!.code})
+                {T.discount} ({discountLabel})
               </dt>
               <dd>−{money(discountAmount)}</dd>
             </div>

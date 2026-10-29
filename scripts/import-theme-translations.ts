@@ -214,7 +214,9 @@ async function main() {
         // rebuild the template with this call's values: "Disponibil de la 55,00 lei" → "… {{ price }}"
         let tpl = val;
         const entries = Object.entries(call.vars).filter(([, x]) => x).sort((x, y) => y[1].length - x[1].length);
-        for (const [k, x] of entries) if (tpl.includes(x)) tpl = tpl.split(x).join(`{{ ${k} }}`);
+        // whole values only: "8" must not match inside "18" (the live search finds more results than ours)
+        const whole = (x: string) => new RegExp(`(?<![\\p{L}\\p{N}])${x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "gu");
+        for (const [k, x] of entries) tpl = tpl.replace(whole(x), `{{ ${k} }}`);
         const check = tpl.replace(/\{\{ (\w+) \}\}/g, (_m, k) => call.vars[k] ?? "");
         if (check !== val) continue;
         const m = lv.get(call.key) || new Map<string, number>();

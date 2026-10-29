@@ -397,6 +397,7 @@ export function getDb(): Database.Database {
   addColumn(conn, "media", "duration", "INTEGER");
   addColumn(conn, "media", "created_at", "TEXT");
   addColumn(conn, "media", "updated_at", "TEXT");
+  addColumn(conn, "orders", "discount_title", "TEXT");
   db = conn;
   return conn;
 }

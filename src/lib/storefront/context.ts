@@ -36,10 +36,15 @@ export function requestOrigin(req: Request): { origin: string; host: string; sec
   const url = new URL(req.url);
   const fwdHost = req.headers.get("x-forwarded-host");
   const fwdProto = req.headers.get("x-forwarded-proto");
+  // `host` (theme assets, pictures: //host/cdn/…) is always the address being browsed, so the files
+  // come from this server; SITE_URL only sets `origin` for public links (canonical, e-mails, sitemaps)
+  const host = fwdHost || req.headers.get("host") || url.host;
   const site = process.env.SITE_URL ? new URL(process.env.SITE_URL) : null;
-  const host = site?.host || fwdHost || req.headers.get("host") || url.host;
-  const proto = site ? site.protocol.replace(":", "") : fwdProto || url.protocol.replace(":", "");
-  return { origin: `${proto}://${host}`, host, secure: proto === "https" };
+  const reqProto = fwdProto || url.protocol.replace(":", "");
+  const origin = site ? `${site.protocol}//${site.host}` : `${reqProto}://${host}`;
+  // Secure cookies when the request is https (also when SITE_URL is https and this is that host behind a proxy)
+  const secure = reqProto === "https" || (site?.protocol === "https:" && site.host === host);
+  return { origin, host, secure };
 }
 
 export interface ParsedPath {

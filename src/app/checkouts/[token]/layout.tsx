@@ -15,9 +15,10 @@ export default async function CheckoutLayout({ children, params }: { children: R
   const markets = getCatalog().markets.filter((m) => m.enabled);
   const cart = /^[a-f0-9]{16,64}$/.test(token) ? loadCart(token, markets[0].handle) : null;
   const lang = markets.find((m) => m.handle === cart?.market)?.language || markets[0].language;
+  // suppressHydrationWarning: browser extensions add classes to <html> / <body> before React starts
   return (
-    <html lang={lang}>
-      <body>
+    <html lang={lang} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <style dangerouslySetInnerHTML={{ __html: brandFontCss() }} />
         {children}
       </body>

@@ -1,5 +1,6 @@
 // shop, request, routes, localization, cart, line items, customer, addresses, orders.
 import { priceCart, type PricedLine } from "../../cart";
+import { discountApplicationJson } from "../../auto-discounts";
 import { convertAmount, type Market } from "../../catalog";
 import { addresses as customerAddresses, type AddressRec } from "../../customers";
 import { getDb } from "../../db";
@@ -366,8 +367,14 @@ export class LineItemDrop extends SDrop {
   get original_line_price() {
     return this.r.line_price;
   }
+  /** this line's share of a cart-level automatic discount ("Bundle & Save") */
   get total_discount() {
-    return 0;
+    return this.r.cart_discount;
+  }
+  get discount_allocations() {
+    const auto = priceCart(this.s.cart, this.s.market, this.s.catalog).auto;
+    if (!auto || !this.r.cart_discount) return [];
+    return [{ amount: this.r.cart_discount, discount_application: discountApplicationJson(auto) }];
   }
   get discounts() {
     return [];
@@ -485,10 +492,10 @@ export class CartDrop extends SDrop {
     return this.pc().original_total_price;
   }
   get items_subtotal_price() {
-    return this.pc().total_price;
+    return this.pc().original_total_price;
   }
   get total_discount() {
-    return 0;
+    return this.pc().total_discount;
   }
   get total_weight() {
     return this.pc().total_weight;
@@ -515,10 +522,11 @@ export class CartDrop extends SDrop {
     return false;
   }
   get cart_level_discount_applications() {
-    return [];
+    const auto = this.pc().auto;
+    return auto ? [discountApplicationJson(auto)] : [];
   }
   get discount_applications() {
-    return [];
+    return this.cart_level_discount_applications;
   }
   get empty() {
     return this.pc().item_count === 0;
@@ -751,7 +759,9 @@ export class OrderDrop extends SDrop {
     return [{ title: this.r.shipping_title, price: this.r.shipping_total + this.r.cod_fee, original_price: this.r.shipping_total + this.r.cod_fee }];
   }
   get cart_level_discount_applications() {
-    return this.r.discount_total ? [{ title: this.r.discount_code, total_allocated_amount: this.r.discount_total, type: "discount_code", value_type: "percentage" }] : [];
+    if (!this.r.discount_total) return [];
+    const auto = this.r.discount_title;
+    return [{ title: auto || this.r.discount_code, total_allocated_amount: this.r.discount_total, type: auto ? "automatic" : "discount_code", value_type: "percentage" }];
   }
   get discount_applications() {
     return this.cart_level_discount_applications;

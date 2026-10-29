@@ -12,9 +12,10 @@ export function generateMetadata(): Metadata {
 export default async function OrderLayout({ children, params }: { children: React.ReactNode; params: Promise<{ token: string }> }) {
   const { token } = await params;
   const order = /^[a-f0-9]{32}$/.test(token) ? orderByToken(token) : null;
+  // suppressHydrationWarning: browser extensions add classes to <html> / <body> before React starts
   return (
-    <html lang={order?.locale || "bg"}>
-      <body>
+    <html lang={order?.locale || "bg"} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <style dangerouslySetInnerHTML={{ __html: brandFontCss() }} />
         {children}
       </body>

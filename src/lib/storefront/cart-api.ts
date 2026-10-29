@@ -1,5 +1,7 @@
 // Shopify AJAX Cart API: /cart.js, /cart/add, /cart/change, /cart/update, /cart/clear, permalinks.
 import { CART_COOKIE, CartError, addItem, changeItem, priceCart, saveCart, updateItems, type PricedLine } from "../cart";
+import { discountApplicationJson, type AutoResult } from "../auto-discounts";
+import { escapeHtml } from "../mail";
 import { DropFactory, mediaJson, type ProductDrop } from "../liquid/drops/catalog";
 import { cdnFileUrl } from "../liquid/drops/base";
 import { createEnv, renderSectionById } from "../liquid/render";
@@ -16,7 +18,7 @@ export function json(data: unknown, status = 200, headers: Record<string, string
   return new Response(shopifyJson(data), { status, headers: { "Content-Type": JSON_TYPE, ...headers } });
 }
 
-function lineJson(sr: StoreRequest, f: DropFactory, l: PricedLine) {
+function lineJson(sr: StoreRequest, f: DropFactory, l: PricedLine, auto: AutoResult | null) {
   const s = sr.state;
   const p = f.product(l.product.id) as ProductDrop;
   const v = p.variantDrop(l.variant);
@@ -33,11 +35,12 @@ function lineJson(sr: StoreRequest, f: DropFactory, l: PricedLine) {
     price: l.price,
     original_price: l.price,
     presentment_price: l.price / 100 === Math.floor(l.price / 100) ? new RFloat(l.price / 100) : l.price / 100,
-    discounted_price: l.price,
-    line_price: l.line_price,
+    // a cart-level discount ("Bundle & Save") lowers line_price / discounted_price, not final_line_price
+    discounted_price: l.price - Math.round(l.cart_discount / l.item.quantity),
+    line_price: l.line_price - l.cart_discount,
     original_line_price: l.line_price,
-    total_discount: 0,
-    discounts: [],
+    total_discount: l.cart_discount,
+    discounts: auto && l.cart_discount ? [{ amount: l.cart_discount, title: escapeHtml(auto.discount.title) }] : [],
     sku: l.variant.sku || null,
     grams: l.variant.weight,
     vendor: l.product.vendor,
@@ -75,14 +78,14 @@ export function cartJson(sr: StoreRequest) {
     attributes: s.cart.attributes,
     original_total_price: pc.original_total_price,
     total_price: pc.total_price,
-    total_discount: 0,
+    total_discount: pc.total_discount,
     total_weight: new RFloat(pc.total_weight),
     item_count: pc.item_count,
-    items: pc.lines.map((l) => lineJson(sr, f, l)),
+    items: pc.lines.map((l) => lineJson(sr, f, l, pc.auto)),
     requires_shipping: pc.requires_shipping,
     currency: s.market.currency,
-    items_subtotal_price: pc.total_price,
-    cart_level_discount_applications: [],
+    items_subtotal_price: pc.original_total_price,
+    cart_level_discount_applications: pc.auto ? [discountApplicationJson(pc.auto)] : [],
     discount_codes: [],
   };
 }

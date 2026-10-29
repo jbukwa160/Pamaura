@@ -1,5 +1,6 @@
 // Server-side cart with Shopify's AJAX cart semantics (line keys, properties, /cart/*.js JSON).
 import crypto from "node:crypto";
+import { applyAutomatic, type AutoResult } from "./auto-discounts";
 import { getCatalog, isPublished, marketPrice, type Catalog, type Market, type Product, type Variant } from "./catalog";
 import { getDb, nowIso } from "./db";
 
@@ -151,7 +152,9 @@ export function addItem(cart: CartData, variantId: number, quantity: number, pro
     return existing;
   }
   const item: CartItem = { key, variant_id: v.id, quantity: qty, properties: props };
-  cart.items.push(item);
+  // like Shopify: a new line goes first (the drawer and its recommendations follow the latest product);
+  // an existing line keeps its place
+  cart.items.unshift(item);
   return item;
 }
 
@@ -234,13 +237,19 @@ export interface PricedLine {
   price: number; // unit, market currency
   compare_at_price: number | null;
   line_price: number;
+  /** this line's share of the automatic cart discount */
+  cart_discount: number;
 }
 export interface PricedCart {
   lines: PricedLine[];
   item_count: number;
+  /** after the automatic discount */
   total_price: number;
+  /** sum of the lines */
   original_total_price: number;
   total_discount: number;
+  /** automatic discount ("Bundle & Save") applied to the cart, if any */
+  auto: AutoResult | null;
   total_weight: number;
   requires_shipping: boolean;
 }
@@ -251,15 +260,18 @@ export function priceCart(cart: CartData, market: Market, cat: Catalog = getCata
     const found = findVariant(cat, item.variant_id);
     if (!found) return;
     const mp = marketPrice(found.v, market);
-    lines.push({ index, item, product: found.p, variant: found.v, price: mp.price, compare_at_price: mp.compare_at_price, line_price: mp.price * item.quantity });
+    lines.push({ index, item, product: found.p, variant: found.v, price: mp.price, compare_at_price: mp.compare_at_price, line_price: mp.price * item.quantity, cart_discount: 0 });
   });
   const total = lines.reduce((n, l) => n + l.line_price, 0);
+  const auto = applyAutomatic(lines.map((l) => ({ line_price: l.line_price, quantity: l.item.quantity })));
+  if (auto) lines.forEach((l, i) => (l.cart_discount = auto.allocations[i]));
   return {
     lines,
     item_count: lines.reduce((n, l) => n + l.item.quantity, 0),
-    total_price: total,
+    total_price: total - (auto?.total ?? 0),
     original_total_price: total,
-    total_discount: 0,
+    total_discount: auto?.total ?? 0,
+    auto,
     total_weight: lines.reduce((n, l) => n + l.variant.weight * l.item.quantity, 0),
     requires_shipping: lines.some((l) => l.variant.requires_shipping),
   };

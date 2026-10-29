@@ -12,9 +12,13 @@ export const metadata: Metadata = {
 };
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
+  // suppressHydrationWarning: browser extensions add classes to <html> / <body> before React starts;
+  // data-scroll-behavior: admin.css scrolls smoothly, Next turns it off during route changes
   return (
-    <html lang="bg" className={nunito.variable}>
-      <body className="min-h-screen bg-canvas text-ink antialiased">{children}</body>
+    <html lang="bg" className={nunito.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body className="min-h-screen bg-canvas text-ink antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

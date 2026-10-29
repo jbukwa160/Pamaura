@@ -1,7 +1,7 @@
 // Checkout page. The theme's cart sends the visitor here (/checkouts/<cart token>?locale=<market>).
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { quote } from "@/lib/checkout";
 import { checkoutTexts } from "@/lib/checkout-i18n";
 import { logoUrl, storeLinks } from "@/lib/checkout-page";
@@ -27,7 +27,11 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   const h = await headers();
   const locale = typeof sp.locale === "string" ? sp.locale : null;
   const sr = checkoutRequest(requestFromHeaders(h, `/checkouts/${token}`), token, locale);
-  if (!sr) notFound();
+  if (!sr) {
+    // unknown or expired cart (an old link, a cleared cart): back to that market's cart, like Shopify
+    const markets = getCatalog().markets.filter((m) => m.enabled);
+    redirect(storeLinks(markets.find((m) => m.path === locale) || markets.find((m) => m.primary) || markets[0]).cart);
+  }
   const s = sr.state;
   const links = storeLinks(s.market);
   if (!s.cart.items.length) redirect(links.cart);

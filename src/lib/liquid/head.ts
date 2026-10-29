@@ -4,6 +4,9 @@ import { settingsData } from "./theme";
 import type { PageEnv } from "./render";
 import { reviewsHeadHtml } from "../reviews-render";
 import { languageSwitcherHtml } from "./switcher";
+import { ProductDrop } from "./drops/catalog";
+import { encodeFileName } from "./drops/base";
+import { formatMoney } from "../money";
 
 function js(v: unknown) {
   return JSON.stringify(v).replace(/</g, "\\u003c").replace(/\//g, "\\/");
@@ -86,9 +89,124 @@ Shopify.routes.root = ${js(`/${s.market.path}/`)};
         `<script>!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script>`,
     );
   }
+  if (head.klaviyo_company_id) parts.push(klaviyoViewedProduct(env));
   parts.push(reviewsHeadHtml(env));
   if (head.extra_head_html) parts.push(head.extra_head_html);
   return parts.filter(Boolean).join("\n");
+}
+
+/** Rating as Shopify / Judge.me print it: "5.0", "4.88". */
+function ratingText(v: number): string {
+  return Number.isInteger(v) ? v.toFixed(1) : String(v);
+}
+
+/**
+ * Klaviyo's "Viewed Product" tracking on product pages, as the Klaviyo app embed prints it on the live
+ * store. Besides the tracking, it defines the global `item` that the theme's add-to-cart handler reads
+ * (section-main-product.js: `upsellPopup.variantTitle = item.variant_title`) before opening the upsell popup.
+ */
+function klaviyoViewedProduct(env: PageEnv): string {
+  const s = env.s;
+  const product = env.globals.product;
+  if (s.pageType !== "product" || !(product instanceof ProductDrop)) return "";
+  const str = (v: unknown) => JSON.stringify(String(v ?? "")).replace(/</g, "\\u003c");
+  const money = (cents: number) => formatMoney(cents, s.market.money_format);
+  const amount = (cents: number) => formatMoney(cents, s.market.money_format.replace(/^[^{]*(\{\{[^}]*\}\})[\s\S]*$/, "$1"));
+  const mf = (ns: string, key: string) => s.catalog.metafields.get(`product:${product.id}`)?.find((m) => m.namespace === ns && m.key === key)?.value ?? null;
+  let reviews = "null";
+  const rating = mf("reviews", "rating");
+  const count = mf("reviews", "rating_count");
+  if (rating && count) {
+    const r = JSON.parse(rating) as { value: string; scale_min: string; scale_max: string };
+    reviews = JSON.stringify({ rating: { scale_min: r.scale_min, scale_max: r.scale_max, value: ratingText(Number(r.value)) }, rating_count: Number(count) });
+  }
+  const looxRating = mf("loox", "avg_rating");
+  const looxCount = mf("loox", "num_reviews");
+  const categories = (product.collections as { title: string }[])
+    .filter(Boolean)
+    .map((c) => c.title)
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const img = product.featured_image;
+  let imageUrl = "";
+  if (img) {
+    const plain = String(img.r.name);
+    const dot = plain.lastIndexOf(".");
+    imageUrl = `${s.origin}/cdn/shop/${img.r.folder}/${encodeFileName(dot > 0 ? `${plain.slice(0, dot)}_grande${plain.slice(dot)}` : plain)}${img.r.version ? `?v=${img.r.version}` : ""}`;
+  }
+  return `<script id="viewed_product">
+      if (item == null) {
+        var _learnq = _learnq || [];
+
+        var MetafieldReviews = null
+        var MetafieldYotpoRating = null
+        var MetafieldYotpoCount = null
+        var MetafieldLooxRating = null
+        var MetafieldLooxCount = null
+        var okendoProduct = null
+        var okendoProductReviewCount = null
+        var okendoProductReviewAverageValue = null
+        try {
+          // The following fields are used for Customer Hub recently viewed in order to add reviews.
+          // This information is not part of __kla_viewed. Instead, it is part of __kla_viewed_reviewed_items
+          MetafieldReviews = ${reviews};
+          MetafieldYotpoRating = null
+          MetafieldYotpoCount = null
+          MetafieldLooxRating = ${looxRating === null ? "null" : str(looxRating)}
+          MetafieldLooxCount = ${looxCount === null ? "null" : Number(looxCount)}
+
+          okendoProduct = null
+          // If the okendo metafield is not legacy, it will error, which then requires the new json formatted data
+          if (okendoProduct && 'error' in okendoProduct) {
+            okendoProduct = null
+          }
+          okendoProductReviewCount = okendoProduct ? okendoProduct.reviewCount : null
+          okendoProductReviewAverageValue = okendoProduct ? okendoProduct.reviewAverageValue : null
+        } catch (error) {
+          console.error('Error in Klaviyo onsite reviews tracking:', error);
+        }
+
+        var item = {
+          Name: ${str(product.title)},
+          ProductID: ${product.id},
+          Categories: [${categories.map(str).join(",")}],
+          ImageURL: ${str(imageUrl)},
+          URL: ${str(s.origin + product.url)},
+          Brand: ${str(product.vendor)},
+          Price: ${str(money(product.price))},
+          Value: ${str(amount(product.price))},
+          CompareAtPrice: ${str(money(product.compare_at_price_max || 0))}
+        };
+        _learnq.push(['track', 'Viewed Product', item]);
+        _learnq.push(['trackViewedItem', {
+          Title: item.Name,
+          ItemId: item.ProductID,
+          Categories: item.Categories,
+          ImageUrl: item.ImageURL,
+          Url: item.URL,
+          Metadata: {
+            Brand: item.Brand,
+            Price: item.Price,
+            Value: item.Value,
+            CompareAtPrice: item.CompareAtPrice
+          },
+          metafields:{
+            reviews: MetafieldReviews,
+            yotpo:{
+              rating: MetafieldYotpoRating,
+              count: MetafieldYotpoCount,
+            },
+            loox:{
+              rating: MetafieldLooxRating,
+              count: MetafieldLooxCount,
+            },
+            okendo: {
+              rating: okendoProductReviewAverageValue,
+              count: okendoProductReviewCount,
+            }
+          }
+        }]);
+      }
+    </script>`;
 }
 
 /** Shopify places the theme's custom CSS (theme settings → Custom CSS) at the end of <body>. */

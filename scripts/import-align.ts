@@ -331,6 +331,9 @@ async function main() {
             variant: Number(m[1]),
             text: decode((m[2].match(/<span class="short-description-text">\s*([\s\S]*?)\s*<\/span>/)?.[1] || "").trim()),
           }));
+          // a popup without product cards: on Shopify its entry points at a product that no longer
+          // exists; keep such an entry (variant 0) so the popup still opens with its title and buttons
+          if (!entries.length) entries.push({ variant: 0, text: "" });
           const rec = popups.get(prod.id) || { title: {}, entries: entries.map((e) => ({ variant: e.variant, text: {} as Record<string, string> })) };
           rec.title[mk.locale] = title;
           entries.forEach((e, i) => {
@@ -494,6 +497,47 @@ async function main() {
   setPlaceholderProbe(false);
   if (Object.keys(found).length) setSetting("placeholders", found);
   log(`placeholders: ${Object.keys(found).join(", ") || "none"}`);
+
+  // Loox ratings (an earlier reviews app): product metafields loox.avg_rating / loox.num_reviews. Only the
+  // Klaviyo "Viewed Product" snippet prints them, so they are read from it on the live product pages.
+  {
+    const db2 = getDb();
+    const ins = db2.prepare("INSERT OR REPLACE INTO metafields(owner_type, owner_id, namespace, key, type, value) VALUES('product', ?, 'loox', ?, ?, ?)");
+    let n = 0;
+    db2.prepare("DELETE FROM metafields WHERE namespace = 'loox'").run();
+    for (const prod of getCatalog().products.filter(isPublished)) {
+      const html = await liveHtml(`/bg-bg/products/${encodeURIComponent(prod.handle)}`);
+      const rating = html.match(/MetafieldLooxRating = "([^"]+)"/)?.[1];
+      const count = html.match(/MetafieldLooxCount = (\d+)/)?.[1];
+      if (rating) ins.run(prod.id, "avg_rating", "single_line_text_field", rating);
+      if (count) ins.run(prod.id, "num_reviews", "number_integer", count);
+      if (rating || count) n++;
+    }
+    log(`loox ratings: ${n} products`);
+  }
+
+  // Product recommendations (cart page "Recommended", related products): Shopify's own lists, read from
+  // its public endpoint and kept as the Search & Discovery metafields our recommendations use first.
+  {
+    const db2 = getDb();
+    const ins = db2.prepare(
+      "INSERT OR REPLACE INTO metafields(owner_type, owner_id, namespace, key, type, value) VALUES('product', ?, 'shopify--discovery--product_recommendation', ?, 'list.product_reference', ?)",
+    );
+    db2.prepare("DELETE FROM metafields WHERE namespace = 'shopify--discovery--product_recommendation'").run();
+    let n = 0;
+    for (const prod of getCatalog().products.filter(isPublished)) {
+      for (const [intent, key] of [
+        ["related", "related_products"],
+        ["complementary", "complementary_products"],
+      ] as const) {
+        const data = await fetcher.json<{ products: { id: number }[] }>(`${BASE}/bg-bg/recommendations/products.json?product_id=${prod.id}&limit=10&intent=${intent}`);
+        if (!data) continue;
+        ins.run(prod.id, key, JSON.stringify(data.products.map((p) => `gid://shopify/Product/${p.id}`)));
+        n++;
+      }
+    }
+    log(`recommendations: ${n} lists`);
+  }
 
   const missingVideos = themeVideoNames().filter((n) => !videoHashes.has(n));
   if (missingVideos.length) log(`videos not shown on any live page (left unset): ${missingVideos.join(", ")}`);
